@@ -22,7 +22,13 @@ public class GUI {
     InserirText TContraseña;
 
     // PANTALLA SELECCIONAR
-    Botons BHoy;
+    Botons BHoy, BSemana, BMes;
+
+    // PANTALLA HOY
+    Botons BComida, BCena;
+
+    // PANTALLA DETALLES HOY
+    InserirText TNombre, TReceta;
 
     // Constructor de la GUI
     public GUI(PApplet p5){
@@ -32,11 +38,25 @@ public class GUI {
 
         BLogIn = new Botons (p5, "LogIn", logInX, margeV, logInH, logInV);
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+
         BHoy = new Botons(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
         BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BSemana= new Botons(p5, "SEMANA", 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BSemana.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
+        BMes= new Botons(p5, "MES", 4*margeH + menuX + 2*columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BMes.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(4), tablaColores.getColorDe(3));
+
+        BComida = new Botons(p5, "COMIDA", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
+        BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
+        BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
+
 
         TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
+
+        TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 2*margeH, textY, "NOMBRE");
+        TReceta = new InserirText (p5, 3*margeH + menuX + columnaX, 4*margeV + 3*logoY + textY, textX - 2*margeH, columnaY - textY, "Receta");
     }
 
 
@@ -67,9 +87,11 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
-        dibuixaColumnes123(p5);
 
+        p5.textFont(fontsApp.getFontAt(2));
         BHoy.display(p5);
+        BSemana.display(p5);
+        BMes.display(p5);
     }
 
     public void dibuixaPantallaHoy(PApplet p5){
@@ -78,7 +100,9 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
-        dibuixaColumnes12(p5);
+
+        BComida.display(p5);
+        BCena.display(p5);
     }
 
     public void dibuixaPantallaDetallesHoy(PApplet p5){
@@ -88,6 +112,9 @@ public class GUI {
         dibuixaMenu(p5);
         dibuixaImatge(p5);
         dibuixaColumnes123(p5);
+
+        TNombre.display(p5);
+        TReceta.display(p5);
     }
 
     public void dibuixaPantallaSemana(PApplet p5){

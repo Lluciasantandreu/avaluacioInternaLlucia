@@ -97,22 +97,32 @@ public class Main extends PApplet {
 
     public void mousePressed(){
         if(gui.BLogIn.mouseSobreBoto(this)){
-            println("HAS FET CLIC SOBRE EL BOTÓ B1");
+            println("HAS FET CLIC SOBRE EL BOTÓ BLogIn");
             gui.pantallaActual = GUI.PANTALLA.LOGIN;
         }
+        if(gui.BHoy.mouseSobreBoto(this)){
+            println("HAS FET CLIC SOBRE EL BOTÓ BHoy");
+            gui.pantallaActual = GUI.PANTALLA.HOY;
+        }
+        if(gui.BSemana.mouseSobreBoto(this)){
+            println("HAS FET CLIC SOBRE EL BOTÓ BSemana");
+            gui.pantallaActual = GUI.PANTALLA.SEMANA;
+        }
+        if(gui.BMes.mouseSobreBoto(this)){
+            println("HAS FET CLIC SOBRE EL BOTÓ BMes");
+            gui.pantallaActual = GUI.PANTALLA.MES;
+        }
+        if(gui.BComida.mouseSobreBoto(this)){
+            println("HAS FET CLIC SOBRE EL BOTÓ BComida");
+            gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+        }
+        if(gui.BCena.mouseSobreBoto(this)){
+            println("HAS FET CLIC SOBRE EL BOTÓ BCena");
+            gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+        }
+
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
-       /* else if(gui.b2.mouseSobreBoto(this)){
-            println("HAS FET CLIC SOBRE EL BOTÓ B2");
-        }
-        else if(gui.b3.mouseSobreBoto(this)){
-            println("HAS FET CLIC SOBRE EL BOTÓ B3");
-        }
-        else if(gui.b4.mouseSobreBoto(this)){
-            println("HAS FET CLIC SOBRE EL BOTÓ B4");
-            gui.b4.setActivado(false);
-            gui.b4.setTextBoto("DISABLED");
-        }*/
     }
 
     public void mouseDragged(){
