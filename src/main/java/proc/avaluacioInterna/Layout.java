@@ -17,7 +17,7 @@ public class Layout {
     public static float imatgeV = 670;
 
     // Dimensiones Columnas
-    public static float columnaX  = 338, columnaY = 540;
+    public static float columnaX  = 338, columnaY = 340;
 
     // Dimensiones TextField
     public static float textX = 400, textY = 50;

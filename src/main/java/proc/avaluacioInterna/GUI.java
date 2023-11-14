@@ -16,9 +16,13 @@ public class GUI {
     Colors tablaColores;
     Fonts fontsApp;
 
+    // PANTALLA INICIAL Y LOGIN
     Botons BLogIn;
     InserirText TUsuario;
     InserirText TContraseña;
+
+    // PANTALLA SELECCIONAR
+    Botons BHoy;
 
     // Constructor de la GUI
     public GUI(PApplet p5){
@@ -28,6 +32,8 @@ public class GUI {
 
         BLogIn = new Botons (p5, "LogIn", logInX, margeV, logInH, logInV);
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BHoy = new Botons(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
@@ -49,7 +55,6 @@ public class GUI {
         p5.background(tablaColores.getColorDe(0));
         dibuixaLogo(p5);
         dibuixaNomPantalla(p5);
-        dibuixaUsuari(p5);
         dibuixaImatgeLogIn(p5);
 
         TUsuario.display(p5);
@@ -63,6 +68,8 @@ public class GUI {
         dibuixaMenu(p5);
         dibuixaImatge(p5);
         dibuixaColumnes123(p5);
+
+        BHoy.display(p5);
     }
 
     public void dibuixaPantallaHoy(PApplet p5){
@@ -117,7 +124,7 @@ public class GUI {
     }
 
     public void dibuixaMenu(PApplet p5){
-        // Zona Sidebar ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // Zona Menú
         p5.fill(tablaColores.getColorDe(3));
         p5.rect(margeH, 3*margeV + logoY, menuX, menuY);
         p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaSubtitol);
@@ -192,11 +199,5 @@ public class GUI {
         p5.text("Imatge LogIn", 6*margeH + usuariX + imagenLX/2, 3*margeV + logoY + imagenLY/2);
     }
 
-    public void dibuixaUsuari(PApplet p5){
-        p5.fill(tablaColores.getColorDe(3));
-        p5.rect(3*margeH, 3*margeV + logoY, usuariX, usuariY);
-        p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(1), midaTitol);
-        p5.text("LogIn \n Usuario", 3*margeH + usuariX/2, 3*margeV + logoY + usuariY/2);
-    }
 
 }

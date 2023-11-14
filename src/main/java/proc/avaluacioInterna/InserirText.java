@@ -14,6 +14,7 @@ public class InserirText {
     int grossorBordes;
 
     Colors tablaColores;
+    Fonts fontsApp;
 
     // Text del camp
     String text = "";
@@ -23,6 +24,7 @@ public class InserirText {
     // Constructor
     public InserirText(PApplet p5, float x, float y, float w, float h, String text) {
         tablaColores = new Colors(p5);
+        fontsApp = new Fonts(p5);
         this.text = text;
         this.x = x; this.y = y; this.w = w; this.h = h;
         this.NSColor = p5.color(tablaColores.getColorDe(0));
@@ -46,6 +48,7 @@ public class InserirText {
         p5.rect(x, y, w, h, 5);
 
         p5.fill(fgColor);
+        p5.textFont(fontsApp.getFontAt(0));
         p5.textSize(textSize); p5.textAlign(p5.LEFT, p5.CENTER);
         p5.text(text, x + 5, y + h - textSize);
         p5.popStyle();

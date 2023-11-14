@@ -88,8 +88,8 @@ public class Main extends PApplet {
             gui.pantallaActual = GUI.PANTALLA.MES;
         }
 
-        gui.TUsuario.keyPressed(key, (int)keyCode);
-        gui.TContraseña.keyPressed(key, (int)keyCode);
+        gui.TUsuario.keyPressed(key, keyCode);
+        gui.TContraseña.keyPressed(key, keyCode);
 
     }
 
