@@ -87,6 +87,10 @@ public class Main extends PApplet {
         else if(key=='6'){
             gui.pantallaActual = GUI.PANTALLA.MES;
         }
+
+        gui.TUsuario.keyPressed(key, (int)keyCode);
+        gui.TContraseña.keyPressed(key, (int)keyCode);
+
     }
 
     // ******************* MOUSE interaction ***************************** //
@@ -96,6 +100,8 @@ public class Main extends PApplet {
             println("HAS FET CLIC SOBRE EL BOTÓ B1");
             gui.pantallaActual = GUI.PANTALLA.LOGIN;
         }
+        gui.TUsuario.isPressed(this);
+        gui.TContraseña.isPressed(this);
        /* else if(gui.b2.mouseSobreBoto(this)){
             println("HAS FET CLIC SOBRE EL BOTÓ B2");
         }

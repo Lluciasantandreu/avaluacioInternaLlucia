@@ -9,8 +9,11 @@ public class InserirText {
     float x, y, h, w;
 
     // Colors
-    int bgColor, fgColor, colorSeleccionado, colorBordes;
+    // No Seleccionado,
+    int NSColor, fgColor, colorSeleccionado, colorBordes;
     int grossorBordes;
+
+    Colors tablaColores;
 
     // Text del camp
     String text = "";
@@ -18,11 +21,13 @@ public class InserirText {
 
     boolean seleccionado = false;
     // Constructor
-    public InserirText(PApplet p5, float x, float y, float w, float h) {
+    public InserirText(PApplet p5, float x, float y, float w, float h, String text) {
+        tablaColores = new Colors(p5);
+        this.text = text;
         this.x = x; this.y = y; this.w = w; this.h = h;
-        this.bgColor = p5.color(140, 140, 140);
-        this.fgColor = p5.color(0, 0, 0);
-        this.colorSeleccionado = p5.color(190, 190, 60);
+        this.NSColor = p5.color(tablaColores.getColorDe(0));
+        this.fgColor = p5.color(200, 10, 120);
+        this.colorSeleccionado = p5.color(tablaColores.getColorDe(2));
         this.colorBordes = p5.color(30, 30, 30);
         this.grossorBordes = 1;
     }
@@ -33,7 +38,7 @@ public class InserirText {
         if (seleccionado) {
             p5.fill(colorSeleccionado);
         } else {
-            p5.fill(bgColor);
+            p5.fill(NSColor);
         }
 
         p5.strokeWeight(grossorBordes);

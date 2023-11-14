@@ -29,8 +29,8 @@ public class GUI {
         BLogIn = new Botons (p5, "LogIn", logInX, margeV, logInH, logInV);
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
-        TUsuario = new InserirText (p5, 200, 350, textX, textY);
-        TContraseña = new InserirText (p5, 200, 450, textX, textY);
+        TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
+        TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
     }
 
 
