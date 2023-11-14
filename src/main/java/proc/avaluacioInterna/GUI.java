@@ -61,7 +61,6 @@ public class GUI {
 
 
     // PANTALLES DE LA GUI
-
     public void dibuixaPantallaInicial(PApplet p5){
 
         p5.background(tablaColores.getColorDe(0));
