@@ -194,17 +194,17 @@ public class GUI {
     public void dibuixaColumnes123(PApplet p5){
         // Zona Columnes 1, 2 i 3 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         p5.fill(tablaColores.getColorDe(2));
-        p5.rect(2*margeH + menuX, 3*margeV + logoY, columnaX, columnaY );
+        p5.rect(2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY );
         p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
         p5.text("COLUMNA 1", 2*margeH + menuX + columnaX/2, 2*margeV + logoY + columnaY/2);
 
         p5.fill(tablaColores.getColorDe(3));
-        p5.rect(3*margeH + menuX + columnaX, 3*margeV + logoY, columnaX, columnaY);
+        p5.rect(3*margeH + menuX + columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
         p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
         p5.text("COLUMNA 2", 3*margeH + menuX + columnaX + columnaX/2, 2*margeV + logoY + columnaY/2);
 
         p5.fill(tablaColores.getColorDe(4));
-        p5.rect(4*margeH + menuX + 2*columnaX, 3*margeV + logoY, columnaX, columnaY);
+        p5.rect(4*margeH + menuX + 2*columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
         p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
         p5.text("COLUMN 3", 4*margeH + menuX + 2*columnaX + columnaX/2, 2*margeV + logoY + columnaY/2);
     }
@@ -225,5 +225,12 @@ public class GUI {
         p5.text("Imatge LogIn", 6*margeH + usuariX + imagenLX/2, 3*margeV + logoY + imagenLY/2);
     }
 
-
+    public void dibuixaLlista(PApplet p5){
+        p5.fill(tablaColores.getColorDe(4));
+        float x = 4*margeH + menuX;
+        float y = 10;
+        LlistaCheck [] Ingredients;
+        Ingredients = new LlistaCheck[10];
+        Ingredients[0] = new LlistaCheck(p5, x + 2*columnaX, y, 30);
+    }
 }
