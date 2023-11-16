@@ -133,11 +133,6 @@ public class Main extends PApplet {
 
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
-
-        // Si pitjam sobre el checboxes
-        if(gui.LIngredientes.onMouseOver(this)){
-            gui.LIngredientes.toggle();
-        }
     }
 
     public void mouseDragged(){

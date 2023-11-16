@@ -111,6 +111,7 @@ public class GUI {
         dibuixaMenu(p5);
         dibuixaImatge(p5);
         dibuixaColumnes123(p5);
+        dibuixaLlista(p5);
 
         TNombre.display(p5);
         TReceta.display(p5);
@@ -227,10 +228,19 @@ public class GUI {
 
     public void dibuixaLlista(PApplet p5){
         p5.fill(tablaColores.getColorDe(4));
-        float x = 4*margeH + menuX;
-        float y = 10;
+        float x = 4*margeH + menuX + 2*columnaX;
+        float y = 3*margeV + 3*logoY;
         LlistaCheck [] Ingredients;
-        Ingredients = new LlistaCheck[10];
-        Ingredients[0] = new LlistaCheck(p5, x + 2*columnaX, y, 30);
+        Ingredients = new LlistaCheck[6];
+        Ingredients[0] = new LlistaCheck(p5, x, y, 30);
+        Ingredients[1] = new LlistaCheck(p5, x, y + margeV, 30);
+        Ingredients[2] = new LlistaCheck(p5, x, y + 2*margeV, 30);
+        Ingredients[3] = new LlistaCheck(p5, x, y + 3*margeV, 30);
+        Ingredients[4] = new LlistaCheck(p5, x, y + 4*margeV, 30);
+        Ingredients[5] = new LlistaCheck(p5, x, y + 5*margeV, 30);
+
+        for(int i=0; i< Ingredients.length;i++){
+            Ingredients[i].display(p5);
+        }
     }
 }

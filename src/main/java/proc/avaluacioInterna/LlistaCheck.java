@@ -22,11 +22,6 @@ public class LlistaCheck {
         this.checkColor = p5.color(180);
     }
 
-    // Setters
-    public void setYLlista(float y) {
-        this.y = y;
-    }
-
     // Dibuixa el CheckBox
     public void display(PApplet p5){
 
