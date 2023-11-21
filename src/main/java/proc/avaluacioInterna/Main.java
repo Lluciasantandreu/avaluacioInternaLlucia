@@ -133,6 +133,14 @@ public class Main extends PApplet {
 
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
+
+        for (int i = 0; i < gui.Ingredients.length; i++){
+            if(gui.Ingredients[i].onMouseOver(this)) {
+                gui.Ingredients[i].toggle();
+            }
+        }
+
+
     }
 
     public void mouseDragged(){

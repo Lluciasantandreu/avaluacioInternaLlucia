@@ -30,6 +30,8 @@ public class GUI {
     // PANTALLA DETALLES HOY
     InserirText TNombre, TReceta;
 
+    LlistaCheck [] Ingredients;
+
     // Constructor de la GUI
     public GUI(PApplet p5){
         pantallaActual = PANTALLA.INICIAL;
@@ -57,6 +59,17 @@ public class GUI {
 
         TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 2*margeH, textY, "NOMBRE");
         TReceta = new InserirText (p5, 3*margeH + menuX + columnaX, 4*margeV + 3*logoY + textY, textX - 2*margeH, columnaY - textY, "Receta");
+
+        float x = 4*margeH + menuX + 2*columnaX;
+        float y = 4*margeV + 3*logoY + textY;
+        Ingredients = new LlistaCheck[6];
+        Ingredients[0] = new LlistaCheck(p5, x, y, 30);
+        Ingredients[1] = new LlistaCheck(p5, x, y + 2*margeV, 30);
+        Ingredients[2] = new LlistaCheck(p5, x, y + 4*margeV, 30);
+        Ingredients[3] = new LlistaCheck(p5, x, y + 6*margeV, 30);
+        Ingredients[4] = new LlistaCheck(p5, x, y + 8*margeV, 30);
+        Ingredients[5] = new LlistaCheck(p5, x, y + 10*margeV, 30);
+
     }
 
 
@@ -104,17 +117,21 @@ public class GUI {
         BCena.display(p5);
     }
 
-    public void dibuixaPantallaDetallesHoy(PApplet p5){
+    public void dibuixaPantallaDetallesHoy(PApplet p5) {
         p5.background(tablaColores.getColorDe(0));
         dibuixaLogo(p5);
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
         dibuixaColumnes123(p5);
-        dibuixaLlista(p5);
 
         TNombre.display(p5);
         TReceta.display(p5);
+
+
+        for (int i = 0; i < Ingredients.length; i++){
+            Ingredients[i].display(p5);
+        }
     }
 
     public void dibuixaPantallaSemana(PApplet p5){
@@ -224,23 +241,5 @@ public class GUI {
         p5.rect(6*margeH + usuariX, 3*margeV + logoY, imagenLX, imagenLY);
         p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(2), midaTitol);
         p5.text("Imatge LogIn", 6*margeH + usuariX + imagenLX/2, 3*margeV + logoY + imagenLY/2);
-    }
-
-    public void dibuixaLlista(PApplet p5){
-        p5.fill(tablaColores.getColorDe(4));
-        float x = 4*margeH + menuX + 2*columnaX;
-        float y = 3*margeV + 3*logoY;
-        LlistaCheck [] Ingredients;
-        Ingredients = new LlistaCheck[6];
-        Ingredients[0] = new LlistaCheck(p5, x, y, 30);
-        Ingredients[1] = new LlistaCheck(p5, x, y + margeV, 30);
-        Ingredients[2] = new LlistaCheck(p5, x, y + 2*margeV, 30);
-        Ingredients[3] = new LlistaCheck(p5, x, y + 3*margeV, 30);
-        Ingredients[4] = new LlistaCheck(p5, x, y + 4*margeV, 30);
-        Ingredients[5] = new LlistaCheck(p5, x, y + 5*margeV, 30);
-
-        for(int i=0; i< Ingredients.length;i++){
-            Ingredients[i].display(p5);
-        }
     }
 }
