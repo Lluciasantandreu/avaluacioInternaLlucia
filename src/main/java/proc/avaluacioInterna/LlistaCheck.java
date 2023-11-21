@@ -9,6 +9,8 @@ public class LlistaCheck {
     // Colors
     int NSColor, bordesColor, checkColor;
 
+
+
     boolean checked;
 
     // Constructor
@@ -17,9 +19,9 @@ public class LlistaCheck {
         this.y = y;
         this.w = w;
         this.checked = false;
-        this.NSColor = p5.color(255);
-        this.bordesColor = p5.color(0);
-        this.checkColor = p5.color(180);
+        this.NSColor = p5.color(0xFFDEE5E5);
+        this.bordesColor = p5.color(30, 30, 30);
+        this.checkColor = p5.color(0xFF9DC5BB);
     }
 
     // Dibuixa el CheckBox
