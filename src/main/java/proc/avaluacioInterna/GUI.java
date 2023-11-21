@@ -29,7 +29,7 @@ public class GUI {
 
     // PANTALLA DETALLES HOY
     InserirText TNombre, TReceta;
-
+    InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
 
     // Constructor de la GUI
@@ -63,12 +63,21 @@ public class GUI {
         float x = 4*margeH + menuX + 2*columnaX;
         float y = 4*margeV + 3*logoY + textY;
         Ingredients = new LlistaCheck[6];
-        Ingredients[0] = new LlistaCheck(p5, x, y, 30);
-        Ingredients[1] = new LlistaCheck(p5, x, y + 2*margeV, 30);
-        Ingredients[2] = new LlistaCheck(p5, x, y + 4*margeV, 30);
-        Ingredients[3] = new LlistaCheck(p5, x, y + 6*margeV, 30);
-        Ingredients[4] = new LlistaCheck(p5, x, y + 8*margeV, 30);
-        Ingredients[5] = new LlistaCheck(p5, x, y + 10*margeV, 30);
+        Ingredients[0] = new LlistaCheck(p5, x, y, 37);
+        Ingredients[1] = new LlistaCheck(p5, x, y + 2*margeV + 10, 37);
+        Ingredients[2] = new LlistaCheck(p5, x, y + 4*margeV + 20, 37);
+        Ingredients[3] = new LlistaCheck(p5, x, y + 6*margeV + 30, 37);
+        Ingredients[4] = new LlistaCheck(p5, x, y + 8*margeV + 40, 37);
+        Ingredients[5] = new LlistaCheck(p5, x, y + 10*margeV + 50, 37);
+
+
+        TIngredients = new InserirText[6];
+        TIngredients[0] = new InserirText(p5, x + 60, y, 200, 37, "Ingrediente 1");
+        TIngredients[1] = new InserirText(p5, x + 60, y + 2*margeV + 10, 200, 37, "Ingrediente 2");
+        TIngredients[2] = new InserirText(p5, x + 60, y + 4*margeV + 20, 200, 37, "Ingrediente 3");
+        TIngredients[3] = new InserirText(p5, x + 60, y + 6*margeV + 30, 200, 37, "Ingrediente 4");
+        TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 200, 37, "Ingrediente 5");
+        TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 200, 37, "Ingrediente 6");
 
     }
 
@@ -131,6 +140,7 @@ public class GUI {
 
         for (int i = 0; i < Ingredients.length; i++){
             Ingredients[i].display(p5);
+            TIngredients[i].display(p5);
         }
     }
 

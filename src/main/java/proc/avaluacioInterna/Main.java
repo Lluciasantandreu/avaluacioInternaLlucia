@@ -90,7 +90,9 @@ public class Main extends PApplet {
 
         gui.TUsuario.keyPressed(key, keyCode);
         gui.TContraseña.keyPressed(key, keyCode);
-
+        for (int i = 0; i < gui.Ingredients.length; i++){
+            gui.TIngredients[i].keyPressed(key, keyCode);
+        }
     }
 
     // ******************* MOUSE interaction ***************************** //
@@ -133,6 +135,10 @@ public class Main extends PApplet {
 
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
+
+        for (int i = 0; i < gui.Ingredients.length; i++){
+                gui.TIngredients[i].isPressed(this);
+        }
 
         for (int i = 0; i < gui.Ingredients.length; i++){
             if(gui.Ingredients[i].onMouseOver(this)) {
