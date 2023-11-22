@@ -177,13 +177,6 @@ public class GUI {
         p5.text("PANTALLA " + pantallaActual, margeH + logoX + imatgeX/2, 2*margeV + logoY/2);
     }
 
-    public void dibuixaMenu(PApplet p5){
-        // Zona Menú
-        p5.fill(tablaColores.getColorDe(3));
-        p5.rect(margeH, 3*margeV + logoY, menuX, menuY);
-        p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaSubtitol);
-        p5.text("MENÚ", margeH + menuX/2, margeV + logoY + menuY/2);
-    }
 
     public void dibuixaImatge(PApplet p5){
         p5.fill(tablaColores.getColorDe(4));
@@ -251,5 +244,17 @@ public class GUI {
         p5.rect(6*margeH + usuariX, 3*margeV + logoY, imagenLX, imagenLY);
         p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(2), midaTitol);
         p5.text("Imatge LogIn", 6*margeH + usuariX + imagenLX/2, 3*margeV + logoY + imagenLY/2);
+    }
+
+    public void dibuixaMenu(PApplet p5){
+        p5.fill(tablaColores.getColorDe(3));
+        p5.rect(margeH, 3*margeV + logoY, menuX, menuY);
+        p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaSubtitol);
+        p5.text("MENÚ", margeH + menuX/2, margeV + logoY + menuY/2);
+
+        Botons MHome;
+        MHome = new Botons(p5, "Inicio", margeH, 4*margeV + logoY, menuX, textY);
+        MHome.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        MHome.display(p5);
     }
 }

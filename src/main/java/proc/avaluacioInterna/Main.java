@@ -90,6 +90,8 @@ public class Main extends PApplet {
 
         gui.TUsuario.keyPressed(key, keyCode);
         gui.TContraseña.keyPressed(key, keyCode);
+        gui.TNombre.keyPressed(key, keyCode);
+        gui.TReceta.keyPressed(key, keyCode);
         for (int i = 0; i < gui.Ingredients.length; i++){
             gui.TIngredients[i].keyPressed(key, keyCode);
         }
@@ -135,6 +137,8 @@ public class Main extends PApplet {
 
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
+        gui.TNombre.isPressed(this);
+        gui.TReceta.isPressed(this);
 
         for (int i = 0; i < gui.Ingredients.length; i++){
                 gui.TIngredients[i].isPressed(this);
@@ -145,8 +149,6 @@ public class Main extends PApplet {
                 gui.Ingredients[i].toggle();
             }
         }
-
-
     }
 
     public void mouseDragged(){
