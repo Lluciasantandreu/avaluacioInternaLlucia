@@ -98,7 +98,6 @@ public class GUI {
         MConfiguracion = new Botons(p5, "Configuración", margeH, 17*margeV + 3*logoY, menuX, textY);
         MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
 
-
     }
 
 
