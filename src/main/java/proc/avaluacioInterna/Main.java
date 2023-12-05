@@ -101,6 +101,21 @@ public class Main extends PApplet {
 
     public void mousePressed(){
 
+        if(gui.pantallaActual == GUI.PANTALLA.SELECCIONAR || gui.pantallaActual == GUI.PANTALLA.HOY || gui.pantallaActual == GUI.PANTALLA.DETALLESHOY || gui.pantallaActual == GUI.PANTALLA.SEMANA || gui.pantallaActual == GUI.PANTALLA.MES){
+            if(gui.MHome.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
+            }
+            if(gui.MHoy.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.HOY;
+            }
+            if(gui.MSemana.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.SEMANA;
+            }
+            if(gui.MMes.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.MES;
+            }
+        }
+
         if(gui.pantallaActual == GUI.PANTALLA.INICIAL){
             if(gui.BLogIn.mouseSobreBoto(this)){
                 println("HAS FET CLIC SOBRE EL BOTÓ BLogIn");

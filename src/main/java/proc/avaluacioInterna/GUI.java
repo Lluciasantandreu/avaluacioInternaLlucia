@@ -16,6 +16,13 @@ public class GUI {
     Colors tablaColores;
     Fonts fontsApp;
 
+    //MENU
+    Botons MHome;
+    Botons MHoy;
+    Botons MSemana;
+    Botons MMes;
+    Botons MConfiguracion;
+
     // PANTALLA INICIAL Y LOGIN
     Botons BLogIn;
     InserirText TUsuario;
@@ -78,6 +85,19 @@ public class GUI {
         TIngredients[3] = new InserirText(p5, x + 60, y + 6*margeV + 30, 200, 37, "Ingrediente 4");
         TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 200, 37, "Ingrediente 5");
         TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 200, 37, "Ingrediente 6");
+
+        // MENU
+        MHome = new Botons(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
+        MHome.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MHoy = new Botons(p5, "Hoy", margeH, 6*margeV + 3*logoY + 5, menuX, textY);
+        MHoy.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MSemana = new Botons(p5, "Semana", margeH, 10*margeV + 3*logoY, menuX, textY);
+        MSemana.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 5, menuX, textY);
+        MMes.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MConfiguracion = new Botons(p5, "Configuración", margeH, 17*margeV + 3*logoY, menuX, textY);
+        MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+
 
     }
 
@@ -247,14 +267,12 @@ public class GUI {
     }
 
     public void dibuixaMenu(PApplet p5){
-        p5.fill(tablaColores.getColorDe(3));
-        p5.rect(margeH, 3*margeV + logoY, menuX, menuY);
-        p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaSubtitol);
-        p5.text("MENÚ", margeH + menuX/2, margeV + logoY + menuY/2);
+        p5.text("MENU", margeH + menuX/2, 5*margeV + logoY + 5);
 
-        Botons MHome;
-        MHome = new Botons(p5, "Inicio", margeH, 4*margeV + logoY, menuX, textY);
-        MHome.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         MHome.display(p5);
+        MHoy.display(p5);
+        MSemana.display(p5);
+        MMes.display(p5);
+        MConfiguracion.display(p5);
     }
 }

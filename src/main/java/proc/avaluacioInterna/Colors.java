@@ -33,19 +33,4 @@ public class Colors {
     }
 
 
-    // Dibuixa paleta de colors
-    public void displayColors(PApplet p5, float x, float y, float w){
-        p5.pushStyle();
-        //Llegenda
-        p5.fill(0); p5.textAlign(p5.LEFT); p5.textSize(36);
-        p5.text("Colors:", x, y-10);
-
-        // Paleta de colors
-        float wc = w / getNumColores();
-        for(int i=0; i<getNumColores(); i++){
-            p5.fill(this.getColorDe(i)); p5.stroke(0); p5.strokeWeight(3);
-            p5.rect(x + i*wc, y, wc, wc);
-        }
-        p5.popStyle();
-    }
 }
