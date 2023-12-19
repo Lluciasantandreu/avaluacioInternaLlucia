@@ -8,7 +8,7 @@ import static proc.avaluacioInterna.Layout.*;
 public class GUI {
 
     // Enumerat de les Pantalles de l'App
-    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, HOY, DETALLESHOY, SEMANA, MES};
+    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, HOY, DETALLESHOY, SEMANA, MES, CONFIGURACIÓN};
     // Pantalla Actual
     public PANTALLA pantallaActual;
 
@@ -39,6 +39,10 @@ public class GUI {
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
 
+    //PANTALLA CONFIGURACIÓN
+    Botons BFavoritos;
+    Botons BCuenta;
+
     // Constructor de la GUI
     public GUI(PApplet p5){
         pantallaActual = PANTALLA.INICIAL;
@@ -60,6 +64,10 @@ public class GUI {
         BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
 
+        BFavoritos = new Botons(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BCuenta = new Botons(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BCuenta.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
@@ -179,6 +187,17 @@ public class GUI {
         dibuixaMenu(p5);
         dibuixaImatge(p5);
         dibuixaColumna1(p5);
+    }
+
+
+    public void dibuixaPantallaConfiguración(PApplet p5){
+        p5.background(tablaColores.getColorDe(0));
+        dibuixaLogo(p5);
+        dibuixaNomPantalla(p5);
+        dibuixaImatge(p5);
+
+        BFavoritos.display(p5);
+        BCuenta.display(p5);
     }
 
 

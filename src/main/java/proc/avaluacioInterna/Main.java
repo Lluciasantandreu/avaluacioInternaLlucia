@@ -49,6 +49,9 @@ public class Main extends PApplet {
 
            case MES:            gui.dibuixaPantallaMes(this);
                                 break;
+
+           case CONFIGURACIÓN:  gui.dibuixaPantallaConfiguración(this);
+                                break;
         }
 
         // Actualitza el cursor
@@ -86,6 +89,9 @@ public class Main extends PApplet {
         }
         else if(key=='6'){
             gui.pantallaActual = GUI.PANTALLA.MES;
+        }
+        else if(key=='7'){
+            gui.pantallaActual = GUI.PANTALLA.CONFIGURACIÓN;
         }
 
         gui.TUsuario.keyPressed(key, keyCode);
