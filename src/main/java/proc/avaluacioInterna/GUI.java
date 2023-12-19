@@ -42,6 +42,7 @@ public class GUI {
     //PANTALLA CONFIGURACIÓN
     Botons BFavoritos;
     Botons BCuenta;
+    Botons BInformación;
 
     // Constructor de la GUI
     public GUI(PApplet p5){
@@ -68,6 +69,9 @@ public class GUI {
         BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCuenta = new Botons(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BCuenta.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BInformación = new Botons(p5, "Información", 9*margeH + 2*columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BInformación.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+
 
         TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
@@ -198,6 +202,7 @@ public class GUI {
 
         BFavoritos.display(p5);
         BCuenta.display(p5);
+        BInformación.display(p5);
     }
 
 
