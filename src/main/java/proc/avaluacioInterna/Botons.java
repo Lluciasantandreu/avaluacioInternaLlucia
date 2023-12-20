@@ -7,6 +7,8 @@ public class Botons {
     float x, y, w, h;  // Posició (x, y) i dimensions (w, h)
     int fillColor, strokeColor; // Colors del boto (fill / stroke).
     int fillColorSobre, fillColorFora;  // Colors del boto (actiu / inactiu).
+
+    int stroke = 2;
     String textBoto;  // Text
     boolean activado;  // Estat del botó (actiu / inactiu).
 
@@ -35,6 +37,10 @@ public class Botons {
         this.fillColorFora = cDesactivado;
     }
 
+    public void setStroke(int m){
+        this.stroke = m;
+    }
+
     // Dibuixa el botó
     public void display(PApplet p5){
         p5.pushStyle();
@@ -47,7 +53,7 @@ public class Botons {
         else{
             p5.fill(fillColor);          // Color actiu però ratolí fora
         }
-        p5.stroke(strokeColor); p5.strokeWeight(2);        //Color i gruixa del contorn
+        p5.stroke(strokeColor); p5.strokeWeight(stroke);        //Color i gruixa del contorn
         p5.rect(this.x, this.y, this.w, this.h, 10);    // Rectangle del botó
 
         // Text (color, alineació i mida)

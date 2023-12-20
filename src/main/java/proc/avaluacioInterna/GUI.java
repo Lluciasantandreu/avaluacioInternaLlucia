@@ -8,7 +8,7 @@ import static proc.avaluacioInterna.Layout.*;
 public class GUI {
 
     // Enumerat de les Pantalles de l'App
-    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, HOY, DETALLESHOY, SEMANA, MES, CONFIGURACIÓN};
+    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, HOY, DETALLESHOY, SEMANA, MES, CONFIGURACION, FAVORITOS, CUENTA, INFORMACION};
     // Pantalla Actual
     public PANTALLA pantallaActual;
 
@@ -35,6 +35,9 @@ public class GUI {
     Botons BComida, BCena;
 
     // PANTALLA DETALLES HOY
+
+    Botons BFavorito;
+    Boolean Favorito = false;
     InserirText TNombre, TReceta;
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
@@ -43,6 +46,8 @@ public class GUI {
     Botons BFavoritos;
     Botons BCuenta;
     Botons BInformación;
+
+    Botons BInicio;
 
     // Constructor de la GUI
     public GUI(PApplet p5){
@@ -64,6 +69,9 @@ public class GUI {
         BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
+        BFavorito= new Botons(p5, "", menuX + columnaX + textX - 18, 3*margeV + 3*logoY, 50, textY);
+        BFavorito.setStroke(1);
+        BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), p5.color(200, 10, 120), tablaColores.getColorDe(3));
 
         BFavoritos = new Botons(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -76,7 +84,7 @@ public class GUI {
         TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
 
-        TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 2*margeH, textY, "NOMBRE");
+        TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
         TReceta = new InserirText (p5, 3*margeH + menuX + columnaX, 4*margeV + 3*logoY + textY, textX - 2*margeH, columnaY - textY, "Receta");
 
         float x = 4*margeH + menuX + 2*columnaX;
@@ -101,17 +109,19 @@ public class GUI {
         // MENU
         MHome = new Botons(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
         MHome.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MHoy = new Botons(p5, "Hoy", margeH, 6*margeV + 3*logoY + 5, menuX, textY);
+        MHoy = new Botons(p5, "Hoy", margeH, 6*margeV + 3*logoY + 8, menuX, textY);
         MHoy.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         MSemana = new Botons(p5, "Semana", margeH, 10*margeV + 3*logoY, menuX, textY);
         MSemana.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 5, menuX, textY);
+        MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 8, menuX, textY);
         MMes.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MConfiguracion = new Botons(p5, "Configuración", margeH, 17*margeV + 3*logoY, menuX, textY);
+        MConfiguracion = new Botons(p5, "Configuracion", margeH, 17*margeV + 3*logoY, menuX, textY);
         MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
 
+        //CONFIGURACIÓN
+        BInicio = new Botons(p5, "Inicio", margeH, 3*margeV + logoY, menuX - 20, textY);
+        BInicio.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
     }
-
 
     // PANTALLES DE LA GUI
     public void dibuixaPantallaInicial(PApplet p5){
@@ -165,8 +175,18 @@ public class GUI {
         dibuixaImatge(p5);
         dibuixaColumnes123(p5);
 
+        BFavorito.display(p5);
+        if(Favorito){
+            BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), p5.color(200, 10, 120), tablaColores.getColorDe(3));
+        }
+        else{
+            BFavorito.setColors(p5.color(200, 10, 120), p5.color(30, 30, 30), p5.color(200, 10, 120), tablaColores.getColorDe(3));
+
+        }
         TNombre.display(p5);
         TReceta.display(p5);
+
+
 
 
         for (int i = 0; i < Ingredients.length; i++){
@@ -203,6 +223,18 @@ public class GUI {
         BFavoritos.display(p5);
         BCuenta.display(p5);
         BInformación.display(p5);
+
+        p5.textFont(fontsApp.getFontAt(2));
+        BInicio.display(p5);
+    }
+
+    public void dibuixaPantallaFavoritos(PApplet p5){
+        p5.background(tablaColores.getColorDe(0));
+        dibuixaLogo(p5);
+        dibuixaNomPantalla(p5);
+        dibuixaImatge(p5);
+
+        BInicio.display(p5);
     }
 
 
@@ -290,7 +322,7 @@ public class GUI {
     }
 
     public void dibuixaMenu(PApplet p5){
-        p5.text("MENU", margeH + menuX/2, 5*margeV + logoY + 5);
+        p5.text("MENU", margeH + menuX/2, 4*margeV + 2*logoY);
 
         MHome.display(p5);
         MHoy.display(p5);

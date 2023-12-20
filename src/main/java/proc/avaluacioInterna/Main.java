@@ -50,8 +50,12 @@ public class Main extends PApplet {
            case MES:            gui.dibuixaPantallaMes(this);
                                 break;
 
-           case CONFIGURACIÓN:  gui.dibuixaPantallaConfiguración(this);
+           case CONFIGURACION:  gui.dibuixaPantallaConfiguración(this);
                                 break;
+
+           case FAVORITOS:      gui.dibuixaPantallaFavoritos(this);
+                                break;
+
         }
 
         // Actualitza el cursor
@@ -91,8 +95,18 @@ public class Main extends PApplet {
             gui.pantallaActual = GUI.PANTALLA.MES;
         }
         else if(key=='7'){
-            gui.pantallaActual = GUI.PANTALLA.CONFIGURACIÓN;
+            gui.pantallaActual = GUI.PANTALLA.CONFIGURACION;
         }
+        else if(key=='8'){
+            gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
+        }
+        else if(key=='9'){
+            gui.pantallaActual = GUI.PANTALLA.CUENTA;
+        }
+        else if(key=='q'){
+            gui.pantallaActual = GUI.PANTALLA.INFORMACION;
+        }
+
 
         gui.TUsuario.keyPressed(key, keyCode);
         gui.TContraseña.keyPressed(key, keyCode);
@@ -107,7 +121,11 @@ public class Main extends PApplet {
 
     public void mousePressed(){
 
-        if(gui.pantallaActual == GUI.PANTALLA.SELECCIONAR || gui.pantallaActual == GUI.PANTALLA.HOY || gui.pantallaActual == GUI.PANTALLA.DETALLESHOY || gui.pantallaActual == GUI.PANTALLA.SEMANA || gui.pantallaActual == GUI.PANTALLA.MES){
+        if(gui.BFavoritos.mouseSobreBoto(this)){
+            gui.Favorito = !gui.Favorito;
+        }
+
+        if(gui.pantallaActual != GUI.PANTALLA.CONFIGURACION & gui.pantallaActual != GUI.PANTALLA.FAVORITOS & gui.pantallaActual != GUI.PANTALLA.CUENTA & gui.pantallaActual != GUI.PANTALLA.INFORMACION){
             if(gui.MHome.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
@@ -119,6 +137,9 @@ public class Main extends PApplet {
             }
             if(gui.MMes.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.MES;
+            }
+            if(gui.MConfiguracion.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.CONFIGURACION;
             }
         }
 
@@ -156,10 +177,17 @@ public class Main extends PApplet {
             }
         }
 
+        if(gui.pantallaActual == GUI.PANTALLA.CONFIGURACION || gui.pantallaActual == GUI.PANTALLA.FAVORITOS || gui.pantallaActual == GUI.PANTALLA.CUENTA || gui.pantallaActual == GUI.PANTALLA.INFORMACION){
+            if(gui.BInicio.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
+            }
+        }
+
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
         gui.TNombre.isPressed(this);
         gui.TReceta.isPressed(this);
+
 
         for (int i = 0; i < gui.Ingredients.length; i++){
                 gui.TIngredients[i].isPressed(this);
@@ -170,6 +198,7 @@ public class Main extends PApplet {
                 gui.Ingredients[i].toggle();
             }
         }
+
     }
 
     public void mouseDragged(){
