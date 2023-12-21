@@ -25,6 +25,7 @@ public class GUI {
 
     // PANTALLA INICIAL Y LOGIN
     Botons BLogIn;
+    Botons BEntrar;
     InserirText TUsuario;
     InserirText TContraseña;
 
@@ -49,6 +50,12 @@ public class GUI {
 
     Botons BInicio;
 
+    //PANTALLA CUENTA
+    InserirText CUsuario;
+    InserirText CContraseña;
+
+    Botons BConfirmar;
+
     // Constructor de la GUI
     public GUI(PApplet p5){
         pantallaActual = PANTALLA.INICIAL;
@@ -57,6 +64,8 @@ public class GUI {
 
         BLogIn = new Botons (p5, "LogIn", logInX, margeV, logInH, logInV);
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BEntrar = new Botons (p5, "Entrar", 200, 550, logInH, textY);
+        BEntrar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         BHoy = new Botons(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
         BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -71,7 +80,8 @@ public class GUI {
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
         BFavorito= new Botons(p5, "", menuX + columnaX + textX - 18, 3*margeV + 3*logoY, 50, textY);
         BFavorito.setStroke(1);
-        BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), p5.color(200, 10, 120), tablaColores.getColorDe(3));
+        BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), tablaColores.getColorDe(6), tablaColores.getColorDe(6));
+
 
         BFavoritos = new Botons(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -121,6 +131,13 @@ public class GUI {
         //CONFIGURACIÓN
         BInicio = new Botons(p5, "Inicio", margeH, 3*margeV + logoY, menuX - 20, textY);
         BInicio.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+
+        //CUENTA
+        CUsuario = new InserirText (p5, 600, 350, textX, textY, "Usuario");
+        CContraseña = new InserirText (p5, 600, 450, textX, textY, "Contraseña");
+
+        BConfirmar = new Botons(p5, "Confirmar", 600, 550, menuX - 20, textY);
+        BConfirmar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
     }
 
     // PANTALLES DE LA GUI
@@ -139,6 +156,7 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaImatgeLogIn(p5);
 
+        BEntrar.display(p5);
         TUsuario.display(p5);
         TContraseña.display(p5);
     }
@@ -173,20 +191,12 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
-        dibuixaColumnes123(p5);
+        //dibuixaColumnes123(p5);
 
         BFavorito.display(p5);
-        if(Favorito){
-            BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), p5.color(200, 10, 120), tablaColores.getColorDe(3));
-        }
-        else{
-            BFavorito.setColors(p5.color(200, 10, 120), p5.color(30, 30, 30), p5.color(200, 10, 120), tablaColores.getColorDe(3));
 
-        }
         TNombre.display(p5);
         TReceta.display(p5);
-
-
 
 
         for (int i = 0; i < Ingredients.length; i++){
@@ -234,7 +244,25 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaImatge(p5);
 
+        p5.textFont(fontsApp.getFontAt(2));
         BInicio.display(p5);
+    }
+
+    public void dibuixaPantallaCuenta(PApplet p5){
+        p5.background(tablaColores.getColorDe(0));
+        dibuixaLogo(p5);
+        dibuixaNomPantalla(p5);
+        dibuixaImatge(p5);
+
+        p5.textFont(fontsApp.getFontAt(2));
+        BInicio.display(p5);
+
+        CUsuario.display(p5);
+        CContraseña.display(p5);
+        p5.textFont(fontsApp.getFontAt(0), midaParagraf);
+        p5.text("Cambiar información de la cuenta", 793, 300);
+
+        BConfirmar.display(p5);
     }
 
 

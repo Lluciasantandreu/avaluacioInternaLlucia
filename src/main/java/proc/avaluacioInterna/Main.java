@@ -56,6 +56,9 @@ public class Main extends PApplet {
            case FAVORITOS:      gui.dibuixaPantallaFavoritos(this);
                                 break;
 
+           case CUENTA:         gui.dibuixaPantallaCuenta(this);
+                                break;
+
         }
 
         // Actualitza el cursor
@@ -69,6 +72,7 @@ public class Main extends PApplet {
             cursor(ARROW);
         }
     }
+
 
     // ******************* KEYBOARD interaction ***************************** //
 
@@ -115,17 +119,35 @@ public class Main extends PApplet {
         for (int i = 0; i < gui.Ingredients.length; i++){
             gui.TIngredients[i].keyPressed(key, keyCode);
         }
+        gui.CUsuario.keyPressed(key, keyCode);
+        gui.CContraseña.keyPressed(key, keyCode);
     }
 
     // ******************* MOUSE interaction ***************************** //
 
     public void mousePressed(){
 
+        if(gui.Favorito){
+            gui.BFavorito.setColors(gui.tablaColores.getColorDe(6), this.color(30, 30, 30), gui.tablaColores.getColorDe(6), gui.tablaColores.getColorDe(6));
+        }
+        else{
+            gui.BFavorito.setColors(gui.tablaColores.getColorDe(0), this.color(30, 30, 30), gui.tablaColores.getColorDe(6), gui.tablaColores.getColorDe(6));
+        }
+
         if(gui.BFavoritos.mouseSobreBoto(this)){
             gui.Favorito = !gui.Favorito;
         }
 
-        if(gui.pantallaActual != GUI.PANTALLA.CONFIGURACION & gui.pantallaActual != GUI.PANTALLA.FAVORITOS & gui.pantallaActual != GUI.PANTALLA.CUENTA & gui.pantallaActual != GUI.PANTALLA.INFORMACION){
+        if (gui.pantallaActual == GUI.PANTALLA.CONFIGURACION){
+            if(gui.BFavoritos.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
+            }
+            if(gui.BCuenta.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.CUENTA;
+            }
+        }
+
+        if(gui.pantallaActual != GUI.PANTALLA.CONFIGURACION & gui.pantallaActual != GUI.PANTALLA.FAVORITOS & gui.pantallaActual != GUI.PANTALLA.CUENTA & gui.pantallaActual != GUI.PANTALLA.INFORMACION & gui.pantallaActual != GUI.PANTALLA.LOGIN & gui.pantallaActual != GUI.PANTALLA.INICIAL){
             if(gui.MHome.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
@@ -147,6 +169,13 @@ public class Main extends PApplet {
             if(gui.BLogIn.mouseSobreBoto(this)){
                 println("HAS FET CLIC SOBRE EL BOTÓ BLogIn");
                 gui.pantallaActual = GUI.PANTALLA.LOGIN;
+            }
+        }
+
+        if(gui.pantallaActual == GUI.PANTALLA.LOGIN){
+            if(gui.BEntrar.mouseSobreBoto(this)){
+                println("HAS FET CLIC SOBRE EL BOTÓ BEntrar");
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
         }
 
@@ -177,16 +206,20 @@ public class Main extends PApplet {
             }
         }
 
+
         if(gui.pantallaActual == GUI.PANTALLA.CONFIGURACION || gui.pantallaActual == GUI.PANTALLA.FAVORITOS || gui.pantallaActual == GUI.PANTALLA.CUENTA || gui.pantallaActual == GUI.PANTALLA.INFORMACION){
             if(gui.BInicio.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
         }
 
+
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
         gui.TNombre.isPressed(this);
         gui.TReceta.isPressed(this);
+        gui.CUsuario.isPressed(this);
+        gui.CContraseña.isPressed(this);
 
 
         for (int i = 0; i < gui.Ingredients.length; i++){
