@@ -122,11 +122,11 @@ public class GUI {
         MHoy = new Botons(p5, "Hoy", margeH, 6*margeV + 3*logoY + 8, menuX, textY);
         MHoy.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         MSemana = new Botons(p5, "Semana", margeH, 10*margeV + 3*logoY, menuX, textY);
-        MSemana.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MSemana.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 8, menuX, textY);
-        MMes.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MMes.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         MConfiguracion = new Botons(p5, "Configuracion", margeH, 17*margeV + 3*logoY, menuX, textY);
-        MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
 
         //CONFIGURACIÓN
         BInicio = new Botons(p5, "Inicio", margeH, 3*margeV + logoY, menuX - 20, textY);
@@ -137,7 +137,7 @@ public class GUI {
         CContraseña = new InserirText (p5, 600, 450, textX, textY, "Contraseña");
 
         BConfirmar = new Botons(p5, "Confirmar", 600, 550, menuX - 20, textY);
-        BConfirmar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        BConfirmar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
     }
 
     // PANTALLES DE LA GUI
