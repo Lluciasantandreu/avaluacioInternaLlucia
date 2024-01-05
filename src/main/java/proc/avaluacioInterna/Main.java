@@ -59,6 +59,9 @@ public class Main extends PApplet {
            case CUENTA:         gui.dibuixaPantallaCuenta(this);
                                 break;
 
+           case INFORMACION:    gui.dibuixaPantallaInformacion(this);
+                                break;
+
         }
 
         // Actualitza el cursor

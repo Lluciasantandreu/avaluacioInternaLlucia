@@ -43,6 +43,9 @@ public class GUI {
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
 
+    //PANTALLA SEMANA
+    Semanario s;
+
     //PANTALLA CONFIGURACIÓN
     Botons BFavoritos;
     Botons BCuenta;
@@ -123,9 +126,9 @@ public class GUI {
         MHoy.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         MSemana = new Botons(p5, "Semana", margeH, 10*margeV + 3*logoY, menuX, textY);
         MSemana.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 8, menuX, textY);
+        MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 6, menuX, textY);
         MMes.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MConfiguracion = new Botons(p5, "Configuracion", margeH, 17*margeV + 3*logoY, menuX, textY);
+        MConfiguracion = new Botons(p5, "Configuracion", margeH, 17*margeV + 3*logoY + 8, menuX, textY);
         MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
 
         //CONFIGURACIÓN
@@ -138,6 +141,8 @@ public class GUI {
 
         BConfirmar = new Botons(p5, "Confirmar", 600, 550, menuX - 20, textY);
         BConfirmar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+
+        s = new Semanario((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)columnaY);
     }
 
     // PANTALLES DE LA GUI
@@ -212,6 +217,8 @@ public class GUI {
         dibuixaMenu(p5);
         dibuixaImatge(p5);
         dibuixaColumna1Mitja(p5);
+
+        s.display(p5);
     }
 
     public void dibuixaPantallaMes(PApplet p5){
@@ -263,6 +270,16 @@ public class GUI {
         p5.text("Cambiar información de la cuenta", 793, 300);
 
         BConfirmar.display(p5);
+    }
+
+    public void dibuixaPantallaInformacion(PApplet p5){
+        p5.background(tablaColores.getColorDe(0));
+        dibuixaLogo(p5);
+        dibuixaNomPantalla(p5);
+        dibuixaImatge(p5);
+
+        p5.textFont(fontsApp.getFontAt(0), midaParagraf);
+        p5.text("uvhjncd guhvjnadvcuhjdnwhcjahdcudjnacbu \n hijndchujnsfifuodjiñlndbvhglyfedwhujsn", 750, 200);
     }
 
 
