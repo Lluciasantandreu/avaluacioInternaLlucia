@@ -10,7 +10,7 @@ public class Botons {
 
     int stroke = 2;
     String textBoto;  // Text
-    boolean activado;  // Estat del botó (actiu / inactiu).
+    boolean activado;  // Estat del botó (actiu / inactiu).opio
 
     // Constructor
     public Botons(PApplet p5, String text, float x, float y, float w, float h){
