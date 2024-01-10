@@ -31,16 +31,4 @@ public class Fonts {
     public PFont getFontAt(int i){
         return this.fonts[i];
     }
-
-
-    // Dibuixa les font de l'App
-    /*public void displayFonts(PApplet p5, float x, float y, float h){
-        p5.pushStyle();
-        for(int i=0; i<getNumFonts(); i++){
-            p5.fill(0); p5.stroke(0); p5.strokeWeight(3);
-            p5.textFont(getFontAt(i));
-            p5.text("Tipografia "+i, x, y + i*h);
-        }
-        p5.popStyle();
-    }*/
 }
