@@ -46,6 +46,9 @@ public class GUI {
     //PANTALLA SEMANA
     Semanario s;
 
+    //PANTALLA MES
+    Calendari c;
+
     //PANTALLA CONFIGURACIÓN
     Botons BFavoritos;
     Botons BCuenta;
@@ -143,6 +146,7 @@ public class GUI {
         BConfirmar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         s = new Semanario((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)columnaY);
+        c = new Calendari((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)(columnaY + logoY + 5));
     }
 
     // PANTALLES DE LA GUI
@@ -227,7 +231,9 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
-        dibuixaColumna1(p5);
+
+        p5.textFont(fontsApp.getFontAt(2));
+        c.display(p5);
     }
 
 
