@@ -177,7 +177,7 @@ public class GUI {
         dibuixaMenu(p5);
         dibuixaImatge(p5);
 
-        p5.textFont(fontsApp.getFontAt(2));
+        p5.textFont(fontsApp.getFontAt(1));
         BHoy.display(p5);
         BSemana.display(p5);
         BMes.display(p5);
@@ -220,8 +220,8 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
-        dibuixaColumna1Mitja(p5);
 
+        p5.textFont(fontsApp.getFontAt(2));
         s.display(p5);
     }
 
@@ -283,6 +283,9 @@ public class GUI {
         dibuixaLogo(p5);
         dibuixaNomPantalla(p5);
         dibuixaImatge(p5);
+
+        p5.textFont(fontsApp.getFontAt(2));
+        BInicio.display(p5);
 
         p5.textFont(fontsApp.getFontAt(0), midaParagraf);
         p5.text("uvhjncd guhvjnadvcuhjdnwhcjahdcudjnacbu \n hijndchujnsfifuodjiñlndbvhglyfedwhujsn", 750, 200);

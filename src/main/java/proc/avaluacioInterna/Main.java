@@ -80,40 +80,6 @@ public class Main extends PApplet {
     // ******************* KEYBOARD interaction ***************************** //
 
     public void keyPressed(){
-        if(key=='0'){
-            gui.pantallaActual = GUI.PANTALLA.INICIAL;
-        }
-        else if(key=='1'){
-            gui.pantallaActual = GUI.PANTALLA.LOGIN;
-        }
-        else if(key=='2'){
-            gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
-        }
-        else if(key=='3'){
-            gui.pantallaActual = GUI.PANTALLA.HOY;
-        }
-        else if(key=='4'){
-            gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
-        }
-        else if(key=='5'){
-            gui.pantallaActual = GUI.PANTALLA.SEMANA;
-        }
-        else if(key=='6'){
-            gui.pantallaActual = GUI.PANTALLA.MES;
-        }
-        else if(key=='7'){
-            gui.pantallaActual = GUI.PANTALLA.CONFIGURACION;
-        }
-        else if(key=='8'){
-            gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
-        }
-        else if(key=='9'){
-            gui.pantallaActual = GUI.PANTALLA.CUENTA;
-        }
-        else if(key=='q'){
-            gui.pantallaActual = GUI.PANTALLA.INFORMACION;
-        }
-
 
         gui.TUsuario.keyPressed(key, keyCode);
         gui.TContraseña.keyPressed(key, keyCode);
@@ -146,6 +112,9 @@ public class Main extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
             }
             if(gui.BCuenta.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.CUENTA;
+            }
+            if(gui.BInformación.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.CUENTA;
             }
         }
