@@ -115,7 +115,7 @@ public class Main extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.CUENTA;
             }
             if(gui.BInformación.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.CUENTA;
+                gui.pantallaActual = GUI.PANTALLA.INFORMACION;
             }
         }
 
