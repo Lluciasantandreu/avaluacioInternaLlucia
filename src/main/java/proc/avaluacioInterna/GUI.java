@@ -288,7 +288,7 @@ public class GUI {
         BInicio.display(p5);
 
         p5.textFont(fontsApp.getFontAt(0), midaParagraf);
-        p5.text("uvhjncd guhvjnadvcuhjdnwhcjahdcudjnacbu \n hijndchujnsfifuodjiñlndbvhglyfedwhujsn", 750, 200);
+        p5.text("Esta aplicación se ha hecho con el fin de tener \n las diferentes recetas del mes en un mismo espacio... ", 750, 200);
     }
 
 
