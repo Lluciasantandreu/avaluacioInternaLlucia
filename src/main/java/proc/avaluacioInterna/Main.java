@@ -6,13 +6,14 @@ public class Main extends PApplet {
 
     // Interfície Gràfica (Pantalles i components)
     GUI gui;
+    DataBase bbdd;
 
     public static void main(String[] args) {
         PApplet.main("proc.avaluacioInterna.Main", args);
     }
 
     public void settings(){
-        fullScreen();                       // Pantalla completa
+        fullScreen();              // Pantalla completa
         //size(1442, 900);        // Pantalla HD
         smooth(10);
     }
@@ -20,8 +21,10 @@ public class Main extends PApplet {
     public void setup(){
         noStroke();                         // Sense bordes
         textAlign(CENTER); textSize(18);   // Alineació i mida del text
-        gui = new GUI(this);                   // Constructor de la GUI
+        gui = new GUI(this);          // Constructor de la GUI
 
+        bbdd = new DataBase("admin", "12345", "recetas");
+        bbdd.connect();
 
     }
 
