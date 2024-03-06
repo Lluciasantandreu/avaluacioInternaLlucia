@@ -99,16 +99,7 @@ public class Main extends PApplet {
 
     public void mousePressed(){
 
-        if(gui.Favorito){
-            gui.BFavorito.setColors(gui.tablaColores.getColorDe(6), this.color(30, 30, 30), gui.tablaColores.getColorDe(6), gui.tablaColores.getColorDe(6));
-        }
-        else{
-            gui.BFavorito.setColors(gui.tablaColores.getColorDe(0), this.color(30, 30, 30), gui.tablaColores.getColorDe(6), gui.tablaColores.getColorDe(6));
-        }
 
-        if(gui.BFavoritos.mouseSobreBoto(this)){
-            gui.Favorito = !gui.Favorito;
-        }
 
         if (gui.pantallaActual == GUI.PANTALLA.CONFIGURACION){
             if(gui.BFavoritos.mouseSobreBoto(this)){
@@ -166,6 +157,22 @@ public class Main extends PApplet {
             }
         }
 
+        if(gui.pantallaActual == GUI.PANTALLA.DETALLESHOY){
+            if(gui.BFavorito.mouseSobreBoto(this)){
+                gui.BFavorito.toggle();
+            }
+        }
+
+        if(gui.pantallaActual == GUI.PANTALLA.MES){
+            gui.c.checkButtons(this);
+            if(gui.ant.mouseSobreBoto(this)){
+                gui.c.prevMonth();
+            }
+            else if(gui.post.mouseSobreBoto(this)){
+                gui.c.nextMonth();
+            }
+        }
+
         if(gui.pantallaActual == GUI.PANTALLA.SELECCIONAR) {
             if (gui.BHoy.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BHoy");
@@ -187,6 +194,8 @@ public class Main extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
         }
+
+
 
 
         gui.TUsuario.isPressed(this);

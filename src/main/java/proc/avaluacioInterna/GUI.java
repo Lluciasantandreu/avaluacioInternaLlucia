@@ -37,7 +37,7 @@ public class GUI {
 
     // PANTALLA DETALLES HOY
 
-    Botons BFavorito;
+    RadioBoton BFavorito;
     Boolean Favorito = false;
     InserirText TNombre, TReceta;
     InserirText [] TIngredients;
@@ -48,6 +48,7 @@ public class GUI {
 
     //PANTALLA MES
     Calendari c;
+    Botons ant, post;
 
     //PANTALLA CONFIGURACIÓN
     Botons BFavoritos;
@@ -84,9 +85,8 @@ public class GUI {
         BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
-        BFavorito= new Botons(p5, "", menuX + columnaX + textX - 18, 3*margeV + 3*logoY, 50, textY);
-        BFavorito.setStroke(1);
-        BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), tablaColores.getColorDe(6), tablaColores.getColorDe(6));
+        BFavorito= new RadioBoton(p5, (int)(menuX + columnaX + textX - 5), (int)(3*margeV + 3*logoY + 25), 20);
+        BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), tablaColores.getColorDe(6));
 
 
         BFavoritos = new Botons(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
@@ -147,6 +147,11 @@ public class GUI {
 
         s = new Semanario((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)columnaY);
         c = new Calendari((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)(columnaY + logoY + 5));
+        ant = new Botons (p5, "anterior", (int)(2*margeH + menuX), (int)(3*margeV + 2*logoY), logInH - 10, textY);
+        ant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        post = new Botons (p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
+        post.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+
     }
 
     // PANTALLES DE LA GUI
@@ -234,6 +239,8 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         c.display(p5);
+        ant.display(p5);
+        post.display(p5);
     }
 
 
@@ -295,6 +302,7 @@ public class GUI {
     // ZONES DE LA GUI
 
     public void dibuixaLogo(PApplet p5){
+        p5.noStroke();
         p5.fill(tablaColores.getColorDe(4));
         p5.rect(margeH, margeV, logoX, logoY);
         p5.fill(0); p5.textFont(fontsApp.getFontAt(0)); p5.textSize(midaParagraf);
@@ -312,51 +320,6 @@ public class GUI {
         p5.rect( margeH, imatgeV, imatgeX, imatgeY);
         p5.fill(1); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaTitol);
         p5.text("IMATGE " +  pantallaActual + "("+pantallaActual.ordinal() +")", margeH + logoX + imatgeX/2, imatgeV + margeV + imatgeY/2);
-    }
-
-    public void dibuixaColumna1Mitja(PApplet p5){
-        p5.fill(tablaColores.getColorDe(3));
-        p5.rect(2*margeH + menuX, 4*margeV + 3*logoY, 3*columnaX + 2*margeH, columnaY/2 );
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMNA 1", 3*margeH + menuX + columnaX + columnaX/2, 2*margeV + logoY + columnaY/2);
-    }
-
-    public void dibuixaColumna1(PApplet p5){
-        p5.fill(tablaColores.getColorDe(1));
-        p5.rect(2*margeH + menuX, 3*margeV + logoY, 3*columnaX + 2*margeH, columnaY);
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMNA 1", 3*margeH + menuX + columnaX + columnaX/2, 2*margeV + logoY + columnaY/2);
-    }
-
-    public void dibuixaColumnes12(PApplet p5){
-        // Zona Columnes 1, 2 i 3 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        p5.fill(tablaColores.getColorDe(3));
-        p5.rect(2*margeH + menuX, 3*margeV + logoY, columnaX + columnaX/2, columnaY );
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMNA 1", (menuX + columnaX)-20, 2*margeV + logoY + columnaY/2);
-
-        p5.fill(tablaColores.getColorDe(2));
-        p5.rect(4*margeH + menuX + columnaX + columnaX/2, 3*margeV + logoY, columnaX + columnaX/2, columnaY);
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMNA 2", 2*menuX + 2*columnaX, 2*margeV + logoY + columnaY/2);
-    }
-
-    public void dibuixaColumnes123(PApplet p5){
-        // Zona Columnes 1, 2 i 3 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        p5.fill(tablaColores.getColorDe(2));
-        p5.rect(2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY );
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMNA 1", 2*margeH + menuX + columnaX/2, 2*margeV + logoY + columnaY/2);
-
-        p5.fill(tablaColores.getColorDe(3));
-        p5.rect(3*margeH + menuX + columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMNA 2", 3*margeH + menuX + columnaX + columnaX/2, 2*margeV + logoY + columnaY/2);
-
-        p5.fill(tablaColores.getColorDe(4));
-        p5.rect(4*margeH + menuX + 2*columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
-        p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaParagraf);
-        p5.text("COLUMN 3", 4*margeH + menuX + 2*columnaX + columnaX/2, 2*margeV + logoY + columnaY/2);
     }
 
     // DIBUJAR PANTALLA INICIAL
