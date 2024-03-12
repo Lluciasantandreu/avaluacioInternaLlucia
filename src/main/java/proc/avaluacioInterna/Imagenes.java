@@ -18,7 +18,7 @@ public class Imagenes {
     public void setImagenes(PApplet p5){
         this.imagenes = new PImage[3];
         this.imagenes[0] = p5.loadImage("data/imagenInferior.png");
-        //this.imagenes[1] = p5.loadImage("data/Tipografia1.2.otf");
+        this.imagenes[1] = p5.loadImage("data/imagenInicial.jpeg");
         //this.imagenes[2] = p5.loadImage("data/Tipografia2.ttf");
     }
 

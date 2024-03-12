@@ -325,18 +325,13 @@ public class GUI {
 
 
     public void dibuixaImatge(PApplet p5){
-        p5.fill(tablaColores.getColorDe(4));
-        p5.image(imagenesApp.getImageAt(0), margeH, imatgeV);
-        p5.fill(1); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaTitol);
-        p5.text("IMATGE " +  pantallaActual + "("+pantallaActual.ordinal() +")", margeH + logoX + imatgeX/2, imatgeV + margeV + imatgeY/2);
+        p5.image(imagenesApp.getImageAt(0), margeH, imatgeV, imatgeX, imatgeY);
     }
 
     // DIBUJAR PANTALLA INICIAL
     public void dibuixaImatgeInicial(PApplet p5){
-        p5.fill(tablaColores.getColorDe(1));
-        p5.rect(2*margeH + logoX, 3*margeV + logoY, imagenIX, imagenIY);
-        p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(2), midaTitol);
-        p5.text("Imatge Inicial", 2*margeH + logoX + imagenIX/2, 3*margeV + logoY + imagenIY/2);
+        p5.image(imagenesApp.getImageAt(1), 2*margeH + logoX, 3*margeV + logoY, imagenIX, imagenIY);
+
     }
 
     // DIBUJAR PANTALLA LOGIN
