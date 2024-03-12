@@ -15,6 +15,7 @@ public class GUI {
     // Colors i Fonts de l'APP
     Colors tablaColores;
     Fonts fontsApp;
+    Imagenes imagenesApp;
 
     //MENU
     Botons MHome;
@@ -45,6 +46,7 @@ public class GUI {
 
     //PANTALLA SEMANA
     Semanario s;
+    Botons antS, postS;
 
     //PANTALLA MES
     Calendari c;
@@ -68,7 +70,8 @@ public class GUI {
         pantallaActual = PANTALLA.INICIAL;
         tablaColores = new Colors(p5);   // Constructor dels colors de l'App
         fontsApp = new Fonts(p5);     // Constructor de les fonts de l'App
-
+        imagenesApp = new Imagenes(p5)
+;
         BLogIn = new Botons (p5, "LogIn", logInX, margeV, logInH, logInV);
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BEntrar = new Botons (p5, "Entrar", 200, 550, logInH, textY);
@@ -85,7 +88,7 @@ public class GUI {
         BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
-        BFavorito= new RadioBoton(p5, (int)(menuX + columnaX + textX - 5), (int)(3*margeV + 3*logoY + 25), 20);
+        BFavorito= new RadioBoton(p5, (int)(menuX + columnaX + textX + 3), (int)(3*margeV + 3*logoY + 25), 20);
         BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), tablaColores.getColorDe(6));
 
 
@@ -151,6 +154,10 @@ public class GUI {
         ant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         post = new Botons (p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
         post.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        antS = new Botons (p5, "anterior", (int)(2*margeH + menuX), (int)(3*margeV + 2*logoY), logInH - 10, textY);
+        antS.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        postS = new Botons (p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
+        postS.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
     }
 
@@ -228,6 +235,8 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         s.display(p5);
+        antS.display(p5);
+        postS.display(p5);
     }
 
     public void dibuixaPantallaMes(PApplet p5){
@@ -317,7 +326,7 @@ public class GUI {
 
     public void dibuixaImatge(PApplet p5){
         p5.fill(tablaColores.getColorDe(4));
-        p5.rect( margeH, imatgeV, imatgeX, imatgeY);
+        p5.image(imagenesApp.getImageAt(0), margeH, imatgeV);
         p5.fill(1); p5.textFont(fontsApp.getFontAt(1)); p5.textSize(midaTitol);
         p5.text("IMATGE " +  pantallaActual + "("+pantallaActual.ordinal() +")", margeH + logoX + imatgeX/2, imatgeV + margeV + imatgeY/2);
     }

@@ -173,6 +173,16 @@ public class Main extends PApplet {
             }
         }
 
+        if(gui.pantallaActual == GUI.PANTALLA.SEMANA){
+            gui.s.checkButtons(this);
+            if(gui.antS.mouseSobreBoto(this)){
+                gui.s.prevMonth();
+            }
+            else if(gui.postS.mouseSobreBoto(this)){
+                gui.s.nextMonth();
+            }
+        }
+
         if(gui.pantallaActual == GUI.PANTALLA.SELECCIONAR) {
             if (gui.BHoy.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BHoy");
