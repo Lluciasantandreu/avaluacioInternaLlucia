@@ -85,32 +85,6 @@ public class Semanario {
         this.selectedAño = y;
     }
 
-    // Va un mes enrera en el Calendari
-    public void prevMonth(){
-
-        this.buttons = new BotonDia[37];
-
-        this.mes --;
-        if(this.mes==0){
-            this.mes = 12;
-            this.año--;
-        }
-        setCalendar(this.dia, this.mes -1, this.año);
-
-        this.numDiasMes = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-        this.diaSemana = cal.get(Calendar.DAY_OF_WEEK);
-        if(diaSemana ==Calendar.SUNDAY){ this.diaSemana = 6; }
-        else { this.diaSemana = this.diaSemana - 2; }
-
-        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
-        this.primerDia = cal.get(Calendar.DATE);
-
-        setPrevCalendar(1, this.mes -2, this.año);
-        this.numDiasPrevMes = cPrev.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-        createCalendar(x, y, w, h);
-    }
 
     public void createCalendar(int x, int y, int w, int h){
 
@@ -124,35 +98,6 @@ public class Semanario {
             day++;
         }
     }
-
-    // Va un mes endavant en el calendari
-    public void nextMonth(){
-
-        this.buttons = new BotonDia[7];
-
-        this.mes ++;
-        if(this.mes==13){
-            this.mes = 1;
-            this.año++;
-        }
-        setCalendar(this.dia, this.mes-1, this.año);
-
-        this.numDiasMes = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-        this.diaSemana = cal.get(Calendar.DAY_OF_WEEK);
-        if(diaSemana ==Calendar.SUNDAY){ this.diaSemana = 6; }
-        else { this.diaSemana = this.diaSemana - 2; }
-
-        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
-        this.primerDia = cal.get(Calendar.DATE);
-
-        setPrevCalendar(1, this.mes-2, this.año);
-
-        this.numDiasPrevMes = cPrev.getActualMaximum(Calendar.DAY_OF_MONTH);
-
-        createCalendar(x, y, w, h);
-    }
-
 
 
     // Dibuixa el Calendari

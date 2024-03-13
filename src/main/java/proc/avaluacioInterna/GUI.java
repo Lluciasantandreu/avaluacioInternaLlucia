@@ -34,19 +34,21 @@ public class GUI {
     Botons BHoy, BSemana, BMes;
 
     // PANTALLA HOY
-    Botons BComida, BCena;
+    Botons BComida, BCena, BPostre, BDesayuno;
 
     // PANTALLA DETALLES HOY
 
     RadioBoton BFavorito;
     Boolean Favorito = false;
     InserirText TNombre, TReceta;
+
+    Select Unidades;
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
 
     //PANTALLA SEMANA
     Semanario s;
-    Botons antS, postS;
+    Botons d, i;
 
     //PANTALLA MES
     Calendari c;
@@ -66,7 +68,7 @@ public class GUI {
     Botons BConfirmar;
 
     // Constructor de la GUI
-    public GUI(PApplet p5){
+    public GUI(PApplet p5, DataBase db){
         pantallaActual = PANTALLA.INICIAL;
         tablaColores = new Colors(p5);   // Constructor dels colors de l'App
         fontsApp = new Fonts(p5);     // Constructor de les fonts de l'App
@@ -84,10 +86,16 @@ public class GUI {
         BMes= new Botons(p5, "MES", 4*margeH + menuX + 2*columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
         BMes.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(4), tablaColores.getColorDe(3));
 
-        BComida = new Botons(p5, "COMIDA", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
+        BComida = new Botons(p5, "COMIDA", 3*margeH + menuX, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
         BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY);
+        BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
+        BPostre = new Botons(p5, "Postre", 3*margeH + menuX, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
+        BPostre.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BDesayuno= new Botons(p5, "Desayuno", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
+        BDesayuno.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
+
+
         BFavorito= new RadioBoton(p5, (int)(menuX + columnaX + textX + 3), (int)(3*margeV + 3*logoY + 25), 20);
         BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), tablaColores.getColorDe(6));
 
@@ -125,6 +133,10 @@ public class GUI {
         TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 200, 37, "Ingrediente 5");
         TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 200, 37, "Ingrediente 6");
 
+
+        String[] unidades = db.getColumnaNomTaulaUNIDADES();
+        Unidades = new Select(unidades, 100, 100, 100, 100);
+
         // MENU
         MHome = new Botons(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
         MHome.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
@@ -154,10 +166,10 @@ public class GUI {
         ant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         post = new Botons (p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
         post.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        antS = new Botons (p5, "anterior", (int)(2*margeH + menuX), (int)(3*margeV + 2*logoY), logInH - 10, textY);
-        antS.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        postS = new Botons (p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
-        postS.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        d = new Botons(p5, "detalles", (int)(2*margeH + menuX), (4*logoY + columnaY + 10), 100, textY);
+        d.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        i = new Botons(p5, "insertar", (int)(2*margeH + menuX + 110), (4*logoY + columnaY + 10), 100, textY);
+        i.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
     }
 
@@ -204,6 +216,8 @@ public class GUI {
 
         BComida.display(p5);
         BCena.display(p5);
+        BPostre.display(p5);
+        BDesayuno.display(p5);
     }
 
     public void dibuixaPantallaDetallesHoy(PApplet p5) {
@@ -212,7 +226,6 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
-        //dibuixaColumnes123(p5);
 
         BFavorito.display(p5);
 
@@ -224,6 +237,8 @@ public class GUI {
             Ingredients[i].display(p5);
             TIngredients[i].display(p5);
         }
+
+        Unidades.display(p5);
     }
 
     public void dibuixaPantallaSemana(PApplet p5){
@@ -235,8 +250,8 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         s.display(p5);
-        antS.display(p5);
-        postS.display(p5);
+        d.display(p5);
+        i.display(p5);
     }
 
     public void dibuixaPantallaMes(PApplet p5){
@@ -250,6 +265,8 @@ public class GUI {
         c.display(p5);
         ant.display(p5);
         post.display(p5);
+        d.display(p5);
+        i.display(p5);
     }
 
 
@@ -336,10 +353,7 @@ public class GUI {
 
     // DIBUJAR PANTALLA LOGIN
     public void dibuixaImatgeLogIn(PApplet p5){
-        p5.fill(tablaColores.getColorDe(1));
-        p5.rect(6*margeH + usuariX, 3*margeV + logoY, imagenLX, imagenLY);
-        p5.fill(tablaColores.getColorDe(5)); p5.textFont(fontsApp.getFontAt(2), midaTitol);
-        p5.text("Imatge LogIn", 6*margeH + usuariX + imagenLX/2, 3*margeV + logoY + imagenLY/2);
+        p5.image(imagenesApp.getImageAt(2), 6*margeH + usuariX, 3*margeV + logoY, imagenLX, imagenLY);
     }
 
     public void dibuixaMenu(PApplet p5){

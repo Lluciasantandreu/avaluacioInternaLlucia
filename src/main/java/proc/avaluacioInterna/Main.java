@@ -20,11 +20,12 @@ public class Main extends PApplet {
 
     public void setup(){
         noStroke();                         // Sense bordes
-        textAlign(CENTER); textSize(18);   // Alineació i mida del text
-        gui = new GUI(this);          // Constructor de la GUI
-
         bbdd = new DataBase("admin", "12345", "recetas");
         bbdd.connect();
+        textAlign(CENTER); textSize(18);   // Alineació i mida del text
+        gui = new GUI(this, bbdd);          // Constructor de la GUI
+
+
 
     }
 
@@ -99,8 +100,6 @@ public class Main extends PApplet {
 
     public void mousePressed(){
 
-
-
         if (gui.pantallaActual == GUI.PANTALLA.CONFIGURACION){
             if(gui.BFavoritos.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
@@ -155,6 +154,16 @@ public class Main extends PApplet {
                 println("HAS FET CLIC SOBRE EL BOTÓ BComida");
                 gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
             }
+
+            if (gui.BPostre.mouseSobreBoto(this)) {
+                println("HAS FET CLIC SOBRE EL BOTÓ BPostre");
+                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+            }
+
+            if (gui.BDesayuno.mouseSobreBoto(this)) {
+                println("HAS FET CLIC SOBRE EL BOTÓ BDesayuno");
+                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+            }
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.DETALLESHOY){
@@ -171,15 +180,21 @@ public class Main extends PApplet {
             else if(gui.post.mouseSobreBoto(this)){
                 gui.c.nextMonth();
             }
+            else if(gui.d.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+            }
+            else if(gui.i.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.HOY;
+            }
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.SEMANA){
             gui.s.checkButtons(this);
-            if(gui.antS.mouseSobreBoto(this)){
-                gui.s.prevMonth();
+            if(gui.d.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
             }
-            else if(gui.postS.mouseSobreBoto(this)){
-                gui.s.nextMonth();
+            else if(gui.i.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.HOY;
             }
         }
 

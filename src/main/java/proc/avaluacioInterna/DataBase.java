@@ -90,14 +90,14 @@ public class DataBase {
     }
 
     // Retorna les dades de la columna NOM de la taula UNITAT
-    public String[] getColumnaNomTaulaUnitat(){
-        int numFiles = getNumRowsTaula("unitat");
+    public String[] getColumnaNomTaulaUNIDADES(){
+        int numFiles = getNumRowsTaula("UNIDADES");
         String[] info = new String[numFiles];
         try {
-            ResultSet rs = query.executeQuery( "SELECT nom FROM unitat ORDER BY nom ASC");
+            ResultSet rs = query.executeQuery( "SELECT nombre FROM UNIDADES ORDER BY nom ASC");
             int nr = 0;
             while (rs.next()) {
-                info[nr] = rs.getString("nom");
+                info[nr] = rs.getString("nombre");
                 nr++;
             }
             return info;
