@@ -85,11 +85,12 @@ public class Main extends PApplet {
     // ******************* KEYBOARD interaction ***************************** //
 
     public void keyPressed(){
-
+        if(key == '<'){
+            gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+        }
         gui.TUsuario.keyPressed(key, keyCode);
         gui.TContraseña.keyPressed(key, keyCode);
         gui.TNombre.keyPressed(key, keyCode);
-        gui.TReceta.keyPressed(key, keyCode);
         for (int i = 0; i < gui.Ingredients.length; i++){
             gui.TIngredients[i].keyPressed(key, keyCode);
         }
@@ -187,6 +188,10 @@ public class Main extends PApplet {
                 gui.BFavorito.toggle();
             }
 
+            if(gui.BImagen.mouseSobreBoto(this)){
+
+            }
+
            /*if(gui.BGuardar.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");
                if(gui.c.dateSelected) {
@@ -246,7 +251,6 @@ public class Main extends PApplet {
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
         gui.TNombre.isPressed(this);
-        gui.TReceta.isPressed(this);
         gui.CUsuario.isPressed(this);
         gui.CContraseña.isPressed(this);
 

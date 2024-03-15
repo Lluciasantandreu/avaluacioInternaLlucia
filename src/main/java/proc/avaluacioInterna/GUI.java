@@ -40,12 +40,12 @@ public class GUI {
 
     RadioBoton BFavorito;
     Boolean Favorito = false;
-    InserirText TNombre, TReceta;
+    InserirText TNombre;
 
     Select Unidades;
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
-
+    Botons BImagen;
     Botons BGuardar;
 
     //PANTALLA SEMANA
@@ -115,7 +115,6 @@ public class GUI {
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
 
         TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
-        TReceta = new InserirText (p5, 3*margeH + menuX + columnaX, 4*margeV + 3*logoY + textY, textX - 2*margeH, columnaY - textY, "Receta");
 
         float x = 3*margeH + menuX + columnaX;
         float y = 4*margeV + 3*logoY + textY;
@@ -131,18 +130,19 @@ public class GUI {
         TIngredients = new InserirText[6];
         TIngredients[0] = new InserirText(p5, x + 60, y, 170, 37, "Ingrediente 1");
         TIngredients[1] = new InserirText(p5, x + 60, y + 2*margeV + 10, 170, 37, "Ingrediente 2");
-        TIngredients[2] = new InserirText(p5, x + 60, y + 4*margeV + 20, 200, 37, "Ingrediente 3");
-        TIngredients[3] = new InserirText(p5, x + 60, y + 6*margeV + 30, 200, 37, "Ingrediente 4");
-        TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 200, 37, "Ingrediente 5");
-        TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 200, 37, "Ingrediente 6");
+        TIngredients[2] = new InserirText(p5, x + 60, y + 4*margeV + 20, 170, 37, "Ingrediente 3");
+        TIngredients[3] = new InserirText(p5, x + 60, y + 6*margeV + 30, 170, 37, "Ingrediente 4");
+        TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 170, 37, "Ingrediente 5");
+        TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 170, 37, "Ingrediente 6");
 
 
         String[] unidades = db.getColumnaNomTaulaUNIDADES();
         Unidades = new Select(unidades, x + 260, y, 100, 37);
 
-        BGuardar = new Botons(p5, "Guardar", 300, 300, 300, 300);
+        BGuardar = new Botons(p5, "GUARDAR", 2*margeH + 4*menuX, (4*logoY + columnaY + 10), logInH - 10, textY);
         BGuardar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-
+        BImagen = new Botons(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
+        BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         // MENU
         MHome = new Botons(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
@@ -236,9 +236,9 @@ public class GUI {
 
         BFavorito.display(p5);
         BGuardar.display(p5);
+        BImagen.display(p5);
 
         TNombre.display(p5);
-        TReceta.display(p5);
 
 
         for (int i = 0; i < Ingredients.length; i++){
