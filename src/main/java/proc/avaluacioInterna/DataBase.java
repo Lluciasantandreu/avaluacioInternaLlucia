@@ -1,9 +1,6 @@
 package proc.avaluacioInterna;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DataBase {
 
@@ -44,6 +41,7 @@ public class DataBase {
             ResultSet rs = query.executeQuery( "SELECT COUNT(*) AS n FROM "+ nomTaula );
             rs.next();
             int numRows = rs.getInt("n");
+            System.out.println("FILES: "+numRows);
             return numRows;
         }
         catch(Exception e) {
@@ -94,7 +92,9 @@ public class DataBase {
         int numFiles = getNumRowsTaula("UNIDADES");
         String[] info = new String[numFiles];
         try {
-            ResultSet rs = query.executeQuery( "SELECT nombre FROM UNIDADES ORDER BY nom ASC");
+            String q = "SELECT nombre FROM UNIDADES ORDER BY nombre ASC";
+            System.out.println(q);
+            ResultSet rs = query.executeQuery( q);
             int nr = 0;
             while (rs.next()) {
                 info[nr] = rs.getString("nombre");
@@ -105,6 +105,31 @@ public class DataBase {
         catch(Exception e) {
             System.out.println(e);
             return null;
+        }
+
+
+    }
+    public boolean isValidUser(String userName, String password){
+        String q = "SELECT COUNT(*) AS n FROM USUARIO WHERE idUSUARIO = '"+userName+"' AND password='"+password+"'";
+        try {
+            ResultSet rs = query.executeQuery( q);
+            rs.next();
+            return rs.getInt("n")==1;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    void addReceta(String nombre, String tipo, Date d){
+        String q = "INSERT INTO RECETA (idRECETA, nombre, imagen, tipo, dia) VALUES (2, ' "+ nombre + "', NULL, '" + tipo + "', '" + c + "')";
+        try {
+            query.execute(q);
+            System.out.println("Insert: " + q);
+        }
+        catch(Exception e) {
+            System.out.println(e);
         }
     }
 }

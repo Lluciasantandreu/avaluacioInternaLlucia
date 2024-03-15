@@ -7,9 +7,11 @@ public class Main extends PApplet {
     // Interfície Gràfica (Pantalles i components)
     GUI gui;
     DataBase bbdd;
+    String idTipo;
 
     public static void main(String[] args) {
         PApplet.main("proc.avaluacioInterna.Main", args);
+
     }
 
     public void settings(){
@@ -24,8 +26,7 @@ public class Main extends PApplet {
         bbdd.connect();
         textAlign(CENTER); textSize(18);   // Alineació i mida del text
         gui = new GUI(this, bbdd);          // Constructor de la GUI
-
-
+        idTipo = "";
 
     }
 
@@ -138,7 +139,18 @@ public class Main extends PApplet {
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.LOGIN){
-            if(gui.BEntrar.mouseSobreBoto(this)){
+            String userName = gui.TUsuario.getText();
+            String password = gui.TContraseña.getText();
+
+            if(bbdd.isValidUser(userName, password)){
+                gui.BEntrar.activado = true;
+            }
+
+            if(!bbdd.isValidUser(userName, password)){
+                gui.BEntrar.activado = false;
+            }
+
+            if(gui.BEntrar.mouseSobreBoto(this) && gui.BEntrar.activado){
                 println("HAS FET CLIC SOBRE EL BOTÓ BEntrar");
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
@@ -148,21 +160,25 @@ public class Main extends PApplet {
             if (gui.BCena.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BCena");
                 gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                idTipo = "Cena";
             }
 
             if (gui.BComida.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BComida");
                 gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                idTipo = "Comida";
             }
 
             if (gui.BPostre.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BPostre");
                 gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                idTipo = "Postre";
             }
 
             if (gui.BDesayuno.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BDesayuno");
                 gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                idTipo = "Desayuno";
             }
         }
 
@@ -170,6 +186,13 @@ public class Main extends PApplet {
             if(gui.BFavorito.mouseSobreBoto(this)){
                 gui.BFavorito.toggle();
             }
+
+           /*if(gui.BGuardar.mouseSobreBoto(this)){
+               System.out.println("Has fet click sobre el botó Guardar");
+               if(gui.c.dateSelected) {
+                   bbdd.addReceta(gui.TNombre.getText(), idTipo, gui.c.getSelectedDate());
+               }
+            }*/
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.MES){
@@ -220,9 +243,6 @@ public class Main extends PApplet {
             }
         }
 
-
-
-
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);
         gui.TNombre.isPressed(this);
@@ -239,6 +259,12 @@ public class Main extends PApplet {
             if(gui.Ingredients[i].onMouseOver(this)) {
                 gui.Ingredients[i].toggle();
             }
+        }
+        if(gui.Unidades.mouseOverSelect(this) && gui.Unidades.isEnabled()){
+            if(!gui.Unidades.isCollapsed()) {
+                gui.Unidades.update(this);
+            }
+            gui.Unidades.toggle();
         }
 
     }

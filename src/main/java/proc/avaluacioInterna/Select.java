@@ -1,6 +1,7 @@
 package proc.avaluacioInterna;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class Select {
 
@@ -39,8 +40,9 @@ public class Select {
     }
 
     public void display(PApplet p5){
+        p5.textAlign(PConstants.CORNER);
         p5.pushStyle();
-        p5.stroke(0); p5.strokeWeight(2); p5.fill(255);
+        p5.stroke(0); p5.strokeWeight(1); p5.fill(255);
         p5.rect(x, y, w, h);
 
         p5.fill(100);

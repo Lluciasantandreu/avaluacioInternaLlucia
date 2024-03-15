@@ -46,6 +46,8 @@ public class GUI {
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
 
+    Botons BGuardar;
+
     //PANTALLA SEMANA
     Semanario s;
     Botons d, i;
@@ -78,6 +80,7 @@ public class GUI {
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BEntrar = new Botons (p5, "Entrar", 200, 550, logInH, textY);
         BEntrar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BEntrar.setActivado(false);
 
         BHoy = new Botons(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
         BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -90,9 +93,9 @@ public class GUI {
         BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
-        BPostre = new Botons(p5, "Postre", 3*margeH + menuX, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
+        BPostre = new Botons(p5, "POSTRE", 3*margeH + menuX, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
         BPostre.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BDesayuno= new Botons(p5, "Desayuno", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
+        BDesayuno= new Botons(p5, "DESAYUNO", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
         BDesayuno.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
 
 
@@ -114,7 +117,7 @@ public class GUI {
         TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
         TReceta = new InserirText (p5, 3*margeH + menuX + columnaX, 4*margeV + 3*logoY + textY, textX - 2*margeH, columnaY - textY, "Receta");
 
-        float x = 4*margeH + menuX + 2*columnaX;
+        float x = 3*margeH + menuX + columnaX;
         float y = 4*margeV + 3*logoY + textY;
         Ingredients = new LlistaCheck[6];
         Ingredients[0] = new LlistaCheck(p5, x, y, 37);
@@ -126,8 +129,8 @@ public class GUI {
 
 
         TIngredients = new InserirText[6];
-        TIngredients[0] = new InserirText(p5, x + 60, y, 200, 37, "Ingrediente 1");
-        TIngredients[1] = new InserirText(p5, x + 60, y + 2*margeV + 10, 200, 37, "Ingrediente 2");
+        TIngredients[0] = new InserirText(p5, x + 60, y, 170, 37, "Ingrediente 1");
+        TIngredients[1] = new InserirText(p5, x + 60, y + 2*margeV + 10, 170, 37, "Ingrediente 2");
         TIngredients[2] = new InserirText(p5, x + 60, y + 4*margeV + 20, 200, 37, "Ingrediente 3");
         TIngredients[3] = new InserirText(p5, x + 60, y + 6*margeV + 30, 200, 37, "Ingrediente 4");
         TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 200, 37, "Ingrediente 5");
@@ -135,7 +138,11 @@ public class GUI {
 
 
         String[] unidades = db.getColumnaNomTaulaUNIDADES();
-        Unidades = new Select(unidades, 100, 100, 100, 100);
+        Unidades = new Select(unidades, x + 260, y, 100, 37);
+
+        BGuardar = new Botons(p5, "Guardar", 300, 300, 300, 300);
+        BGuardar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+
 
         // MENU
         MHome = new Botons(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
@@ -228,6 +235,7 @@ public class GUI {
         dibuixaImatge(p5);
 
         BFavorito.display(p5);
+        BGuardar.display(p5);
 
         TNombre.display(p5);
         TReceta.display(p5);

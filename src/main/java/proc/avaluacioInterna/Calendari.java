@@ -2,6 +2,7 @@ package proc.avaluacioInterna;
 
 import processing.core.PApplet;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 public class Calendari {
@@ -67,7 +68,10 @@ public class Calendari {
         return this.selectedDay +"/"+ this.selectedMonth + "/"+ this.selectedYear;
     }
 
-
+    /*public Date getSelectedDate(){
+        Date d= new Date(this.selectedYear, this.selectedMonth, this.selectedDay);
+        return d;
+    }*/
     // Setters
 
     public void setCalendar(int d, int m, int y){

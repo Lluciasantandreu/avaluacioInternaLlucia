@@ -87,6 +87,16 @@ public class InserirText {
         }
     }
 
+    // Retorna el text
+    public String getText(){
+        return this.text;
+    }
+
+    // Setter del text
+    public void setText(String t){
+        this.text= t;
+    }
+
     // Indica si el ratolí està sobre el camp de text
     public boolean mouseOverTextField(PApplet p5) {
         return (p5.mouseX >= this.x && p5.mouseX <= this.x + this.w && p5.mouseY >= this.y && p5.mouseY <= this.y + this.h);
