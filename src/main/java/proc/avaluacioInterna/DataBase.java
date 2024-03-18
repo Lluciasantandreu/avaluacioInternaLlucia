@@ -123,7 +123,10 @@ public class DataBase {
     }
 
     void addReceta(String nombre, String tipo, Date d){
-        String q = "INSERT INTO RECETA (idRECETA, nombre, imagen, tipo, dia) VALUES (2, ' "+ nombre + "', NULL, '" + tipo + "', '" + c + "')";
+        String df = d.getYear()+"-"+d.getMonth()+"-"+d.getDay();
+        System.out.println(df);
+        String q = "INSERT INTO RECETA (nombre, imagen, tipo, dia) VALUES (' "+ nombre + "', NULL, '" + tipo + "', '" + df + "')";
+        System.out.println(q);
         try {
             query.execute(q);
             System.out.println("Insert: " + q);
@@ -131,5 +134,23 @@ public class DataBase {
         catch(Exception e) {
             System.out.println(e);
         }
+    }
+
+    public static String formataFechaEsp(String fechaEntrada){
+
+        String y = fechaEntrada.split("-")[0];
+        String m = fechaEntrada.split("-")[1];
+        String d = fechaEntrada.split("-")[2];
+
+        return d+"/"+m+"/"+y;
+    }
+
+    public static String formataFechaEng(String fechaEntrada){
+
+        String y = fechaEntrada.split("/")[2];
+        String m = fechaEntrada.split("/")[1];
+        String d = fechaEntrada.split("/")[0];
+
+        return y+"-"+m+"-"+d;
     }
 }

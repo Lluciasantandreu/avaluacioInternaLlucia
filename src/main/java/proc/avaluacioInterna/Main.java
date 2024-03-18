@@ -2,6 +2,9 @@ package proc.avaluacioInterna;
 
 import processing.core.PApplet;
 
+import java.io.File;
+
+
 public class Main extends PApplet {
 
     // Interfície Gràfica (Pantalles i components)
@@ -71,6 +74,18 @@ public class Main extends PApplet {
 
         // Actualitza el cursor
         actualizarCursor();
+    }
+
+    public void filSelected (File selection){
+        if(selection ==null){
+            System.out.println("No se ha seleccionado ningún documento");
+        }
+        else{
+            String rutaImagen = selection.getAbsolutePath();
+
+            gui.imagen = loadImage (rutaImagen);
+            gui.titulo = selection.getName();
+        }
     }
     public void actualizarCursor(){
         if(gui.BLogIn.actualizarCursor(this)){
@@ -191,13 +206,24 @@ public class Main extends PApplet {
             if(gui.BImagen.mouseSobreBoto(this)){
 
             }
+            if(gui.BImagen.mouseSobreBoto(this)){
+                selectInput("Selecciona una imagen...", "fileSelected");
+            }
 
-           /*if(gui.BGuardar.mouseSobreBoto(this)){
+            /*for (int i = 0; i < gui.Unidades.length; i++){
+                if(!gui.Unidades[i].isCollapsed()) {
+                    gui.Unidades[i].update(this);
+                }
+                gui.Unidades[i].toggle();
+
+            }*/
+
+           if(gui.BGuardar.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");
                if(gui.c.dateSelected) {
-                   bbdd.addReceta(gui.TNombre.getText(), idTipo, gui.c.getSelectedDate());
+                   bbdd.addReceta(gui.TNombre.getText(), idTipo, gui.c.getSelectedDate2());
                }
-            }*/
+            }
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.MES){
@@ -264,13 +290,6 @@ public class Main extends PApplet {
                 gui.Ingredients[i].toggle();
             }
         }
-        if(gui.Unidades.mouseOverSelect(this) && gui.Unidades.isEnabled()){
-            if(!gui.Unidades.isCollapsed()) {
-                gui.Unidades.update(this);
-            }
-            gui.Unidades.toggle();
-        }
-
     }
 
     public void mouseDragged(){

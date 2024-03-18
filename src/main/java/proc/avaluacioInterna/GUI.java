@@ -1,7 +1,9 @@
 package proc.avaluacioInterna;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
+import static javax.swing.SwingConstants.*;
 import static proc.avaluacioInterna.Mides.*;
 import static proc.avaluacioInterna.Layout.*;
 
@@ -42,11 +44,14 @@ public class GUI {
     Boolean Favorito = false;
     InserirText TNombre;
 
-    Select Unidades;
+    Select [] Unidades;
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
     Botons BImagen;
     Botons BGuardar;
+
+    PImage imagen;
+    String titulo = "";
 
     //PANTALLA SEMANA
     Semanario s;
@@ -137,7 +142,13 @@ public class GUI {
 
 
         String[] unidades = db.getColumnaNomTaulaUNIDADES();
-        Unidades = new Select(unidades, x + 260, y, 100, 37);
+        /*Unidades[0] = new Select(unidades, x + 260, y, 100, 37);
+        Unidades[1] = new Select(unidades, x + 260, y + 2*margeV + 10, 100, 37);
+        Unidades[2] = new Select(unidades, x + 260, y + 4*margeV + 20, 100, 37);
+        Unidades[3] = new Select(unidades, x + 260, y + 6*margeV + 30, 100, 37);
+        Unidades[4] = new Select(unidades, x + 260, y + 8*margeV + 40, 100, 37);
+        Unidades[5] = new Select(unidades, x + 260, y + 10*margeV + 50, 100, 37);*/
+
 
         BGuardar = new Botons(p5, "GUARDAR", 2*margeH + 4*menuX, (4*logoY + columnaY + 10), logInH - 10, textY);
         BGuardar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
@@ -244,9 +255,19 @@ public class GUI {
         for (int i = 0; i < Ingredients.length; i++){
             Ingredients[i].display(p5);
             TIngredients[i].display(p5);
+           // Unidades[i].display(p5);
         }
 
-        Unidades.display(p5);
+        if(imagen!=null){
+            p5.pushStyle();
+            p5.image(imagen, 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
+            p5.textSize(14);
+            p5.textAlign(RIGHT);
+            p5.fill(0);
+            p5.textAlign(CENTER, CENTER);
+            p5.text(titulo, 2*margeH + menuX, 3*margeV + 3*logoY, textX, textY);
+            p5.popStyle();
+        }
     }
 
     public void dibuixaPantallaSemana(PApplet p5){
@@ -345,7 +366,8 @@ public class GUI {
 
     public void dibuixaNomPantalla(PApplet p5){
         p5.fill(0); p5.textFont(fontsApp.getFontAt(2)); p5.textSize(midaTitol);
-        p5.text("PANTALLA " + pantallaActual, margeH + logoX + imatgeX/2, 2*margeV + logoY/2);
+        p5.textAlign(CENTER);
+        p5.text("PANTALLA " + pantallaActual, p5.width/2 - 200, 2*margeV + logoY/2);
     }
 
 
@@ -365,7 +387,7 @@ public class GUI {
     }
 
     public void dibuixaMenu(PApplet p5){
-        p5.text("MENU", margeH + menuX/2, 4*margeV + 2*logoY);
+        p5.text("MENU", 3*margeH, 4*margeV + 2*logoY);
 
         MHome.display(p5);
         MHoy.display(p5);

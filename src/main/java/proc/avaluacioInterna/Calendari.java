@@ -68,10 +68,10 @@ public class Calendari {
         return this.selectedDay +"/"+ this.selectedMonth + "/"+ this.selectedYear;
     }
 
-    /*public Date getSelectedDate(){
+    public Date getSelectedDate2(){
         Date d= new Date(this.selectedYear, this.selectedMonth, this.selectedDay);
         return d;
-    }*/
+    }
     // Setters
 
     public void setCalendar(int d, int m, int y){

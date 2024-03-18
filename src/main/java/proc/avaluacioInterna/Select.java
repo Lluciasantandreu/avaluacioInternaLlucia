@@ -73,6 +73,17 @@ public class Select {
         p5.popStyle();
     }
 
+    public void setPosition(String[] texts, float x, float y, float w, float h){
+        this.texts = texts;
+        this.selectedValue = "";
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.enabled = true;
+        this.collapsed = true;
+    }
+
     public void setCollapsed(boolean b){
         this.collapsed = b;
     }
