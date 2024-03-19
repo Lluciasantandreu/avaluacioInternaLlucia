@@ -67,9 +67,9 @@ public class DataBase {
     }
 
     // Retorna les dades d'una taula en concret
-    public String[][] getInfoTaulaUnitat(){
-        int numFiles = getNumRowsTaula("unitat");
-        int numCols  = 2;
+    public String[][] visualizaRecetas(){
+        int numFiles = getNumRowsTaula("RECETA");
+        int numCols  = 4;
         String[][] info = new String[numFiles][numCols];
         try {
             ResultSet rs = query.executeQuery( "SELECT * FROM unitat");
@@ -106,8 +106,6 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
-
-
     }
     public boolean isValidUser(String userName, String password){
         String q = "SELECT COUNT(*) AS n FROM USUARIO WHERE idUSUARIO = '"+userName+"' AND password='"+password+"'";
@@ -122,6 +120,8 @@ public class DataBase {
         }
     }
 
+
+
     void addReceta(String nombre, String tipo, Date d){
         String df = d.getYear()+"-"+d.getMonth()+"-"+d.getDay();
         System.out.println(df);
@@ -129,12 +129,22 @@ public class DataBase {
         System.out.println(q);
         try {
             query.execute(q);
-            System.out.println("Insert: " + q);
         }
         catch(Exception e) {
             System.out.println(e);
         }
     }
+
+    /*void addRecetaFavorita(int nombre, String usuario){
+        String q = "INSERT INTO RECETA_FAVORITA (RECETA_idRECETA, USUARIO_idUSUARIO) VALUES ('"+nombre+"', '"+usuario+"')";
+        System.out.println(q);
+        try {
+            query.execute(q);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+    }*/
 
     public static String formataFechaEsp(String fechaEntrada){
 

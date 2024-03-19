@@ -11,11 +11,12 @@ public class Select {
 
     boolean collapsed = true;  // Plegat / Desplegat
     boolean enabled;           // Abilitat / desabilitat
+    Fonts fontsApp;
 
     float lineSpace = 15;      // Espai entre línies
 
-    public Select(String[] texts, float x, float y, float w, float h){
-
+    public Select(PApplet p5, String[] texts, float x, float y, float w, float h){
+        fontsApp = new Fonts(p5);
         this.texts = texts;
         this.selectedValue = "";
         this.x = x;
@@ -42,7 +43,7 @@ public class Select {
     public void display(PApplet p5){
         p5.textAlign(PConstants.CORNER);
         p5.pushStyle();
-        p5.stroke(0); p5.strokeWeight(1); p5.fill(255);
+        p5.stroke(0); p5.strokeWeight(1); p5.fill(0xFFDEE5E5);
         p5.rect(x, y, w, h);
 
         p5.fill(100);
@@ -51,7 +52,8 @@ public class Select {
         p5.fill(0); p5.stroke(0);
         p5.triangle(x + w - 25, y+5, x + w - 15, y + 25, x + w - 5 , y+5);
 
-        p5.fill(0); p5.textSize(14);
+        p5.textFont(fontsApp.getFontAt(0));
+        p5.fill(200, 10, 120); p5.textSize(20);
         p5.text(selectedValue, x + 10, y + 20);
 
         if(!this.collapsed){
@@ -71,17 +73,6 @@ public class Select {
             }
         }
         p5.popStyle();
-    }
-
-    public void setPosition(String[] texts, float x, float y, float w, float h){
-        this.texts = texts;
-        this.selectedValue = "";
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.enabled = true;
-        this.collapsed = true;
     }
 
     public void setCollapsed(boolean b){

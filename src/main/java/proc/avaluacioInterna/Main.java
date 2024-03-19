@@ -109,6 +109,9 @@ public class Main extends PApplet {
         for (int i = 0; i < gui.Ingredients.length; i++){
             gui.TIngredients[i].keyPressed(key, keyCode);
         }
+        for (int i = 0; i < gui.TCantidades.length; i++){
+            gui.TCantidades[i].keyPressed(key, keyCode);
+        }
         gui.CUsuario.keyPressed(key, keyCode);
         gui.CContraseña.keyPressed(key, keyCode);
     }
@@ -210,13 +213,48 @@ public class Main extends PApplet {
                 selectInput("Selecciona una imagen...", "fileSelected");
             }
 
-            /*for (int i = 0; i < gui.Unidades.length; i++){
-                if(!gui.Unidades[i].isCollapsed()) {
-                    gui.Unidades[i].update(this);
-                }
-                gui.Unidades[i].toggle();
 
-            }*/
+            if(!gui.Unidades.isCollapsed()) {
+                gui.Unidades.update(this);
+            }
+            if(gui.Unidades.mouseOverSelect(this)) {
+                gui.Unidades.toggle();
+            }
+
+
+            if(!gui.Unidades1.isCollapsed()) {
+                gui.Unidades1.update(this);
+            }
+            if(gui.Unidades1.mouseOverSelect(this)) {
+                gui.Unidades1.toggle();
+            }
+
+            if(!gui.Unidades2.isCollapsed()) {
+                gui.Unidades2.update(this);
+            }
+            if(gui.Unidades2.mouseOverSelect(this)) {
+                gui.Unidades2.toggle();
+            }
+
+            if(!gui.Unidades3.isCollapsed()) {
+                gui.Unidades3.update(this);
+            }
+            if(gui.Unidades3.mouseOverSelect(this)) {
+                gui.Unidades3.toggle();
+            }
+
+            if(!gui.Unidades4.isCollapsed()) {
+                gui.Unidades4.update(this);
+            }
+            if(gui.Unidades4.mouseOverSelect(this)) {
+                gui.Unidades4.toggle();
+            }
+            if(!gui.Unidades5.isCollapsed()) {
+                gui.Unidades5.update(this);
+            }
+            if(gui.Unidades5.mouseOverSelect(this)) {
+                gui.Unidades5.toggle();
+            }
 
            if(gui.BGuardar.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");

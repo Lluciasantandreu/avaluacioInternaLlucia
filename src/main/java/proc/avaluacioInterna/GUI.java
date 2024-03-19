@@ -41,10 +41,15 @@ public class GUI {
     // PANTALLA DETALLES HOY
 
     RadioBoton BFavorito;
-    Boolean Favorito = false;
     InserirText TNombre;
 
-    Select [] Unidades;
+    Select Unidades;
+    Select Unidades1;
+    Select Unidades2;
+    Select Unidades3;
+    Select Unidades4;
+    Select Unidades5;
+    InserirText [] TCantidades;
     InserirText [] TIngredients;
     LlistaCheck [] Ingredients;
     Botons BImagen;
@@ -140,17 +145,26 @@ public class GUI {
         TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 170, 37, "Ingrediente 5");
         TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 170, 37, "Ingrediente 6");
 
+        TCantidades = new InserirText[6];
+        TCantidades[0] = new InserirText(p5, x + 250, y, 110, 37, "Cantidad");
+        TCantidades[1] = new InserirText(p5, x + 250, y + 2*margeV + 10, 110, 37, "Cantidad");
+        TCantidades[2] = new InserirText(p5, x + 250, y + 4*margeV + 20, 110, 37, "Cantidad");
+        TCantidades[3] = new InserirText(p5, x + 250, y + 6*margeV + 30, 110, 37, "Cantidad");
+        TCantidades[4] = new InserirText(p5, x + 250, y + 8*margeV + 40, 110, 37, "Cantidad");
+        TCantidades[5] = new InserirText(p5, x + 250, y + 10*margeV + 50, 110, 37, "Cantidad");
+
 
         String[] unidades = db.getColumnaNomTaulaUNIDADES();
-        /*Unidades[0] = new Select(unidades, x + 260, y, 100, 37);
-        Unidades[1] = new Select(unidades, x + 260, y + 2*margeV + 10, 100, 37);
-        Unidades[2] = new Select(unidades, x + 260, y + 4*margeV + 20, 100, 37);
-        Unidades[3] = new Select(unidades, x + 260, y + 6*margeV + 30, 100, 37);
-        Unidades[4] = new Select(unidades, x + 260, y + 8*margeV + 40, 100, 37);
-        Unidades[5] = new Select(unidades, x + 260, y + 10*margeV + 50, 100, 37);*/
+
+        Unidades = new Select(p5, unidades, x + 380, y, 120, 37);
+        Unidades1 = new Select(p5, unidades, x + 380, y + 2*margeV + 10, 120, 37);
+        Unidades2 = new Select(p5, unidades, x + 380, y + 4*margeV + 20, 120, 37);
+        Unidades3 = new Select(p5, unidades, x + 380, y + 6*margeV + 30, 120, 37);
+        Unidades4 = new Select(p5, unidades, x + 380, y + 8*margeV + 40, 120, 37);
+        Unidades5 = new Select(p5, unidades, x + 380, y + 10*margeV + 50, 120, 37);
 
 
-        BGuardar = new Botons(p5, "GUARDAR", 2*margeH + 4*menuX, (4*logoY + columnaY + 10), logInH - 10, textY);
+        BGuardar = new Botons(p5, "GUARDAR", 4*margeH + 4*menuX + 10, (4*logoY + columnaY + 10), logInH - 10, textY);
         BGuardar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         BImagen = new Botons(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
         BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -255,8 +269,16 @@ public class GUI {
         for (int i = 0; i < Ingredients.length; i++){
             Ingredients[i].display(p5);
             TIngredients[i].display(p5);
-           // Unidades[i].display(p5);
+            TCantidades[i].display(p5);
         }
+
+        Unidades5.display(p5);
+        Unidades4.display(p5);
+        Unidades3.display(p5);
+        Unidades2.display(p5);
+        Unidades1.display(p5);
+        Unidades.display(p5);
+
 
         if(imagen!=null){
             p5.pushStyle();
