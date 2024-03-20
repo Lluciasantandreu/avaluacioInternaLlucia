@@ -46,10 +46,10 @@ public class Main extends PApplet {
             case SELECCIONAR:   gui.dibuixaPantallaSeleccionar(this);
                                 break;
 
-           case HOY:            gui.dibuixaPantallaHoy(this);
+           case SELECCIONRECETA:            gui.dibuixaPantallaHoy(this);
                                 break;
 
-           case DETALLESHOY:    gui.dibuixaPantallaDetallesHoy(this);
+           case INSERIR:    gui.dibuixaPantallaInserir(this);
                                 break;
 
            case SEMANA:         gui.dibuixaPantallaSemana(this);
@@ -101,7 +101,7 @@ public class Main extends PApplet {
 
     public void keyPressed(){
         if(key == '<'){
-            gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+            gui.pantallaActual = GUI.PANTALLA.INSERIR;
         }
         gui.TUsuario.keyPressed(key, keyCode);
         gui.TContraseña.keyPressed(key, keyCode);
@@ -137,7 +137,7 @@ public class Main extends PApplet {
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
             if(gui.MHoy.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.HOY;
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
             }
             if(gui.MSemana.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SEMANA;
@@ -175,36 +175,33 @@ public class Main extends PApplet {
             }
         }
 
-        if(gui.pantallaActual == GUI.PANTALLA.HOY) {
+        if(gui.pantallaActual == GUI.PANTALLA.SELECCIONRECETA) {
             if (gui.BCena.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BCena");
-                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                gui.pantallaActual = GUI.PANTALLA.INSERIR;
                 idTipo = "Cena";
             }
 
             if (gui.BComida.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BComida");
-                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                gui.pantallaActual = GUI.PANTALLA.INSERIR;
                 idTipo = "Comida";
             }
 
             if (gui.BPostre.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BPostre");
-                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                gui.pantallaActual = GUI.PANTALLA.INSERIR;
                 idTipo = "Postre";
             }
 
             if (gui.BDesayuno.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BDesayuno");
-                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                gui.pantallaActual = GUI.PANTALLA.INSERIR;
                 idTipo = "Desayuno";
             }
         }
 
-        if(gui.pantallaActual == GUI.PANTALLA.DETALLESHOY){
-            if(gui.BFavorito.mouseSobreBoto(this)){
-                gui.BFavorito.toggle();
-            }
+        if(gui.pantallaActual == GUI.PANTALLA.INSERIR){
 
             if(gui.BImagen.mouseSobreBoto(this)){
 
@@ -282,27 +279,27 @@ public class Main extends PApplet {
                 gui.c.nextMonth();
             }
             else if(gui.d.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                gui.pantallaActual = GUI.PANTALLA.INSERIR;
             }
             else if(gui.i.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.HOY;
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
             }
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.SEMANA){
             gui.s.checkButtons(this);
             if(gui.d.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.DETALLESHOY;
+                gui.pantallaActual = GUI.PANTALLA.INSERIR;
             }
             else if(gui.i.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.HOY;
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
             }
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.SELECCIONAR) {
             if (gui.BHoy.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BHoy");
-                gui.pantallaActual = GUI.PANTALLA.HOY;
+                gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
             }
             if (gui.BSemana.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BSemana");

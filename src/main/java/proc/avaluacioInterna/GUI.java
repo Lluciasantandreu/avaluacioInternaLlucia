@@ -10,7 +10,7 @@ import static proc.avaluacioInterna.Layout.*;
 public class GUI {
 
     // Enumerat de les Pantalles de l'App
-    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, HOY, DETALLESHOY, SEMANA, MES, CONFIGURACION, FAVORITOS, CUENTA, INFORMACION};
+    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, SELECCIONRECETA, INSERIR, SEMANA, MES, CONFIGURACION, FAVORITOS, CUENTA, INFORMACION, DETALLESRECETA};
     // Pantalla Actual
     public PANTALLA pantallaActual;
 
@@ -39,9 +39,8 @@ public class GUI {
     Botons BComida, BCena, BPostre, BDesayuno;
 
     // PANTALLA DETALLES HOY
-
-    RadioBoton BFavorito;
     InserirText TNombre;
+    InserirText TDetallesNombre;
 
     Select Unidades;
     Select Unidades1;
@@ -73,6 +72,7 @@ public class GUI {
     Botons BInformación;
 
     Botons BInicio;
+    Botons BAtras;
 
     //PANTALLA CUENTA
     InserirText CUsuario;
@@ -110,10 +110,6 @@ public class GUI {
         BDesayuno.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
 
 
-        BFavorito= new RadioBoton(p5, (int)(menuX + columnaX + textX + 3), (int)(3*margeV + 3*logoY + 25), 20);
-        BFavorito.setColors(tablaColores.getColorDe(0), p5.color(30, 30, 30), tablaColores.getColorDe(6));
-
-
         BFavoritos = new Botons(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCuenta = new Botons(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
@@ -126,6 +122,10 @@ public class GUI {
         TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
 
         TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
+
+        String[] nombre = db.getColumnaNomTaulaRECETA();
+        TDetallesNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[0]);
+
 
         float x = 3*margeH + menuX + columnaX;
         float y = 4*margeV + 3*logoY + textY;
@@ -255,14 +255,13 @@ public class GUI {
         BDesayuno.display(p5);
     }
 
-    public void dibuixaPantallaDetallesHoy(PApplet p5) {
+    public void dibuixaPantallaInserir(PApplet p5) {
         p5.background(tablaColores.getColorDe(0));
         dibuixaLogo(p5);
         dibuixaNomPantalla(p5);
         dibuixaMenu(p5);
         dibuixaImatge(p5);
 
-        BFavorito.display(p5);
         BGuardar.display(p5);
         BFavorita.display(p5);
         BImagen.display(p5);
@@ -345,6 +344,8 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaImatge(p5);
 
+        TDetallesNombre.display(p5);
+
         p5.textFont(fontsApp.getFontAt(2));
         BInicio.display(p5);
     }
@@ -378,6 +379,16 @@ public class GUI {
         p5.textFont(fontsApp.getFontAt(0), midaParagraf);
         p5.text("Esta aplicación se ha hecho con el fin de tener \n las diferentes recetas del mes en un mismo espacio... ", 750, 200);
     }
+
+    public void dibuixaPantallaDetallesReceta(PApplet p5){
+        p5.background(tablaColores.getColorDe(0));
+        dibuixaLogo(p5);
+        dibuixaNomPantalla(p5);
+        dibuixaImatge(p5);
+
+        p5.textFont(fontsApp.getFontAt(2));
+        BInicio.display(p5);
+ }
 
 
     // ZONES DE LA GUI

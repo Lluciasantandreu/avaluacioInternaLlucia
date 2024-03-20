@@ -107,6 +107,26 @@ public class DataBase {
             return null;
         }
     }
+
+    public String[] getColumnaNomTaulaRECETA(){
+        int numFiles = getNumRowsTaula("RECETA");
+        String[] info = new String[numFiles];
+        try {
+            String q = "SELECT nombre FROM RECETA ORDER BY nombre ASC";
+            System.out.println(q);
+            ResultSet rs = query.executeQuery( q);
+            int nr = 0;
+            while (rs.next()) {
+                info[nr] = rs.getString("nombre");
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
     public boolean isValidUser(String userName, String password){
         String q = "SELECT COUNT(*) AS n FROM USUARIO WHERE idUSUARIO = '"+userName+"' AND password='"+password+"'";
         try {
