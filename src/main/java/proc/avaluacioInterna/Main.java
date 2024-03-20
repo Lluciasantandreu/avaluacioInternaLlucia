@@ -317,6 +317,9 @@ public class Main extends PApplet {
         gui.TNombre.isPressed(this);
         gui.CUsuario.isPressed(this);
         gui.CContraseña.isPressed(this);
+        for(int i=0; i<gui.TCantidades.length; i++){
+            gui.TCantidades[i].isPressed(this);
+        }
 
 
         for (int i = 0; i < gui.Ingredients.length; i++){

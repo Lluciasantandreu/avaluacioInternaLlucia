@@ -54,6 +54,7 @@ public class GUI {
     LlistaCheck [] Ingredients;
     Botons BImagen;
     Botons BGuardar;
+    Botons BFavorita;
 
     PImage imagen;
     String titulo = "";
@@ -164,8 +165,10 @@ public class GUI {
         Unidades5 = new Select(p5, unidades, x + 380, y + 10*margeV + 50, 120, 37);
 
 
-        BGuardar = new Botons(p5, "GUARDAR", 4*margeH + 4*menuX + 10, (4*logoY + columnaY + 10), logInH - 10, textY);
+        BGuardar = new Botons(p5, "GUARDAR", 4*margeH + 4*menuX + 15, y + 10*margeV + 40, logInH - 10, textY-5);
         BGuardar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        BFavorita = new Botons(p5, "FAVORITA", 4*margeH + 4*menuX + 15, (3*logoY + columnaY - textY + 20), logInH - 10, textY-5);
+        BFavorita.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
         BImagen = new Botons(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
         BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
@@ -261,6 +264,7 @@ public class GUI {
 
         BFavorito.display(p5);
         BGuardar.display(p5);
+        BFavorita.display(p5);
         BImagen.display(p5);
 
         TNombre.display(p5);
