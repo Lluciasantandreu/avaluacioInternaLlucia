@@ -76,7 +76,7 @@ public class Main extends PApplet {
         actualizarCursor();
     }
 
-    public void filSelected (File selection){
+    public void fileSelected (File selection){
         if(selection ==null){
             System.out.println("No se ha seleccionado ningún documento");
         }
@@ -217,44 +217,53 @@ public class Main extends PApplet {
             if(!gui.Unidades.isCollapsed()) {
                 gui.Unidades.update(this);
             }
-            if(gui.Unidades.mouseOverSelect(this)) {
-                gui.Unidades.toggle();
-            }
 
-
-            if(!gui.Unidades1.isCollapsed()) {
+            else if(!gui.Unidades1.isCollapsed()) {
                 gui.Unidades1.update(this);
-            }
-            if(gui.Unidades1.mouseOverSelect(this)) {
-                gui.Unidades1.toggle();
             }
 
             if(!gui.Unidades2.isCollapsed()) {
                 gui.Unidades2.update(this);
             }
-            if(gui.Unidades2.mouseOverSelect(this)) {
-                gui.Unidades2.toggle();
-            }
 
             if(!gui.Unidades3.isCollapsed()) {
                 gui.Unidades3.update(this);
-            }
-            if(gui.Unidades3.mouseOverSelect(this)) {
-                gui.Unidades3.toggle();
             }
 
             if(!gui.Unidades4.isCollapsed()) {
                 gui.Unidades4.update(this);
             }
-            if(gui.Unidades4.mouseOverSelect(this)) {
-                gui.Unidades4.toggle();
-            }
+
             if(!gui.Unidades5.isCollapsed()) {
                 gui.Unidades5.update(this);
             }
-            if(gui.Unidades5.mouseOverSelect(this)) {
+
+
+            if(gui.Unidades.mouseOverSelect(this)) {
+                gui.Unidades.toggle();
+            }
+
+            else if(gui.Unidades1.mouseOverSelect(this)) {
+                gui.Unidades1.toggle();
+            }
+
+            else if(gui.Unidades2.mouseOverSelect(this)) {
+                gui.Unidades2.toggle();
+            }
+
+            else if(gui.Unidades3.mouseOverSelect(this)) {
+                gui.Unidades3.toggle();
+            }
+
+            else if(gui.Unidades4.mouseOverSelect(this)) {
+                gui.Unidades4.toggle();
+            }
+
+            else if(gui.Unidades5.mouseOverSelect(this)) {
                 gui.Unidades5.toggle();
             }
+
+
 
            if(gui.BGuardar.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");
@@ -331,6 +340,8 @@ public class Main extends PApplet {
                 gui.Ingredients[i].toggle();
             }
         }
+
+
     }
 
     public void mouseDragged(){
