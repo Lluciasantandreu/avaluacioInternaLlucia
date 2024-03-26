@@ -69,14 +69,17 @@ public class DataBase {
     // Retorna les dades d'una taula en concret
     public String[][] visualizaRecetas(){
         int numFiles = getNumRowsTaula("RECETA");
-        int numCols  = 4;
+        int numCols  = 5;
         String[][] info = new String[numFiles][numCols];
         try {
-            ResultSet rs = query.executeQuery( "SELECT * FROM unitat");
+            ResultSet rs = query.executeQuery( "SELECT * FROM RECETA");
             int nr = 0;
             while (rs.next()) {
-                info[nr][0] = String.valueOf(rs.getInt("numero"));
-                info[nr][1] = rs.getString("nom");
+                info[nr][0] = String.valueOf(rs.getInt("idRECETA"));
+                info[nr][1] = rs.getString("nombre");
+                info[nr][2] = rs.getString("imagen");
+                info[nr][3] = rs.getString("tipo");
+                info[nr][4] = String.valueOf(rs.getString("dia"));
                 nr++;
             }
             return info;
@@ -155,8 +158,24 @@ public class DataBase {
         }
     }
 
-    /*void addRecetaFavorita(int nombre, String usuario){
-        String q = "INSERT INTO RECETA_FAVORITA (RECETA_idRECETA, USUARIO_idUSUARIO) VALUES ('"+nombre+"', '"+usuario+"')";
+    public String getClaveFromTabla(String nombreTabla, String nombreColumnaClave, String nombreColumnaValor, String valorColumna){
+        try {
+            String queryText = "SELECT " + nombreColumnaClave + " AS clave FROM " + nombreTabla+ " WHERE " +nombreColumnaValor+ " = '"+valorColumna+"'";
+            System.out.println(queryText);
+            ResultSet rs = query.executeQuery(queryText);
+            rs.next();
+            System.out.println(rs.getString("clave"));
+            return rs.getString("clave");
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    void addRecetaFavorita(int id, String usuario){
+
+        String q = "INSERT INTO RECETA_FAVORITA (RECETA_idRECETA, USUARIO_idUSUARIO) VALUES ('"+id+"', '"+usuario+"')";
         System.out.println(q);
         try {
             query.execute(q);
@@ -164,7 +183,7 @@ public class DataBase {
         catch(Exception e) {
             System.out.println(e);
         }
-    }*/
+    }
 
     public static String formataFechaEsp(String fechaEntrada){
 
@@ -182,5 +201,14 @@ public class DataBase {
         String d = fechaEntrada.split("/")[0];
 
         return y+"-"+m+"-"+d;
+    }
+
+    void printArray2D(String[][] info){
+        for(int f=0; f<info.length; f++){
+            for(int c=0; c<info[f].length; c++) {
+                System.out.print(info[f][c]+"\t");
+            }
+            System.out.println();
+        }
     }
 }

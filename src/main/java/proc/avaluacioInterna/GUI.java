@@ -80,6 +80,8 @@ public class GUI {
 
     Botons BConfirmar;
 
+    Tabla t;
+
     // Constructor de la GUI
     public GUI(PApplet p5, DataBase db){
         pantallaActual = PANTALLA.INICIAL;
@@ -206,6 +208,16 @@ public class GUI {
         i = new Botons(p5, "insertar", (int)(2*margeH + menuX + 110), (4*logoY + columnaY + 10), 100, textY);
         i.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
+        int filas = db.getNumRowsTaula("RECETA");
+        String[] headers = {"id", "Nombre", "Imagen", "Tipo", "Dia"};
+        String[][] infot = db.visualizaRecetas();
+        db.printArray2D(infot);
+        float[] colWidths = {20, 50, 40, 30, 35};
+
+        t = new Tabla(filas + 1, 5);
+        t.setHeaders(headers);
+        t.setData(infot);
+        t.setColumnWidths(colWidths);
     }
 
     // PANTALLES DE LA GUI
@@ -344,10 +356,11 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaImatge(p5);
 
-        TDetallesNombre.display(p5);
+        //TDetallesNombre.display(p5);
 
         p5.textFont(fontsApp.getFontAt(2));
         BInicio.display(p5);
+        t.display(p5, 300, 200, 500, 400);
     }
 
     public void dibuixaPantallaCuenta(PApplet p5){
