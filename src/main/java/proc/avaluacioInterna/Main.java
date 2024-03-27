@@ -272,7 +272,7 @@ public class Main extends PApplet {
            if(gui.BFavorita.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");
                String id = bbdd.getClaveFromTabla("RECETA", "idRECETA", "nombre", gui.TNombre.getText());
-                   //bbdd.addRecetaFavorita(id, idTipo, gui.c.getSelectedDate2());
+                   bbdd.addRecetaFavorita(id, gui.TUsuario.getText());
            }
         }
 

@@ -173,8 +173,7 @@ public class DataBase {
         }
     }
 
-    void addRecetaFavorita(int id, String usuario){
-
+    void addRecetaFavorita(String id, String usuario){
         String q = "INSERT INTO RECETA_FAVORITA (RECETA_idRECETA, USUARIO_idUSUARIO) VALUES ('"+id+"', '"+usuario+"')";
         System.out.println(q);
         try {
