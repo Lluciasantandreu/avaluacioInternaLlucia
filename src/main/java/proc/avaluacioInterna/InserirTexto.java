@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 import static processing.core.PConstants.BACKSPACE;
 
-public class InserirText {
+public class InserirTexto {
     // Propietats del camp de text
     float x, y, h, w;
 
@@ -13,8 +13,8 @@ public class InserirText {
     int NSColor, fgColor, colorSeleccionado, colorBordes;
     int grossorBordes;
 
-    Colors tablaColores;
-    Fonts fontsApp;
+    Colores tablaColores;
+    Fuentes fontsApp;
 
     // Text del camp
     String text = "";
@@ -22,9 +22,9 @@ public class InserirText {
 
     boolean seleccionado = false;
     // Constructor
-    public InserirText(PApplet p5, float x, float y, float w, float h, String text) {
-        tablaColores = new Colors(p5);
-        fontsApp = new Fonts(p5);
+    public InserirTexto(PApplet p5, float x, float y, float w, float h, String text) {
+        tablaColores = new Colores(p5);
+        fontsApp = new Fuentes(p5);
         this.text = text;
         this.x = x; this.y = y; this.w = w; this.h = h;
         this.NSColor = p5.color(tablaColores.getColorDe(0));

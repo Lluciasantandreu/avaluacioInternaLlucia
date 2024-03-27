@@ -3,7 +3,7 @@ package proc.avaluacioInterna;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
-public class Select {
+public class Seleccionador {
 
     float x, y, w, h;          // Posició i dimensions
     String[] texts;            // Valors possibles
@@ -11,12 +11,12 @@ public class Select {
 
     boolean collapsed = true;  // Plegat / Desplegat
     boolean enabled;           // Abilitat / desabilitat
-    Fonts fontsApp;
+    Fuentes fontsApp;
 
     float lineSpace = 15;      // Espai entre línies
 
-    public Select(PApplet p5, String[] texts, float x, float y, float w, float h){
-        fontsApp = new Fonts(p5);
+    public Seleccionador(PApplet p5, String[] texts, float x, float y, float w, float h){
+        fontsApp = new Fuentes(p5);
         this.texts = texts;
         this.selectedValue = "";
         this.x = x;

@@ -3,7 +3,6 @@ package proc.avaluacioInterna;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-import static proc.avaluacioInterna.Mides.*;
 public class Imagenes {
 
     // Array de tipografies

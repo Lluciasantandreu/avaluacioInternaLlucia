@@ -1,6 +1,6 @@
 package proc.avaluacioInterna;
 
-public class Layout {
+public class ValoresEstaticos {
 
     // Margene Horitzontal i Vertical
     public static float margeH = 30, margeV = 20;

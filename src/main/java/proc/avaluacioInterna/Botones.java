@@ -1,7 +1,7 @@
 package proc.avaluacioInterna;
 
 import processing.core.PApplet;
-public class Botons {
+public class Botones {
     // Propietats d'un botó:
 
     float x, y, w, h;  // Posició (x, y) i dimensions (w, h)
@@ -13,7 +13,7 @@ public class Botons {
     boolean activado;  // Estat del botó (actiu / inactiu).opio
 
     // Constructor
-    public Botons(PApplet p5, String text, float x, float y, float w, float h){
+    public Botones(PApplet p5, String text, float x, float y, float w, float h){
         this.textBoto = text;
         this.x = x;
         this.y = y;

@@ -2,7 +2,7 @@ package proc.avaluacioInterna;
 
 import processing.core.PApplet;
 
-public class LlistaCheck {
+public class ListaCheck {
     // Propietats
     float x, y, w;
 
@@ -14,7 +14,7 @@ public class LlistaCheck {
     boolean checked;
 
     // Constructor
-    public LlistaCheck(PApplet p5, float x, float y, float w){
+    public ListaCheck(PApplet p5, float x, float y, float w){
         this.x = x;
         this.y = y;
         this.w = w;

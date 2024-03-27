@@ -2,11 +2,11 @@ package proc.avaluacioInterna;
 
 import processing.core.PApplet;
 
-public class Colors {
+public class Colores {
 
     private int[] colors;
 
-    public Colors(PApplet p5){
+    public Colores(PApplet p5){
         this.setColores(p5);
     }
 

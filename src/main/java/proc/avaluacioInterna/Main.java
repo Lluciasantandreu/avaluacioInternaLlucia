@@ -136,7 +136,7 @@ public class Main extends PApplet {
             if(gui.MHome.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
-            if(gui.MHoy.mouseSobreBoto(this)){
+            if(gui.MCrear.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
             }
             if(gui.MSemana.mouseSobreBoto(this)){

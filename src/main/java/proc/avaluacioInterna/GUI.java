@@ -4,8 +4,8 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import static javax.swing.SwingConstants.*;
-import static proc.avaluacioInterna.Mides.*;
-import static proc.avaluacioInterna.Layout.*;
+import static proc.avaluacioInterna.Medidas.*;
+import static proc.avaluacioInterna.ValoresEstaticos.*;
 
 public class GUI {
 
@@ -15,197 +15,197 @@ public class GUI {
     public PANTALLA pantallaActual;
 
     // Colors i Fonts de l'APP
-    Colors tablaColores;
-    Fonts fontsApp;
+    Colores tablaColores;
+    Fuentes fontsApp;
     Imagenes imagenesApp;
 
     //MENU
-    Botons MHome;
-    Botons MHoy;
-    Botons MSemana;
-    Botons MMes;
-    Botons MConfiguracion;
+    Botones MHome;
+    Botones MCrear;
+    Botones MSemana;
+    Botones MMes;
+    Botones MConfiguracion;
 
     // PANTALLA INICIAL Y LOGIN
-    Botons BLogIn;
-    Botons BEntrar;
-    InserirText TUsuario;
-    InserirText TContraseña;
+    Botones BLogIn;
+    Botones BEntrar;
+    InserirTexto TUsuario;
+    InserirTexto TContraseña;
 
     // PANTALLA SELECCIONAR
-    Botons BHoy, BSemana, BMes;
+    Botones BHoy, BSemana, BMes;
 
     // PANTALLA HOY
-    Botons BComida, BCena, BPostre, BDesayuno;
+    Botones BComida, BCena, BPostre, BDesayuno;
 
     // PANTALLA DETALLES HOY
-    InserirText TNombre;
-    InserirText TDetallesNombre;
+    InserirTexto TNombre;
+    InserirTexto TDetallesNombre;
 
-    Select Unidades;
-    Select Unidades1;
-    Select Unidades2;
-    Select Unidades3;
-    Select Unidades4;
-    Select Unidades5;
-    InserirText [] TCantidades;
-    InserirText [] TIngredients;
-    LlistaCheck [] Ingredients;
-    Botons BImagen;
-    Botons BGuardar;
-    Botons BFavorita;
+    Seleccionador Unidades;
+    Seleccionador Unidades1;
+    Seleccionador Unidades2;
+    Seleccionador Unidades3;
+    Seleccionador Unidades4;
+    Seleccionador Unidades5;
+    InserirTexto[] TCantidades;
+    InserirTexto[] TIngredients;
+    ListaCheck[] Ingredients;
+    Botones BImagen;
+    Botones BGuardar;
+    Botones BFavorita;
 
     PImage imagen;
     String titulo = "";
 
     //PANTALLA SEMANA
     Semanario s;
-    Botons d, i;
+    Botones d, i;
 
     //PANTALLA MES
-    Calendari c;
-    Botons ant, post;
+    Calendario c;
+    Botones ant, post;
 
     //PANTALLA CONFIGURACIÓN
-    Botons BFavoritos;
-    Botons BCuenta;
-    Botons BInformación;
+    Botones BFavoritos;
+    Botones BCuenta;
+    Botones BInformación;
 
-    Botons BInicio;
-    Botons BAtras;
+    Botones BInicio;
+    Botones BAtras;
 
     //PANTALLA CUENTA
-    InserirText CUsuario;
-    InserirText CContraseña;
+    InserirTexto CUsuario;
+    InserirTexto CContraseña;
 
-    Botons BConfirmar;
+    Botones BConfirmar;
 
     Tabla t;
 
     // Constructor de la GUI
     public GUI(PApplet p5, DataBase db){
         pantallaActual = PANTALLA.INICIAL;
-        tablaColores = new Colors(p5);   // Constructor dels colors de l'App
-        fontsApp = new Fonts(p5);     // Constructor de les fonts de l'App
-        imagenesApp = new Imagenes(p5)
+        tablaColores = new Colores(p5);   // Constructor de los colores de la App
+        fontsApp = new Fuentes(p5);     // Constructor de las fuentes de la App
+        imagenesApp = new Imagenes(p5) // Constructor de las imagenes de la App
 ;
-        BLogIn = new Botons (p5, "LogIn", logInX, margeV, logInH, logInV);
+        BLogIn = new Botones(p5, "LogIn", logInX, margeV, logInH, logInV);
         BLogIn.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BEntrar = new Botons (p5, "Entrar", 200, 550, logInH, textY);
+        BEntrar = new Botones(p5, "Entrar", 200, 550, logInH, textY);
         BEntrar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BEntrar.setActivado(false);
 
-        BHoy = new Botons(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BHoy = new Botones(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
         BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BSemana= new Botons(p5, "SEMANA", 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BSemana= new Botones(p5, "SEMANA", 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
         BSemana.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
-        BMes= new Botons(p5, "MES", 4*margeH + menuX + 2*columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BMes= new Botones(p5, "MES", 4*margeH + menuX + 2*columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
         BMes.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(4), tablaColores.getColorDe(3));
 
-        BComida = new Botons(p5, "COMIDA", 3*margeH + menuX, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
+        BComida = new Botones(p5, "COMIDA", 3*margeH + menuX, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
         BComida.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BCena= new Botons(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
+        BCena= new Botones(p5, "CENA", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY, columnaX + columnaX/2, columnaY/2 - 10);
         BCena.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
-        BPostre = new Botons(p5, "POSTRE", 3*margeH + menuX, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
+        BPostre = new Botones(p5, "POSTRE", 3*margeH + menuX, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
         BPostre.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BDesayuno= new Botons(p5, "DESAYUNO", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
+        BDesayuno= new Botones(p5, "DESAYUNO", 4*margeH + menuX + columnaX + columnaX/2, 3*margeV + 3*logoY + columnaY/2 + 5, columnaX + columnaX/2, columnaY/2 - 10);
         BDesayuno.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
 
 
-        BFavoritos = new Botons(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BFavoritos = new Botones(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BCuenta = new Botons(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BCuenta = new Botones(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BCuenta.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BInformación = new Botons(p5, "Información", 9*margeH + 2*columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BInformación = new Botones(p5, "Información", 9*margeH + 2*columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BInformación.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
 
-        TUsuario = new InserirText (p5, 200, 350, textX, textY, "Usuario");
-        TContraseña = new InserirText (p5, 200, 450, textX, textY, "Contraseña");
+        TUsuario = new InserirTexto(p5, 200, 350, textX, textY, "Usuario");
+        TContraseña = new InserirTexto(p5, 200, 450, textX, textY, "Contraseña");
 
-        TNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
+        TNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
 
         String[] nombre = db.getColumnaNomTaulaRECETA();
-        TDetallesNombre = new InserirText (p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[0]);
+        TDetallesNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[0]);
 
 
         float x = 3*margeH + menuX + columnaX;
         float y = 4*margeV + 3*logoY + textY;
-        Ingredients = new LlistaCheck[6];
-        Ingredients[0] = new LlistaCheck(p5, x, y, 37);
-        Ingredients[1] = new LlistaCheck(p5, x, y + 2*margeV + 10, 37);
-        Ingredients[2] = new LlistaCheck(p5, x, y + 4*margeV + 20, 37);
-        Ingredients[3] = new LlistaCheck(p5, x, y + 6*margeV + 30, 37);
-        Ingredients[4] = new LlistaCheck(p5, x, y + 8*margeV + 40, 37);
-        Ingredients[5] = new LlistaCheck(p5, x, y + 10*margeV + 50, 37);
+        Ingredients = new ListaCheck[6];
+        Ingredients[0] = new ListaCheck(p5, x, y, 37);
+        Ingredients[1] = new ListaCheck(p5, x, y + 2*margeV + 10, 37);
+        Ingredients[2] = new ListaCheck(p5, x, y + 4*margeV + 20, 37);
+        Ingredients[3] = new ListaCheck(p5, x, y + 6*margeV + 30, 37);
+        Ingredients[4] = new ListaCheck(p5, x, y + 8*margeV + 40, 37);
+        Ingredients[5] = new ListaCheck(p5, x, y + 10*margeV + 50, 37);
 
 
-        TIngredients = new InserirText[6];
-        TIngredients[0] = new InserirText(p5, x + 60, y, 170, 37, "Ingrediente 1");
-        TIngredients[1] = new InserirText(p5, x + 60, y + 2*margeV + 10, 170, 37, "Ingrediente 2");
-        TIngredients[2] = new InserirText(p5, x + 60, y + 4*margeV + 20, 170, 37, "Ingrediente 3");
-        TIngredients[3] = new InserirText(p5, x + 60, y + 6*margeV + 30, 170, 37, "Ingrediente 4");
-        TIngredients[4] = new InserirText(p5, x + 60, y + 8*margeV + 40, 170, 37, "Ingrediente 5");
-        TIngredients[5] = new InserirText(p5, x + 60, y + 10*margeV + 50, 170, 37, "Ingrediente 6");
+        TIngredients = new InserirTexto[6];
+        TIngredients[0] = new InserirTexto(p5, x + 60, y, 170, 37, "Ingrediente 1");
+        TIngredients[1] = new InserirTexto(p5, x + 60, y + 2*margeV + 10, 170, 37, "Ingrediente 2");
+        TIngredients[2] = new InserirTexto(p5, x + 60, y + 4*margeV + 20, 170, 37, "Ingrediente 3");
+        TIngredients[3] = new InserirTexto(p5, x + 60, y + 6*margeV + 30, 170, 37, "Ingrediente 4");
+        TIngredients[4] = new InserirTexto(p5, x + 60, y + 8*margeV + 40, 170, 37, "Ingrediente 5");
+        TIngredients[5] = new InserirTexto(p5, x + 60, y + 10*margeV + 50, 170, 37, "Ingrediente 6");
 
-        TCantidades = new InserirText[6];
-        TCantidades[0] = new InserirText(p5, x + 250, y, 110, 37, "Cantidad");
-        TCantidades[1] = new InserirText(p5, x + 250, y + 2*margeV + 10, 110, 37, "Cantidad");
-        TCantidades[2] = new InserirText(p5, x + 250, y + 4*margeV + 20, 110, 37, "Cantidad");
-        TCantidades[3] = new InserirText(p5, x + 250, y + 6*margeV + 30, 110, 37, "Cantidad");
-        TCantidades[4] = new InserirText(p5, x + 250, y + 8*margeV + 40, 110, 37, "Cantidad");
-        TCantidades[5] = new InserirText(p5, x + 250, y + 10*margeV + 50, 110, 37, "Cantidad");
+        TCantidades = new InserirTexto[6];
+        TCantidades[0] = new InserirTexto(p5, x + 250, y, 110, 37, "Cantidad");
+        TCantidades[1] = new InserirTexto(p5, x + 250, y + 2*margeV + 10, 110, 37, "Cantidad");
+        TCantidades[2] = new InserirTexto(p5, x + 250, y + 4*margeV + 20, 110, 37, "Cantidad");
+        TCantidades[3] = new InserirTexto(p5, x + 250, y + 6*margeV + 30, 110, 37, "Cantidad");
+        TCantidades[4] = new InserirTexto(p5, x + 250, y + 8*margeV + 40, 110, 37, "Cantidad");
+        TCantidades[5] = new InserirTexto(p5, x + 250, y + 10*margeV + 50, 110, 37, "Cantidad");
 
 
         String[] unidades = db.getColumnaNomTaulaUNIDADES();
 
-        Unidades = new Select(p5, unidades, x + 380, y, 120, 37);
-        Unidades1 = new Select(p5, unidades, x + 380, y + 2*margeV + 10, 120, 37);
-        Unidades2 = new Select(p5, unidades, x + 380, y + 4*margeV + 20, 120, 37);
-        Unidades3 = new Select(p5, unidades, x + 380, y + 6*margeV + 30, 120, 37);
-        Unidades4 = new Select(p5, unidades, x + 380, y + 8*margeV + 40, 120, 37);
-        Unidades5 = new Select(p5, unidades, x + 380, y + 10*margeV + 50, 120, 37);
+        Unidades = new Seleccionador(p5, unidades, x + 380, y, 120, 37);
+        Unidades1 = new Seleccionador(p5, unidades, x + 380, y + 2*margeV + 10, 120, 37);
+        Unidades2 = new Seleccionador(p5, unidades, x + 380, y + 4*margeV + 20, 120, 37);
+        Unidades3 = new Seleccionador(p5, unidades, x + 380, y + 6*margeV + 30, 120, 37);
+        Unidades4 = new Seleccionador(p5, unidades, x + 380, y + 8*margeV + 40, 120, 37);
+        Unidades5 = new Seleccionador(p5, unidades, x + 380, y + 10*margeV + 50, 120, 37);
 
 
-        BGuardar = new Botons(p5, "GUARDAR", 4*margeH + 4*menuX + 15, y + 10*margeV + 40, logInH - 10, textY-5);
+        BGuardar = new Botones(p5, "GUARDAR", 4*margeH + 4*menuX + 15, y + 10*margeV + 40, logInH - 10, textY-5);
         BGuardar.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        BFavorita = new Botons(p5, "FAVORITA", 4*margeH + 4*menuX + 15, (3*logoY + columnaY - textY + 20), logInH - 10, textY-5);
+        BFavorita = new Botones(p5, "FAVORITA", 4*margeH + 4*menuX + 15, (3*logoY + columnaY - textY + 20), logInH - 10, textY-5);
         BFavorita.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        BImagen = new Botons(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
+        BImagen = new Botones(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
         BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         // MENU
-        MHome = new Botons(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
+        MHome = new Botones(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
         MHome.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MHoy = new Botons(p5, "Hoy", margeH, 6*margeV + 3*logoY + 8, menuX, textY);
-        MHoy.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MSemana = new Botons(p5, "Semana", margeH, 10*margeV + 3*logoY, menuX, textY);
+        MCrear = new Botones(p5, "Crear nueva receta", margeH, 6*margeV + 3*logoY + 8, menuX, textY);
+        MCrear.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        MSemana = new Botones(p5, "Semana", margeH, 10*margeV + 3*logoY, menuX, textY);
         MSemana.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MMes = new Botons(p5, "Mes", margeH, 14*margeV + 3*logoY - 6, menuX, textY);
+        MMes = new Botones(p5, "Mes", margeH, 14*margeV + 3*logoY - 6, menuX, textY);
         MMes.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
-        MConfiguracion = new Botons(p5, "Configuracion", margeH, 17*margeV + 3*logoY + 8, menuX, textY);
+        MConfiguracion = new Botones(p5, "Configuracion", margeH, 17*margeV + 3*logoY + 8, menuX, textY);
         MConfiguracion.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
 
         //CONFIGURACIÓN
-        BInicio = new Botons(p5, "Inicio", margeH, 3*margeV + logoY, menuX - 20, textY);
+        BInicio = new Botones(p5, "Inicio", margeH, 3*margeV + logoY, menuX - 20, textY);
         BInicio.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
 
         //CUENTA
-        CUsuario = new InserirText (p5, 600, 350, textX, textY, "Usuario");
-        CContraseña = new InserirText (p5, 600, 450, textX, textY, "Contraseña");
+        CUsuario = new InserirTexto(p5, 600, 350, textX, textY, "Usuario");
+        CContraseña = new InserirTexto(p5, 600, 450, textX, textY, "Contraseña");
 
-        BConfirmar = new Botons(p5, "Confirmar", 600, 550, menuX - 20, textY);
+        BConfirmar = new Botones(p5, "Confirmar", 600, 550, menuX - 20, textY);
         BConfirmar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         s = new Semanario((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)columnaY);
-        c = new Calendari((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)(columnaY + logoY + 5));
-        ant = new Botons (p5, "anterior", (int)(2*margeH + menuX), (int)(3*margeV + 2*logoY), logInH - 10, textY);
+        c = new Calendario((int)(2*margeH + menuX), (int)(6*margeV + 2*logoY), (int)(3*columnaX + 2*margeH), (int)(columnaY + logoY + 5));
+        ant = new Botones(p5, "anterior", (int)(2*margeH + menuX), (int)(3*margeV + 2*logoY), logInH - 10, textY);
         ant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        post = new Botons (p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
+        post = new Botones(p5, "posterior", (int)(2*margeH + menuX + logInH), (int)(3*margeV + 2*logoY), logInH - 10, textY);
         post.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        d = new Botons(p5, "detalles", (int)(2*margeH + menuX), (4*logoY + columnaY + 10), 100, textY);
+        d = new Botones(p5, "detalles", (int)(2*margeH + menuX), (4*logoY + columnaY + 10), 100, textY);
         d.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        i = new Botons(p5, "insertar", (int)(2*margeH + menuX + 110), (4*logoY + columnaY + 10), 100, textY);
+        i = new Botones(p5, "insertar", (int)(2*margeH + menuX + 110), (4*logoY + columnaY + 10), 100, textY);
         i.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         int filas = db.getNumRowsTaula("RECETA");
@@ -440,7 +440,7 @@ public class GUI {
         p5.text("MENU", 3*margeH, 4*margeV + 2*logoY);
 
         MHome.display(p5);
-        MHoy.display(p5);
+        MCrear.display(p5);
         MSemana.display(p5);
         MMes.display(p5);
         MConfiguracion.display(p5);

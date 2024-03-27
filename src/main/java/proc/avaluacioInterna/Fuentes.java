@@ -3,14 +3,14 @@ package proc.avaluacioInterna;
 import processing.core.PApplet;
 import processing.core.PFont;
 
-import static proc.avaluacioInterna.Mides.*;
-public class Fonts {
+import static proc.avaluacioInterna.Medidas.*;
+public class Fuentes {
 
     // Array de tipografies
     PFont[] fonts;
 
     // Constructor de les Fonts de l'App
-    public Fonts(PApplet p5){
+    public Fuentes(PApplet p5){
         this.setFonts(p5);
     }
 
