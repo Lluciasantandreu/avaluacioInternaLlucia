@@ -10,7 +10,7 @@ import static proc.avaluacioInterna.ValoresEstaticos.*;
 public class GUI {
 
     // Enumerat de les Pantalles de l'App
-    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, SELECCIONRECETA, INSERIR, SEMANA, MES, CONFIGURACION, FAVORITOS, CUENTA, INFORMACION, DETALLESRECETA};
+    public enum PANTALLA {INICIAL, LOGIN, SELECCIONAR, SELECCIONRECETA, INSERIR, SEMANA, MES, CONFIGURACION, RECETAS, CUENTA, INFORMACION, FAVORITOS, DETALLESRECETA};
     // Pantalla Actual
     public PANTALLA pantallaActual;
 
@@ -31,12 +31,14 @@ public class GUI {
     Botones BEntrar;
     InserirTexto TUsuario;
     InserirTexto TContraseña;
+    PopUp p1;
 
     // PANTALLA SELECCIONAR
     Botones BHoy, BSemana, BMes;
 
-    // PANTALLA HOY
+    // PANTALLA INSERIR
     Botones BComida, BCena, BPostre, BDesayuno;
+    PopUp p2;
 
     // PANTALLA DETALLES HOY
     InserirTexto TNombre;
@@ -67,12 +69,12 @@ public class GUI {
     Botones ant, post;
 
     //PANTALLA CONFIGURACIÓN
-    Botones BFavoritos;
+    Botones BRecetas;
     Botones BCuenta;
     Botones BInformación;
 
     Botones BInicio;
-    Botones BAtras;
+
 
     //PANTALLA CUENTA
     InserirTexto CUsuario;
@@ -80,7 +82,11 @@ public class GUI {
 
     Botones BConfirmar;
 
-    Tabla t;
+
+    // PANTALLA RECETAS
+    TablaPaginada t;
+    Botones Bant, Bpost;
+    Botones BFavoritos;
 
     // Constructor de la GUI
     public GUI(PApplet p5, DataBase db){
@@ -94,6 +100,7 @@ public class GUI {
         BEntrar = new Botones(p5, "Entrar", 200, 550, logInH, textY);
         BEntrar.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BEntrar.setActivado(false);
+        p1 = new PopUp(p5, "ALERTA", "El usuario o la contraseña son incorrectos", 400, 300, 500, 300);
 
         BHoy = new Botones(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
         BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -112,8 +119,8 @@ public class GUI {
         BDesayuno.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
 
 
-        BFavoritos = new Botones(p5, "Favoritos", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
-        BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BRecetas = new Botones(p5, "Recetas", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BRecetas.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BCuenta = new Botones(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
         BCuenta.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BInformación = new Botones(p5, "Información", 9*margeH + 2*columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
@@ -174,6 +181,8 @@ public class GUI {
         BImagen = new Botones(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
         BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
+        p2 = new PopUp(p5, "GUARDADO", "La receta se ha guardado correctamente", 400, 300, 500, 300);
+
         // MENU
         MHome = new Botones(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
         MHome.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
@@ -214,10 +223,18 @@ public class GUI {
         db.printArray2D(infot);
         float[] colWidths = {20, 50, 40, 30, 35};
 
-        t = new Tabla(filas + 1, 5);
+        t = new TablaPaginada(filas + 1, 5);
         t.setHeaders(headers);
         t.setData(infot);
         t.setColumnWidths(colWidths);
+
+        Bant = new Botones(p5, "anterior", (int)(7*margeH + menuX), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
+        Bant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        Bpost = new Botones(p5, "posterior", (int)(7*margeH + menuX + logInH), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
+        Bpost.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BFavoritos = new Botones(p5, "Ver recetas favoritas", (int)(p5.width - 8*margeH), (int)(4*margeV + 2*logoY), logInH, menuY - 130);
+        BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(6), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+
     }
 
     // PANTALLES DE LA GUI
@@ -239,6 +256,8 @@ public class GUI {
         BEntrar.display(p5);
         TUsuario.display(p5);
         TContraseña.display(p5);
+        p5.textFont(fontsApp.getFontAt(1));
+        p1.display(p5);
     }
 
     public void dibuixaPantallaSeleccionar(PApplet p5){
@@ -305,6 +324,8 @@ public class GUI {
             p5.text(titulo, 2*margeH + menuX, 3*margeV + 3*logoY, textX, textY);
             p5.popStyle();
         }
+
+        p2.display(p5);
     }
 
     public void dibuixaPantallaSemana(PApplet p5){
@@ -342,7 +363,7 @@ public class GUI {
         dibuixaNomPantalla(p5);
         dibuixaImatge(p5);
 
-        BFavoritos.display(p5);
+        BRecetas.display(p5);
         BCuenta.display(p5);
         BInformación.display(p5);
 
@@ -350,17 +371,19 @@ public class GUI {
         BInicio.display(p5);
     }
 
-    public void dibuixaPantallaFavoritos(PApplet p5){
+    public void dibuixaPantallaRecetas(PApplet p5){
         p5.background(tablaColores.getColorDe(0));
         dibuixaLogo(p5);
         dibuixaNomPantalla(p5);
         dibuixaImatge(p5);
 
-        //TDetallesNombre.display(p5);
 
         p5.textFont(fontsApp.getFontAt(2));
         BInicio.display(p5);
         t.display(p5, 300, 200, 500, 400);
+        Bant.display(p5);
+        Bpost.display(p5);
+        BFavoritos.display(p5);
     }
 
     public void dibuixaPantallaCuenta(PApplet p5){

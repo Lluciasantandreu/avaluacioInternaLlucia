@@ -12,6 +12,8 @@ public class Main extends PApplet {
     DataBase bbdd;
     String idTipo;
 
+    PopUp popUp;
+
     public static void main(String[] args) {
         PApplet.main("proc.avaluacioInterna.Main", args);
 
@@ -61,7 +63,7 @@ public class Main extends PApplet {
            case CONFIGURACION:  gui.dibuixaPantallaConfiguración(this);
                                 break;
 
-           case FAVORITOS:      gui.dibuixaPantallaFavoritos(this);
+           case RECETAS:      gui.dibuixaPantallaRecetas(this);
                                 break;
 
            case CUENTA:         gui.dibuixaPantallaCuenta(this);
@@ -121,8 +123,8 @@ public class Main extends PApplet {
     public void mousePressed(){
 
         if (gui.pantallaActual == GUI.PANTALLA.CONFIGURACION){
-            if(gui.BFavoritos.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
+            if(gui.BRecetas.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.RECETAS;
             }
             if(gui.BCuenta.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.CUENTA;
@@ -132,7 +134,7 @@ public class Main extends PApplet {
             }
         }
 
-        if(gui.pantallaActual != GUI.PANTALLA.CONFIGURACION & gui.pantallaActual != GUI.PANTALLA.FAVORITOS & gui.pantallaActual != GUI.PANTALLA.CUENTA & gui.pantallaActual != GUI.PANTALLA.INFORMACION & gui.pantallaActual != GUI.PANTALLA.LOGIN & gui.pantallaActual != GUI.PANTALLA.INICIAL){
+        if(gui.pantallaActual != GUI.PANTALLA.CONFIGURACION & gui.pantallaActual != GUI.PANTALLA.RECETAS & gui.pantallaActual != GUI.PANTALLA.CUENTA & gui.pantallaActual != GUI.PANTALLA.INFORMACION & gui.pantallaActual != GUI.PANTALLA.LOGIN & gui.pantallaActual != GUI.PANTALLA.INICIAL){
             if(gui.MHome.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
@@ -167,11 +169,18 @@ public class Main extends PApplet {
 
             if(!bbdd.isValidUser(userName, password)){
                 gui.BEntrar.activado = false;
+                if(gui.BEntrar.mouseSobreBoto(this)){
+                    gui.p1.setVisible(true);
+                }
             }
 
             if(gui.BEntrar.mouseSobreBoto(this) && gui.BEntrar.activado){
                 println("HAS FET CLIC SOBRE EL BOTÓ BEntrar");
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
+            }
+
+            if(gui.p1.bAceptar.mouseSobreBoto(this)){
+                gui.p1.setVisible(false);
             }
         }
 
@@ -219,19 +228,19 @@ public class Main extends PApplet {
                 gui.Unidades1.update(this);
             }
 
-            if(!gui.Unidades2.isCollapsed()) {
+            else if(!gui.Unidades2.isCollapsed()) {
                 gui.Unidades2.update(this);
             }
 
-            if(!gui.Unidades3.isCollapsed()) {
+            else if(!gui.Unidades3.isCollapsed()) {
                 gui.Unidades3.update(this);
             }
 
-            if(!gui.Unidades4.isCollapsed()) {
+            else if(!gui.Unidades4.isCollapsed()) {
                 gui.Unidades4.update(this);
             }
 
-            if(!gui.Unidades5.isCollapsed()) {
+            else if(!gui.Unidades5.isCollapsed()) {
                 gui.Unidades5.update(this);
             }
 
@@ -267,7 +276,13 @@ public class Main extends PApplet {
                if(gui.c.dateSelected) {
                    bbdd.addReceta(gui.TNombre.getText(), idTipo, gui.c.getSelectedDate2());
                }
+               gui.p2.setVisible(true);
+           }
+
+            if(gui.p1.bAceptar.mouseSobreBoto(this)){
+                gui.p1.setVisible(false);
             }
+
 
            if(gui.BFavorita.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");
@@ -308,22 +323,44 @@ public class Main extends PApplet {
                 println("HAS FET CLIC SOBRE EL BOTÓ BHoy");
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
             }
-            if (gui.BSemana.mouseSobreBoto(this)) {
+            else if (gui.BSemana.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BSemana");
                 gui.pantallaActual = GUI.PANTALLA.SEMANA;
             }
-            if (gui.BMes.mouseSobreBoto(this)) {
+            else if (gui.BMes.mouseSobreBoto(this)) {
                 println("HAS FET CLIC SOBRE EL BOTÓ BMes");
                 gui.pantallaActual = GUI.PANTALLA.MES;
             }
         }
 
 
-        if(gui.pantallaActual == GUI.PANTALLA.CONFIGURACION || gui.pantallaActual == GUI.PANTALLA.FAVORITOS || gui.pantallaActual == GUI.PANTALLA.CUENTA || gui.pantallaActual == GUI.PANTALLA.INFORMACION){
+        if(gui.pantallaActual == GUI.PANTALLA.CONFIGURACION || gui.pantallaActual == GUI.PANTALLA.RECETAS || gui.pantallaActual == GUI.PANTALLA.CUENTA || gui.pantallaActual == GUI.PANTALLA.INFORMACION){
             if(gui.BInicio.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }
         }
+
+
+        if(gui.pantallaActual == GUI.PANTALLA.CUENTA){
+            if(gui.BConfirmar.mouseSobreBoto(this)){
+                bbdd.updateInfoTablaUsuario(gui.TUsuario.getText(), gui.CUsuario.getText(), gui.CContraseña.getText());
+            }
+        }
+
+
+        if(gui.pantallaActual == GUI.PANTALLA.RECETAS){
+            if(gui.Bant.mouseSobreBoto(this)){
+                gui.t.prevPage();
+            }
+            else if(gui.Bpost.mouseSobreBoto(this)){
+                gui.t.nextPage();
+            }
+            else if(gui.BFavoritos.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
+            }
+        }
+
+
 
         gui.TUsuario.isPressed(this);
         gui.TContraseña.isPressed(this);

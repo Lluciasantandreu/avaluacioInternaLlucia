@@ -184,6 +184,17 @@ public class DataBase {
         }
     }
 
+    void updateInfoTablaUsuario(String id, String nombre, String contra){
+        try {
+            String q = "UPDATE USUARIO SET idUSUARIO='"+nombre+"', password='"+contra+"' WHERE idUSUARIO='"+id+"'";
+            System.out.println(q);
+            query.execute(q);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public static String formataFechaEsp(String fechaEntrada){
 
         String y = fechaEntrada.split("-")[0];
