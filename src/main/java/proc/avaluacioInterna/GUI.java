@@ -133,7 +133,7 @@ public class GUI {
         TNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
 
         String[] nombre = db.getColumnaNomTaulaRECETA();
-        TDetallesNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[0]);
+        TDetallesNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[1]);
 
 
         float x = 3*margeH + menuX + columnaX;

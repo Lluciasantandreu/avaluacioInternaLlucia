@@ -25,7 +25,7 @@ public class DataBase {
     public void connect(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            c = DriverManager.getConnection("jdbc:mysql://localhost:8889/"+databaseName, user, password);
+            c = DriverManager.getConnection("jdbc:mysql://localhost:8889/"+databaseName+"?useTimezone=true&serverTimezone=UTC", user, password);
             query = c.createStatement();
             System.out.println("Connectat a la BBDD! :) ");
             connectat = true;

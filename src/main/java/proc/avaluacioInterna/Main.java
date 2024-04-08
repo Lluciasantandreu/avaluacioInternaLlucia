@@ -30,7 +30,7 @@ public class Main extends PApplet {
         bbdd = new DataBase("admin", "12345", "recetas");
         bbdd.connect();
         textAlign(CENTER); textSize(18);   // Alineació i mida del text
-        gui = new GUI(this, bbdd);          // Constructor de la GUI
+        gui = new GUI(this, bbdd);      // Constructor de la GUI
         idTipo = "";
 
     }
