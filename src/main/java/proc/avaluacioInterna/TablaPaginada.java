@@ -92,7 +92,10 @@ public class TablaPaginada {
                     p5.text(tableHeaders[c], xCol + 10, y + (r+1)*rowHeight - 10);
                 }
                 else if(tableData[r-1][c]!=null){
-                    p5.text(tableData[r-1][c], xCol + 10, y + (r+1)*rowHeight - 10);
+                    int k = (numRows-1)*numPage + (r-1);
+                    if(k<tableData.length){
+                        p5.text(tableData[k][c], xCol + 10, y + (r+1)*rowHeight - 10);
+                    }
                 }
                 xCol += w*columnWidths[c]/100.0;
             }
