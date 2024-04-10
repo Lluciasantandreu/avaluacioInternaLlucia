@@ -85,6 +85,7 @@ public class GUI {
 
     // PANTALLA RECETAS
     TablaPaginada r, f;
+    Tabla ir;
     Botones Bant, Bpost;
     Botones Bant1, Bpost1;
     Botones BFavoritos;
@@ -134,8 +135,8 @@ public class GUI {
 
         TNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, "NOMBRE");
 
-        String[] nombre = db.getColumnaNomTaulaRECETA();
-        TDetallesNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[1]);
+        //String[] nombre = db.getColumnaNomTaulaRECETA();
+        //TDetallesNombre = new InserirTexto(p5, 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, textX - 4*margeH, textY, nombre[1]);
 
 
         float x = 3*margeH + menuX + columnaX;
@@ -232,15 +233,25 @@ public class GUI {
         r.setData(infot);
         r.setColumnWidths(colWidths);
 
-        String[] headersf = {"id", "Nombre", "Usuario"};
-        String[][] infotf = db.visualizaRecetas();
-        db.printArray2D(infotf);
-        float[] colWidthsf = {20, 50, 40, 30, 35};
+        String[][] infof = db.visualizaFavoritas();
+        db.printArray2D(infof);
+        float[] colWidthsf = {150, 350};
+        String[] headersf = {"id receta", "usuario relacionado"};
 
-        f = new TablaPaginada(6, 5);
-        f.setHeaders(headersf);
-        f.setData(infotf);
+        f = new TablaPaginada(4,2);
+        f.setData(infof);
         f.setColumnWidths(colWidthsf);
+        f.setHeaders(headersf);
+
+        /*String[][] infoir = db.visualizaIngredientesReceta();
+        db.printArray2D(infoir);
+        float[] colWidthsir = {150, 350};
+        String[] headersir = {"id receta", "usuario relacionado"};
+
+        ir = new Tabla(7,2);
+        ir.setData(infoir);
+        ir.setColumnWidths(colWidthsir);
+        ir.setHeaders(headersir);*/
 
         Bant = new Botones(p5, "anterior", (int)(7*margeH + menuX), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
         Bant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -413,9 +424,9 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         BAtras.display(p5);
-        r.display(p5, 300, 200, 500, 400);
-        Bant.display(p5);
-        Bpost.display(p5);
+        f.display(p5, 300, 200, 100, 400);
+        Bant1.display(p5);
+        Bpost1.display(p5);
     }
 
     public void dibuixaPantallaCuenta(PApplet p5){
@@ -455,6 +466,7 @@ public class GUI {
         dibuixaImatge(p5);
 
         p5.textFont(fontsApp.getFontAt(2));
+        ir.display(p5, 300, 200, 100, 400);
         BInicio.display(p5);
  }
 

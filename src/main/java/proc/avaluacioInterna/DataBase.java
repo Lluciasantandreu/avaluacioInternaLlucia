@@ -90,18 +90,16 @@ public class DataBase {
         }
     }
 
-    /*public String[][] visualizaFavoritas(){
+    public String[][] visualizaFavoritas(){
         int numFiles = getNumRowsTaula("RECETA_FAVORITA");
-        int numCols  = 3;
+        int numCols  = 2;
         String[][] info = new String[numFiles][numCols];
         try {
             ResultSet rs = query.executeQuery( "SELECT * FROM RECETA_FAVORITA");
-            ResultSet rs2 = query.executeQuery( "SELECT nombre FROM RECETA ORDER BY idRECETA ASC");
             int nr = 0;
             while (rs.next()) {
                 info[nr][0] = String.valueOf(rs.getInt("RECETA_idRECETA"));
-                info[nr][1] = rs.getString("nombre");
-                info[nr][2] = rs.getString("USUARIO_idUSUARIO");
+                info[nr][1] = rs.getString("USUARIO_idUSUARIO");
                 nr++;
             }
             return info;
@@ -110,8 +108,30 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
-    }*/
+    }
 
+
+    public String[][] addIngredientesReceta(String i, String r, String c, String u){
+        int numFiles = 7;
+        int numCols  = 4;
+        String[][] info = new String[numFiles][numCols];
+        try {
+            ResultSet rs = query.executeQuery( "INSERT INTO `INGREDIENTES_RECETA` (`ingredientes`, `receta`, `cantidad`, `unidades`) VALUES ('"+i+"', '"+r+"', '"+c+"', '"+u+"');");
+            int nr = 0;
+            while (rs.next()) {
+                info[nr][0] = String.valueOf(rs.getInt("receta"));
+                info[nr][1] = rs.getString("ingredientes");
+                info[nr][2] = rs.getString("cantidad");
+                info[nr][3] = String.valueOf(rs.getInt("unidades"));
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 
 
     // Retorna les dades de la columna NOM de la taula UNITAT
@@ -185,7 +205,7 @@ public class DataBase {
     void addRecetaImagen(String nombre, String tipo, String imagen, Date d){
         String df = d.getYear()+"-"+d.getMonth()+"-"+d.getDay();
         System.out.println(df);
-        String q = "INSERT INTO RECETA (nombre, imagen, tipo, dia) VALUES (' "+ nombre + "', "+ imagen+", '" + tipo + "', '" + df + "')";
+        String q = "INSERT INTO RECETA (nombre, imagen, tipo, dia) VALUES (' "+ nombre + "', '"+ imagen+"', '" + tipo + "', '" + df + "')";
         System.out.println(q);
         try {
             query.execute(q);
@@ -196,7 +216,7 @@ public class DataBase {
     }
 
     void addIngredientes(String nombre){
-        String q = "INSERT INTO INGREDIENTES (idINGREDIENTES, nombre) VALUES (NULL, '"+ nombre + "')";
+        String q = "INSERT INTO INGREDIENTES (idINGREDIENTES) VALUES ('"+ nombre + "')";
         System.out.println(q);
         try {
             query.execute(q);

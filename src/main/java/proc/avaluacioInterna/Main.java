@@ -288,10 +288,12 @@ public class Main extends PApplet {
                    }
 
                    for(int i=0; i<=gui.TIngredients.length-1; i++){
-                       if(gui.TIngredients[i].getText() != "Ingrediente "+i+1){
-                           bbdd.addIngredientes(gui.TIngredients[i].getText());
-                       }
+                       bbdd.addIngredientes(gui.TIngredients[i].getText());
+                       String id = bbdd.getClaveFromTabla("RECETA", "idRECETA", "nombre", gui.TNombre.getText());
+                       String u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades.getSelectedValue());
+                       bbdd.addIngredientesReceta(gui.TIngredients[i].getText(), id, gui.TCantidades[i].getText(), u);
                    }
+
 
                }
                gui.p2.setVisible(true);
@@ -374,6 +376,19 @@ public class Main extends PApplet {
             if(gui.BFavoritos.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
             }
+        }
+
+        if(gui.pantallaActual == GUI.PANTALLA.FAVORITOS){
+            if(gui.BAtras.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.RECETAS;
+            }
+            if(gui.Bant1.mouseSobreBoto(this)){
+                gui.f.prevPage();
+            }
+            else if(gui.Bpost1.mouseSobreBoto(this)) {
+                gui.f.nextPage();
+            }
+
         }
 
 
