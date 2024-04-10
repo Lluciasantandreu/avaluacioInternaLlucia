@@ -90,6 +90,30 @@ public class DataBase {
         }
     }
 
+    /*public String[][] visualizaFavoritas(){
+        int numFiles = getNumRowsTaula("RECETA_FAVORITA");
+        int numCols  = 3;
+        String[][] info = new String[numFiles][numCols];
+        try {
+            ResultSet rs = query.executeQuery( "SELECT * FROM RECETA_FAVORITA");
+            ResultSet rs2 = query.executeQuery( "SELECT nombre FROM RECETA ORDER BY idRECETA ASC");
+            int nr = 0;
+            while (rs.next()) {
+                info[nr][0] = String.valueOf(rs.getInt("RECETA_idRECETA"));
+                info[nr][1] = rs.getString("nombre");
+                info[nr][2] = rs.getString("USUARIO_idUSUARIO");
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }*/
+
+
+
     // Retorna les dades de la columna NOM de la taula UNITAT
     public String[] getColumnaNomTaulaUNIDADES(){
         int numFiles = getNumRowsTaula("UNIDADES");
@@ -149,6 +173,30 @@ public class DataBase {
         String df = d.getYear()+"-"+d.getMonth()+"-"+d.getDay();
         System.out.println(df);
         String q = "INSERT INTO RECETA (nombre, imagen, tipo, dia) VALUES (' "+ nombre + "', NULL, '" + tipo + "', '" + df + "')";
+        System.out.println(q);
+        try {
+            query.execute(q);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    void addRecetaImagen(String nombre, String tipo, String imagen, Date d){
+        String df = d.getYear()+"-"+d.getMonth()+"-"+d.getDay();
+        System.out.println(df);
+        String q = "INSERT INTO RECETA (nombre, imagen, tipo, dia) VALUES (' "+ nombre + "', "+ imagen+", '" + tipo + "', '" + df + "')";
+        System.out.println(q);
+        try {
+            query.execute(q);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    void addIngredientes(String nombre){
+        String q = "INSERT INTO INGREDIENTES (idINGREDIENTES, nombre) VALUES (NULL, '"+ nombre + "')";
         System.out.println(q);
         try {
             query.execute(q);

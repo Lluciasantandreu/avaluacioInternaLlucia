@@ -26,11 +26,11 @@ public class Main extends PApplet {
     }
 
     public void setup(){
-        noStroke();                         // Sense bordes
+        noStroke();                        // Sense bordes
         bbdd = new DataBase("admin", "12345", "recetas");
         bbdd.connect();
         textAlign(CENTER); textSize(18);   // Alineació i mida del text
-        gui = new GUI(this, bbdd);      // Constructor de la GUI
+        gui = new GUI(this, bbdd);     // Constructor de la GUI
         idTipo = "";
 
     }
@@ -66,10 +66,16 @@ public class Main extends PApplet {
            case RECETAS:      gui.dibuixaPantallaRecetas(this);
                                 break;
 
+           case FAVORITOS:      gui.dibuixaPantallaFavoritos(this);
+                                break;
+
            case CUENTA:         gui.dibuixaPantallaCuenta(this);
                                 break;
 
            case INFORMACION:    gui.dibuixaPantallaInformacion(this);
+                                break;
+
+           case DETALLESRECETA: gui.dibuixaPantallaDetallesReceta(this);
                                 break;
 
         }
@@ -274,13 +280,25 @@ public class Main extends PApplet {
            if(gui.BGuardar.mouseSobreBoto(this)){
                System.out.println("Has fet click sobre el botó Guardar");
                if(gui.c.dateSelected) {
-                   bbdd.addReceta(gui.TNombre.getText(), idTipo, gui.c.getSelectedDate2());
+                   if(gui.imagen != null){
+                       bbdd.addRecetaImagen(gui.TNombre.getText(), idTipo, gui.titulo, gui.c.getSelectedDate2());
+                   }
+                   else {
+                       bbdd.addReceta(gui.TNombre.getText(), idTipo, gui.c.getSelectedDate2());
+                   }
+
+                   for(int i=0; i<=gui.TIngredients.length-1; i++){
+                       if(gui.TIngredients[i].getText() != "Ingrediente "+i+1){
+                           bbdd.addIngredientes(gui.TIngredients[i].getText());
+                       }
+                   }
+
                }
                gui.p2.setVisible(true);
            }
 
-            if(gui.p1.bAceptar.mouseSobreBoto(this)){
-                gui.p1.setVisible(false);
+            if(gui.p2.bAceptar.mouseSobreBoto(this)){
+                gui.p2.setVisible(false);
             }
 
 
@@ -310,11 +328,8 @@ public class Main extends PApplet {
 
         if(gui.pantallaActual == GUI.PANTALLA.SEMANA){
             gui.s.checkButtons(this);
-            if(gui.d.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.INSERIR;
-            }
-            else if(gui.i.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.SELECCIONRECETA;
+            if(gui.ds.mouseSobreBoto(this)){
+                gui.pantallaActual = GUI.PANTALLA.DETALLESRECETA;
             }
         }
 
@@ -350,12 +365,13 @@ public class Main extends PApplet {
 
         if(gui.pantallaActual == GUI.PANTALLA.RECETAS){
             if(gui.Bant.mouseSobreBoto(this)){
-                gui.t.prevPage();
+                gui.r.prevPage();
             }
-            else if(gui.Bpost.mouseSobreBoto(this)){
-                gui.t.nextPage();
+            else if(gui.Bpost.mouseSobreBoto(this)) {
+                gui.r.nextPage();
             }
-            else if(gui.BFavoritos.mouseSobreBoto(this)){
+
+            if(gui.BFavoritos.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.FAVORITOS;
             }
         }
@@ -392,5 +408,4 @@ public class Main extends PApplet {
     public void mouseReleased() {
         println("MOUSE RELEASED");
     }
-
 }

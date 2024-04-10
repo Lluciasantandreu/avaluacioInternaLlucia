@@ -69,6 +69,9 @@ public class InserirTexto {
                 if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber) {
                     añadeTexto(key);
                 }
+                else if(key == ',' || key == '\''){
+                    añadeTexto(key);
+                }
             }
         }
     }

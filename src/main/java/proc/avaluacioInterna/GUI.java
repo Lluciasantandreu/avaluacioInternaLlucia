@@ -62,7 +62,7 @@ public class GUI {
 
     //PANTALLA SEMANA
     Semanario s;
-    Botones d, i;
+    Botones d, i, ds;
 
     //PANTALLA MES
     Calendario c;
@@ -84,9 +84,11 @@ public class GUI {
 
 
     // PANTALLA RECETAS
-    TablaPaginada t;
+    TablaPaginada r, f;
     Botones Bant, Bpost;
+    Botones Bant1, Bpost1;
     Botones BFavoritos;
+    Botones BAtras;
 
     // Constructor de la GUI
     public GUI(PApplet p5, DataBase db){
@@ -102,7 +104,7 @@ public class GUI {
         BEntrar.setActivado(false);
         p1 = new PopUp(p5, "ALERTA", "El usuario o la contraseña son incorrectos", 400, 300, 500, 300);
 
-        BHoy = new Botones(p5, "HOY", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
+        BHoy = new Botones(p5, "NUEVA RECETA", 2*margeH + menuX, 3*margeV + 3*logoY, columnaX, columnaY);
         BHoy.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BSemana= new Botones(p5, "SEMANA", 3*margeH + menuX + columnaX, 3*margeV + 3*logoY, columnaX, columnaY);
         BSemana.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
@@ -216,17 +218,30 @@ public class GUI {
         d.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         i = new Botones(p5, "insertar", (int)(2*margeH + menuX + 110), (4*logoY + columnaY + 10), 100, textY);
         i.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        ds = new Botones(p5, "detalles", (int)(2*margeH + menuX), (4*logoY + columnaY + 10), 100, textY);
+        ds.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
-        int filas = db.getNumRowsTaula("RECETA");
+
+
         String[] headers = {"id", "Nombre", "Imagen", "Tipo", "Dia"};
         String[][] infot = db.visualizaRecetas();
         db.printArray2D(infot);
         float[] colWidths = {20, 50, 40, 30, 35};
 
-        t = new TablaPaginada(filas + 1, 5);
-        t.setHeaders(headers);
-        t.setData(infot);
-        t.setColumnWidths(colWidths);
+        r = new TablaPaginada(6, 5);
+        r.setHeaders(headers);
+        r.setData(infot);
+        r.setColumnWidths(colWidths);
+
+        String[] headersf = {"id", "Nombre", "Usuario"};
+        String[][] infotf = db.visualizaRecetas();
+        db.printArray2D(infotf);
+        float[] colWidthsf = {20, 50, 40, 30, 35};
+
+        f = new TablaPaginada(6, 5);
+        f.setHeaders(headersf);
+        f.setData(infotf);
+        f.setColumnWidths(colWidthsf);
 
         Bant = new Botones(p5, "anterior", (int)(7*margeH + menuX), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
         Bant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -234,7 +249,12 @@ public class GUI {
         Bpost.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
         BFavoritos = new Botones(p5, "Ver recetas favoritas", (int)(p5.width - 8*margeH), (int)(4*margeV + 2*logoY), logInH, menuY - 130);
         BFavoritos.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(6), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-
+        BAtras = new Botones(p5, "Atras", margeH, 3*margeV + logoY, menuX - 20, textY);
+        BAtras.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        Bant1 = new Botones(p5, "anterior", (int)(7*margeH + menuX), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
+        Bant1.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        Bpost1 = new Botones(p5, "posterior", (int)(7*margeH + menuX + logInH), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
+        Bpost1.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
     }
 
     // PANTALLES DE LA GUI
@@ -337,8 +357,7 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         s.display(p5);
-        d.display(p5);
-        i.display(p5);
+        ds.display(p5);
     }
 
     public void dibuixaPantallaMes(PApplet p5){
@@ -380,10 +399,24 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         BInicio.display(p5);
-        t.display(p5, 300, 200, 500, 400);
+        r.display(p5, 300, 200, 500, 400);
         Bant.display(p5);
         Bpost.display(p5);
         BFavoritos.display(p5);
+    }
+
+    public void dibuixaPantallaFavoritos(PApplet p5){
+        p5.background(tablaColores.getColorDe(0));
+        dibuixaLogo(p5);
+        dibuixaNomPantalla(p5);
+        dibuixaImatge(p5);
+
+
+        p5.textFont(fontsApp.getFontAt(2));
+        BAtras.display(p5);
+        r.display(p5, 300, 200, 500, 400);
+        Bant.display(p5);
+        Bpost.display(p5);
     }
 
     public void dibuixaPantallaCuenta(PApplet p5){
