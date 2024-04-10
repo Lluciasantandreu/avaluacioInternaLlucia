@@ -222,13 +222,13 @@ public class GUI {
         ds.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
 
-
+        int filas = db.getNumRowsTaula("RECETA");
         String[] headers = {"id", "Nombre", "Imagen", "Tipo", "Dia"};
         String[][] infot = db.visualizaRecetas();
         db.printArray2D(infot);
         float[] colWidths = {20, 50, 40, 30, 35};
 
-        r = new TablaPaginada(6, 5);
+        r = new TablaPaginada(filas, 5);
         r.setHeaders(headers);
         r.setData(infot);
         r.setColumnWidths(colWidths);
