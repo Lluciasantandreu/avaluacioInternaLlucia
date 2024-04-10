@@ -110,6 +110,27 @@ public class DataBase {
         }
     }
 
+    /*public String[][] visualizaIngredientesReceta(String r){
+        int numFiles = 2;
+        int numCols  = 4;
+        String[][] info = new String[numFiles][numCols];
+        try {
+            ResultSet rs = query.executeQuery( "SELECT COUNT(*) AS n FROM INGREDIENTES_RECETA WHERE receta = '"+r+"'");
+            int nr = 0;
+            while (rs.next()) {
+                info[nr][0] = rs.getString("ingredientes");
+                info[nr][1] = String.valueOf(rs.getInt("receta"));
+                info[nr][2] = rs.getString("cantidad");
+                info[nr][3] = String.valueOf(rs.getInt("unidades"));
+                nr++;
+            }
+            return info;
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }*/
 
     public String[][] addIngredientesReceta(String i, String r, String c, String u){
         int numFiles = 7;

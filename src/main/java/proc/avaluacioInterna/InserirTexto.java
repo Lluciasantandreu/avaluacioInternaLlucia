@@ -69,7 +69,7 @@ public class InserirTexto {
                 if (isKeyCapitalLetter || isKeySmallLetter || isKeyNumber) {
                     añadeTexto(key);
                 }
-                else if(key == ',' || key == '\''){
+                else if(key == ',' || key == '\'' || key == 'ñ'){
                     añadeTexto(key);
                 }
             }

@@ -122,14 +122,6 @@ public class GUI {
         BDesayuno.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(3), tablaColores.getColorDe(3));
 
 
-        BRecetas = new Botones(p5, "Recetas", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
-        BRecetas.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BCuenta = new Botones(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
-        BCuenta.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-        BInformación = new Botones(p5, "Información", 9*margeH + 2*columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
-        BInformación.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
-
-
         TUsuario = new InserirTexto(p5, 200, 350, textX, textY, "Usuario");
         TContraseña = new InserirTexto(p5, 200, 450, textX, textY, "Contraseña");
 
@@ -201,6 +193,12 @@ public class GUI {
         //CONFIGURACIÓN
         BInicio = new Botones(p5, "Inicio", margeH, 3*margeV + logoY, menuX - 20, textY);
         BInicio.setColors(tablaColores.getColorDe(3), tablaColores.getColorDe(3), tablaColores.getColorDe(2), tablaColores.getColorDe(0));
+        BRecetas = new Botones(p5, "Recetas", 2*margeH, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BRecetas.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BCuenta = new Botones(p5, "Mi cuenta", 5*margeH + columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BCuenta.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
+        BInformación = new Botones(p5, "Informacion", 9*margeH + 2*columnaX + 50, 3*margeV + 3*logoY, columnaX + 50, columnaY + 10);
+        BInformación.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         //CUENTA
         CUsuario = new InserirTexto(p5, 600, 350, textX, textY, "Usuario");
@@ -235,7 +233,7 @@ public class GUI {
 
         String[][] infof = db.visualizaFavoritas();
         db.printArray2D(infof);
-        float[] colWidthsf = {150, 350};
+        float[] colWidthsf = {50, 500};
         String[] headersf = {"id receta", "usuario relacionado"};
 
         f = new TablaPaginada(4,2);
@@ -243,7 +241,7 @@ public class GUI {
         f.setColumnWidths(colWidthsf);
         f.setHeaders(headersf);
 
-        /*String[][] infoir = db.visualizaIngredientesReceta();
+        /*String[][] infoir = db.visualizaIngredientesReceta("1");
         db.printArray2D(infoir);
         float[] colWidthsir = {150, 350};
         String[] headersir = {"id receta", "usuario relacionado"};
@@ -424,7 +422,7 @@ public class GUI {
 
         p5.textFont(fontsApp.getFontAt(2));
         BAtras.display(p5);
-        f.display(p5, 300, 200, 100, 400);
+        f.display(p5, 300, 200, 500, 400);
         Bant1.display(p5);
         Bpost1.display(p5);
     }
