@@ -96,7 +96,7 @@ public class Main extends PApplet {
         }
     }
     public void actualizarCursor(){
-        if(gui.BLogIn.actualizarCursor(this)){
+        if(gui.BLogIn.actualizarCursor(this)||gui.BEntrar.actualizarCursor(this) || gui.MConfiguracion.actualizarCursor(this) || gui.MCrear.actualizarCursor(this) || gui.MMes.actualizarCursor(this) || gui.MSemana.actualizarCursor(this) || gui.MHome.actualizarCursor(this)){
             cursor(HAND);
         }
         else {
@@ -290,25 +290,62 @@ public class Main extends PApplet {
                    for(int i=0; i<=gui.TIngredients.length-1; i++){
                        bbdd.addIngredientes(gui.TIngredients[i].getText());
                        String id = bbdd.getClaveFromTabla("RECETA", "idRECETA", "nombre", gui.TNombre.getText());
-                       String u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades.getSelectedValue());
+                       String u;
+                       if(i==0){
+                           u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades.getSelectedValue());
+                       }
+                       else if(i==1) {
+                           u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades1.getSelectedValue());
+                       }
+                       else if(i==2) {
+                           u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades2.getSelectedValue());
+                       }
+                       else if(i==3) {
+                           u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades3.getSelectedValue());
+                       }
+                       else if(i==4) {
+                           u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades4.getSelectedValue());
+                       }
+                       else{
+                           u = bbdd.getClaveFromTabla("UNIDADES", "idUNIDADES", "nombre", gui.Unidades5.getSelectedValue());
+                       }
                        bbdd.addIngredientesReceta(gui.TIngredients[i].getText(), id, gui.TCantidades[i].getText(), u);
                    }
 
 
                }
-               gui.p2.setVisible(true);
+               if(!gui.c.isDateSelected()){
+                   gui.p3.setVisible(true);
+               }
+               else {
+                   gui.p2.setVisible(true);
+               }
            }
 
             if(gui.p2.bAceptar.mouseSobreBoto(this)){
                 gui.p2.setVisible(false);
             }
-
+            if(gui.p3.bAceptar.mouseSobreBoto(this)){
+                gui.p3.setVisible(false);
+            }
 
            if(gui.BFavorita.mouseSobreBoto(this)){
-               System.out.println("Has fet click sobre el botó Guardar");
+               System.out.println("Has fet click sobre el botó Favorita");
                String id = bbdd.getClaveFromTabla("RECETA", "idRECETA", "nombre", gui.TNombre.getText());
+               if(id != null){
+                   gui.p4.setVisible(true);
                    bbdd.addRecetaFavorita(id, gui.TUsuario.getText());
+               }
+               else{
+                   gui.p6.setVisible(true);
+               }
            }
+            if(gui.p4.bAceptar.mouseSobreBoto(this)){
+                gui.p4.setVisible(false);
+            }
+            if(gui.p6.bAceptar.mouseSobreBoto(this)){
+                gui.p6.setVisible(false);
+            }
         }
 
 

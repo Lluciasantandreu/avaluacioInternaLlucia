@@ -237,7 +237,7 @@ public class DataBase {
     }
 
     void addIngredientes(String nombre){
-        String q = "INSERT INTO INGREDIENTES (idINGREDIENTES) VALUES ('"+ nombre + "')";
+        String q = "INSERT INTO INGREDIENTES (idINGREDIENTES) VALUES ('"+ nombre +"')";
         System.out.println(q);
         try {
             query.execute(q);

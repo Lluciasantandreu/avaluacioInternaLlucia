@@ -38,7 +38,7 @@ public class GUI {
 
     // PANTALLA INSERIR
     Botones BComida, BCena, BPostre, BDesayuno;
-    PopUp p2;
+    PopUp p2, p3, p4, p6;
 
     // PANTALLA DETALLES HOY
     InserirTexto TNombre;
@@ -177,6 +177,9 @@ public class GUI {
         BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
         p2 = new PopUp(p5, "GUARDADO", "La receta se ha guardado correctamente", 400, 300, 500, 300);
+        p3 = new PopUp(p5, "ALERTA", "Debe seleccionar una fecha en el calendario antes de guardar la receta", 400, 300, 500, 300);
+        p4 = new PopUp(p5, "FAVORITA", "La receta ha sido añadida a la lista de favoritos", 400, 300, 500, 300);
+        p6 = new PopUp(p5, "ALERTA", "La receta no se ha añadido a la lista de favoritos.\nVuelve a intentarlo mas tarde", 400, 300, 500, 300);
 
         // MENU
         MHome = new Botones(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
@@ -354,6 +357,9 @@ public class GUI {
         }
 
         p2.display(p5);
+        p3.display(p5);
+        p4.display(p5);
+        p6.display(p5);
     }
 
     public void dibuixaPantallaSemana(PApplet p5){
