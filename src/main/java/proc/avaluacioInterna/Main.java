@@ -388,7 +388,7 @@ public class Main extends PApplet {
         }
 
 
-        if(gui.pantallaActual == GUI.PANTALLA.CONFIGURACION || gui.pantallaActual == GUI.PANTALLA.RECETAS || gui.pantallaActual == GUI.PANTALLA.CUENTA || gui.pantallaActual == GUI.PANTALLA.INFORMACION){
+        if(gui.pantallaActual == GUI.PANTALLA.CONFIGURACION || gui.pantallaActual == GUI.PANTALLA.RECETAS || gui.pantallaActual == GUI.PANTALLA.CUENTA || gui.pantallaActual == GUI.PANTALLA.INFORMACION || gui.pantallaActual == GUI.PANTALLA.DETALLESRECETA){
             if(gui.BInicio.mouseSobreBoto(this)){
                 gui.pantallaActual = GUI.PANTALLA.SELECCIONAR;
             }

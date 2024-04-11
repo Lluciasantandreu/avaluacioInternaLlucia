@@ -84,8 +84,7 @@ public class GUI {
 
 
     // PANTALLA RECETAS
-    TablaPaginada r, f;
-    Tabla ir;
+    TablaPaginada r, f, ir;
     Botones Bant, Bpost;
     Botones Bant1, Bpost1;
     Botones BFavoritos;
@@ -244,15 +243,15 @@ public class GUI {
         f.setColumnWidths(colWidthsf);
         f.setHeaders(headersf);
 
-        /*String[][] infoir = db.visualizaIngredientesReceta("1");
+        String[][] infoir = db.visualizaIngredientesReceta("1");
         db.printArray2D(infoir);
         float[] colWidthsir = {150, 350};
-        String[] headersir = {"id receta", "usuario relacionado"};
+        String[] headersir = {"ingrediente", "receta", "cantidad", "unidades"};
 
-        ir = new Tabla(7,2);
+        ir = new TablaPaginada(2,4);
         ir.setData(infoir);
         ir.setColumnWidths(colWidthsir);
-        ir.setHeaders(headersir);*/
+        ir.setHeaders(headersir);
 
         Bant = new Botones(p5, "anterior", (int)(7*margeH + menuX), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
         Bant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -470,7 +469,7 @@ public class GUI {
         dibuixaImatge(p5);
 
         p5.textFont(fontsApp.getFontAt(2));
-        ir.display(p5, 300, 200, 100, 400);
+
         BInicio.display(p5);
  }
 

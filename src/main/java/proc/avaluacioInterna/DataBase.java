@@ -110,7 +110,7 @@ public class DataBase {
         }
     }
 
-    /*public String[][] visualizaIngredientesReceta(String r){
+    public String[][] visualizaIngredientesReceta(String r){
         int numFiles = 2;
         int numCols  = 4;
         String[][] info = new String[numFiles][numCols];
@@ -130,7 +130,7 @@ public class DataBase {
             System.out.println(e);
             return null;
         }
-    }*/
+    }
 
     public String[][] addIngredientesReceta(String i, String r, String c, String u){
         int numFiles = 7;
