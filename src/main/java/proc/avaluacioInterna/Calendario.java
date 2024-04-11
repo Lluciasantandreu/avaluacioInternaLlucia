@@ -72,8 +72,8 @@ public class Calendario {
         Date d= new Date(this.selectedYear, this.selectedMonth, this.selectedDay);
         return d;
     }
-
     // Setters
+
     public void setCalendar(int d, int m, int y){
         cal.set(Calendar.YEAR, y);
         cal.set(Calendar.MONTH, m);
@@ -186,7 +186,7 @@ public class Calendario {
     public void display(PApplet p5){
         p5.pushStyle();
         p5.fill(0); p5.textSize(36); p5.textAlign(p5.LEFT);
-        p5.text(months[mes-1]+"/"+any, x + w, y - 30);
+        p5.text(months[mes-1]+"/"+any, x+450, y - 20);
         for(BotonDia b : buttons){
             if(b!=null){
                 b.display(p5);
