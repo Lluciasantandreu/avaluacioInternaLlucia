@@ -9,7 +9,7 @@ public class ValoresEstaticos {
     public static float menuX  = 270, menuY = 540;
 
     // Dimensiones Logo
-    public static float logoX  = 60, logoY = 60;
+    public static float logoX  = 80, logoY = 80;
 
     // Dimensiones Imagen
     public static float imatgeX  = 1375, imatgeY = 180;
