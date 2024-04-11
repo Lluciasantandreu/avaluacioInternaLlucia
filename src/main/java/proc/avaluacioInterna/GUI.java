@@ -480,9 +480,9 @@ public class GUI {
     public void dibuixaLogo(PApplet p5){
         p5.noStroke();
         p5.fill(tablaColores.getColorDe(4));
-        p5.rect(margeH-1, margeV-1, logoX + 2, logoY + 2);
+        p5.rect(margeH-1, margeV+9, logoX + 22, logoY + 22);
         p5.fill(0); p5.textFont(fontsApp.getFontAt(0)); p5.textSize(midaParagraf);
-        p5.image(imagenesApp.getImageAt(3), margeH, margeV, logoX, logoY);
+        p5.image(imagenesApp.getImageAt(3), margeH, margeV + 10, logoX + 20, logoY + 20);
     }
 
     public void dibuixaNomPantalla(PApplet p5){
