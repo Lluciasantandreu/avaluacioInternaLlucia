@@ -245,7 +245,7 @@ public class GUI {
 
         String[][] infoir = db.visualizaIngredientesReceta("1");
         db.printArray2D(infoir);
-        float[] colWidthsir = {150, 350};
+        float[] colWidthsir = {20, 50, 40, 30};
         String[] headersir = {"ingrediente", "receta", "cantidad", "unidades"};
 
         ir = new TablaPaginada(2,4);
@@ -469,7 +469,7 @@ public class GUI {
         dibuixaImatge(p5);
 
         p5.textFont(fontsApp.getFontAt(2));
-
+        ir.display(p5, 300, 200, 500, 400);
         BInicio.display(p5);
  }
 

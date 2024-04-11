@@ -110,18 +110,39 @@ public class DataBase {
         }
     }
 
-    public String[][] visualizaIngredientesReceta(String r){
-        int numFiles = 2;
-        int numCols  = 4;
+    public int getNumRowsQuery(String qn){
+        try {
+            ResultSet rs = query.executeQuery( qn);
+            rs.next();
+            return rs.getInt("n");
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return 0;
+        }
+    }
+
+
+    public String[][] visualizaIngredientesReceta(String idReceta){
+        String qn = "SELECT COUNT(*) AS n "+
+                "FROM receta r, ingredientes_receta ir, ingredientes i, unidades u "+
+                "WHERE r.idRECETA = ir.receta AND ir.ingredientes = i.idINGREDIENTES AND ir.unidades = u.idUNIDADES " +
+                "AND r.idRECETA = '" + idReceta +"' ";
+        int numFiles = getNumRowsQuery(qn);
+        int numCols  = 3;
         String[][] info = new String[numFiles][numCols];
         try {
-            ResultSet rs = query.executeQuery( "SELECT COUNT(*) AS n FROM INGREDIENTES_RECETA WHERE receta = '"+r+"'");
+            String q = "SELECT i.nombre AS INGREDIENTE, ir.cantidad AS CANTIDAD, u.nombre AS UNIDADES "+
+                    "FROM receta r, ingredientes_receta ir, ingredientes i, unidades u "+
+                    "WHERE r.idRECETA = ir.receta AND ir.ingredientes = i.idINGREDIENTES AND ir.unidades = u.idUNIDADES " +
+                    "AND r.idRECETA = '" + idReceta +"' "+
+                    "ORDER BY i.nombre ASC";
+            ResultSet rs = query.executeQuery( q);
             int nr = 0;
             while (rs.next()) {
-                info[nr][0] = rs.getString("ingredientes");
-                info[nr][1] = String.valueOf(rs.getInt("receta"));
-                info[nr][2] = rs.getString("cantidad");
-                info[nr][3] = String.valueOf(rs.getInt("unidades"));
+                info[nr][0] = rs.getString("INGREDIENTE");
+                info[nr][1] = String.valueOf(rs.getInt("CANTIDAD"));
+                info[nr][2] = rs.getString("UNIDADES");
                 nr++;
             }
             return info;
