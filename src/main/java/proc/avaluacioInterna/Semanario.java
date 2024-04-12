@@ -2,6 +2,7 @@ package proc.avaluacioInterna;
 
 import processing.core.PApplet;
 
+import java.sql.Date;
 import java.util.Calendar;
 
 public class Semanario {
@@ -60,8 +61,9 @@ public class Semanario {
     public boolean isDateSelected(){
         return this.dateSelected;
     }
-    public String getSelectedDate(){
-        return this.selectedDia +"/"+ this.selectedMes + "/"+ this.selectedAño;
+    public Date getSelectedDate(){
+        Date d= new Date(this.selectedDia, this.selectedMes, this.selectedAño);
+        return d;
     }
 
 

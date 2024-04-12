@@ -129,14 +129,14 @@ public class DataBase {
                 "WHERE r.idRECETA = ir.receta AND ir.ingredientes = i.idINGREDIENTES AND ir.unidades = u.idUNIDADES " +
                 "AND r.idRECETA = '" + idReceta +"' ";
         int numFiles = getNumRowsQuery(qn);
-        int numCols  = 3;
+        int numCols  = 4;
         String[][] info = new String[numFiles][numCols];
         try {
-            String q = "SELECT i.nombre AS INGREDIENTE, ir.cantidad AS CANTIDAD, u.nombre AS UNIDADES "+
+            String q = "SELECT i.idINGREDIENTES  AS INGREDIENTE, ir.cantidad AS CANTIDAD, u.nombre AS UNIDADES "+
                     "FROM receta r, ingredientes_receta ir, ingredientes i, unidades u "+
                     "WHERE r.idRECETA = ir.receta AND ir.ingredientes = i.idINGREDIENTES AND ir.unidades = u.idUNIDADES " +
                     "AND r.idRECETA = '" + idReceta +"' "+
-                    "ORDER BY i.nombre ASC";
+                    "ORDER BY i.idINGREDIENTES  ASC";
             ResultSet rs = query.executeQuery( q);
             int nr = 0;
             while (rs.next()) {
@@ -271,6 +271,24 @@ public class DataBase {
     public String getClaveFromTabla(String nombreTabla, String nombreColumnaClave, String nombreColumnaValor, String valorColumna){
         try {
             String queryText = "SELECT " + nombreColumnaClave + " AS clave FROM " + nombreTabla+ " WHERE " +nombreColumnaValor+ " = '"+valorColumna+"'";
+            System.out.println(queryText);
+            ResultSet rs = query.executeQuery(queryText);
+            rs.next();
+            System.out.println(rs.getString("clave"));
+            return rs.getString("clave");
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public String getClaveFromTabla2(String nombreTabla, String nombreColumnaClave, String nombreColumnaValor, Date valorColumna){
+        System.out.println(valorColumna);
+        //String df = valorColumna.getYear()+"-"+valorColumna.getMonth()+"-"+valorColumna.getDay();
+        String df = "2024-04-13";
+        try {
+            String queryText = "SELECT " + nombreColumnaClave + " AS clave FROM " + nombreTabla+ " WHERE " +nombreColumnaValor+ " = '"+df+"'";
             System.out.println(queryText);
             ResultSet rs = query.executeQuery(queryText);
             rs.next();

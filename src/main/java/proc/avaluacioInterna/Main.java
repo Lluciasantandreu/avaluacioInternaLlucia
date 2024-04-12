@@ -368,8 +368,16 @@ public class Main extends PApplet {
         if(gui.pantallaActual == GUI.PANTALLA.SEMANA){
             gui.s.checkButtons(this);
             if(gui.ds.mouseSobreBoto(this)){
-                gui.pantallaActual = GUI.PANTALLA.DETALLESRECETA;
+                if(gui.s.dateSelected){
+                    gui.pantallaActual = GUI.PANTALLA.DETALLESRECETA;
+                }
+                else{
+                    gui.p7.setVisible(true);
+                }
             }
+        }
+        if(gui.p7.bAceptar.mouseSobreBoto(this)){
+            gui.p7.setVisible(false);
         }
 
         if(gui.pantallaActual == GUI.PANTALLA.SELECCIONAR) {

@@ -38,7 +38,7 @@ public class GUI {
 
     // PANTALLA INSERIR
     Botones BComida, BCena, BPostre, BDesayuno;
-    PopUp p2, p3, p4, p6;
+    PopUp p2, p3, p4, p6, p7;
 
     // PANTALLA DETALLES HOY
     InserirTexto TNombre;
@@ -175,10 +175,11 @@ public class GUI {
         BImagen = new Botones(p5, "imagen", (2*margeH + menuX), (4*logoY + columnaY + 10), logInH - 10, textY);
         BImagen.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
 
-        p2 = new PopUp(p5, "GUARDADO", "La receta se ha guardado correctamente", 400, 300, 500, 300);
-        p3 = new PopUp(p5, "ALERTA", "Debe seleccionar una fecha en el calendario antes de guardar la receta", 400, 300, 500, 300);
-        p4 = new PopUp(p5, "FAVORITA", "La receta ha sido añadida a la lista de favoritos", 400, 300, 500, 300);
-        p6 = new PopUp(p5, "ALERTA", "La receta no se ha añadido a la lista de favoritos.\nVuelve a intentarlo mas tarde", 400, 300, 500, 300);
+        p2 = new PopUp(p5, "GUARDADO", "La receta se ha guardado correctamente.", 400, 300, 500, 300);
+        p3 = new PopUp(p5, "ALERTA", "Debe seleccionar una fecha en el calendario antes de guardar la receta.", 400, 300, 500, 300);
+        p4 = new PopUp(p5, "FAVORITA", "La receta ha sido añadida a la lista de favoritos.", 400, 300, 500, 300);
+        p6 = new PopUp(p5, "ALERTA", "La receta no se ha añadido a la lista de favoritos.\nVuelve a intentarlo mas tarde.", 400, 300, 500, 300);
+        p7 = new PopUp(p5, "ERROR", "No hay ningun dia seleccionado.\nSeleccione una fecha para ver sus detalles.", 400, 300, 500, 300);
 
         // MENU
         MHome = new Botones(p5, "Inicio", margeH, 3*margeV + 3*logoY, menuX, textY);
@@ -243,15 +244,19 @@ public class GUI {
         f.setColumnWidths(colWidthsf);
         f.setHeaders(headersf);
 
-        String[][] infoir = db.visualizaIngredientesReceta("1");
-        db.printArray2D(infoir);
-        float[] colWidthsir = {20, 50, 40, 30};
-        String[] headersir = {"ingrediente", "receta", "cantidad", "unidades"};
 
-        ir = new TablaPaginada(2,4);
+        String idReceta = db.getClaveFromTabla2("RECETA", "idRECETA", "dia", s.getSelectedDate());
+        System.out.println(idReceta);
+        String[][] infoir = db.visualizaIngredientesReceta("2");
+        db.printArray2D(infoir);
+        float[] colWidthsir = {70, 52, 53};
+        String[] headersir = {"ingrediente", "cantidad", "unidades"};
+
+        ir = new TablaPaginada(6,3);
         ir.setData(infoir);
         ir.setColumnWidths(colWidthsir);
         ir.setHeaders(headersir);
+
 
         Bant = new Botones(p5, "anterior", (int)(7*margeH + menuX), (int)(3*margeV + 2*logoY + 430), logInH - 10, textY);
         Bant.setColors(tablaColores.getColorDe(0), tablaColores.getColorDe(1), tablaColores.getColorDe(2), tablaColores.getColorDe(3));
@@ -371,6 +376,7 @@ public class GUI {
         p5.textFont(fontsApp.getFontAt(2));
         s.display(p5);
         ds.display(p5);
+        p7.display(p5);
     }
 
     public void dibuixaPantallaMes(PApplet p5){
@@ -469,7 +475,7 @@ public class GUI {
         dibuixaImatge(p5);
 
         p5.textFont(fontsApp.getFontAt(2));
-        ir.display(p5, 300, 200, 500, 400);
+        ir.display2(p5, 300, 200, 500, 400);
         BInicio.display(p5);
  }
 

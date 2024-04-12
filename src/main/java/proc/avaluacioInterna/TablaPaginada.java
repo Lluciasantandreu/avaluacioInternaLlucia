@@ -88,10 +88,62 @@ public class TablaPaginada {
         for(int r = 0; r< numRows; r++){
             xCol = x;
             for(int c = 0; c< numCols; c++){
+                System.out.println(tableData[r-1][c]);
                 if(r==0){
                     p5.text(tableHeaders[c], xCol + 10, y + (r+1)*rowHeight - 10);
                 }
                 else if(tableData[r-1][c]!=null){
+                    int k = (numRows-1)*numPage + (r-1);
+                    if(k<tableData.length){
+                        p5.text(tableData[k][c], xCol + 10, y + (r+1)*rowHeight - 10);
+                    }
+                }
+                xCol += w*columnWidths[c]/100.0;
+            }
+        }
+
+        // Informació de la Pàgina
+        p5.fill(0);
+        p5.text("Pag: "+(this.numPage+1)+" / "+(this.numTotalPages+1), x, y + h + 50);
+
+        p5.popStyle();
+    }
+
+    public void display2(PApplet p5, float x, float y, float w, float h){
+
+        p5.pushStyle();
+
+        p5.fill(200, 50); p5.stroke(0); p5.strokeWeight(3);
+        p5.rect(x, y, w + 375, h);
+
+        float rowHeight = h / numRows;
+        p5.fill(0xFF9DC5BB); p5.stroke(0); p5.strokeWeight(3);
+        p5.rect(x, y, w + 375, rowHeight);
+
+        // Dibuixa files
+        p5.stroke(0);
+        for(int r = 1; r <numRows; r++){
+            if(r==1){ p5.strokeWeight(3); }
+            else {    p5.strokeWeight(1); }
+            p5.line(x, y + r*rowHeight, x + w + 375, y + r*rowHeight);
+        }
+
+        // Dibuixa Columnes
+        float xCol = x;
+        for(int c = 0; c<numCols; c++){
+            xCol += w*columnWidths[c]/100.0;
+            p5.line(xCol, y, xCol, y + h);
+        }
+
+        // Dibuixa textos
+        p5.fill(0);
+        for(int r = 0; r< numRows; r++){
+            xCol = x;
+            for(int c = 0; c< numCols; c++){
+                if(r==0){
+                    p5.text(tableHeaders[c], xCol + 10, y + (r+1)*rowHeight - 10);
+                }
+                else if(r-1>=0 && c>=0 && tableData[r-1][c]!=null){
                     int k = (numRows-1)*numPage + (r-1);
                     if(k<tableData.length){
                         p5.text(tableData[k][c], xCol + 10, y + (r+1)*rowHeight - 10);
